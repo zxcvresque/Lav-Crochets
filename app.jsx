@@ -106,7 +106,7 @@ function applyRadius(name) {
 }
 
 function App() {
-  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const t = TWEAK_DEFAULTS;
   const [cart, setCart] = React.useState(() => {
     try { return JSON.parse(localStorage.getItem("lav.cart") || "[]"); } catch (e) { return []; }
   });
@@ -140,16 +140,6 @@ function App() {
     try { localStorage.setItem("lav.theme", dark ? "dark" : "light"); } catch (e) { /* no-op */ }
   }, [dark]);
 
-  // Owner-only: open the Tweaks panel locally with ?tweaks=1 in the URL.
-  // Normal visitors never see it (it stays hidden unless edit mode is activated).
-  React.useEffect(() => {
-    try {
-      if (new URLSearchParams(window.location.search).has("tweaks")) {
-        window.postMessage({ type: "__activate_edit_mode" }, "*");
-      }
-    } catch (e) { /* no-op */ }
-  }, []);
-
   const handleAdd = (p) => {
     setCart(prev => {
       const existing = prev.find(l => l.id === p.id);
@@ -177,15 +167,19 @@ function App() {
           <FreeRow products={PRODUCTS} onAdd={handleAdd} />
           <CustomOrders />
           <QuoteBlock />
+          <FAQ />
           <InstagramRow />
           <Newsletter />
-          <TokenSheet />
         </>
       )}
 
       {page === "shop" && <ShopPage products={PRODUCTS} onAdd={handleAdd} />}
 
       {page === "custom" && <CustomPage />}
+
+      {page === "about" && <AboutPage />}
+
+      {page === "contact" && <ContactPage />}
 
       <Footer dark={dark} onToggleTheme={toggleTheme} />
 
@@ -195,63 +189,6 @@ function App() {
         lines={cart}
         onRemove={handleRemove}
       />
-
-      <ScrollTop />
-
-      <TweaksPanel title="Tweaks">
-        <TweakSection label="Brand color" />
-        <TweakRadio
-          label="Palette"
-          value={t.palette}
-          options={[
-            { value: "plum",     label: "plum" },
-            { value: "lavender", label: "lavender" },
-            { value: "blush",    label: "blush" },
-            { value: "mauve",    label: "mauve" },
-          ]}
-          onChange={(v) => setTweak('palette', v)}
-        />
-
-        <TweakSection label="Typography" />
-        <TweakRadio
-          label="Type pair"
-          value={t.fontPair}
-          options={[
-            { value: "bricolage-geist",   label: "Bricolage + Geist" },
-            { value: "geist-only",        label: "Geist alone" },
-          ]}
-          onChange={(v) => setTweak('fontPair', v)}
-        />
-
-        <TweakSection label="Layout" />
-        <TweakRadio
-          label="Density"
-          value={t.density}
-          options={["compact", "regular", "comfy"]}
-          onChange={(v) => setTweak('density', v)}
-        />
-        <TweakRadio
-          label="Radius"
-          value={t.radius}
-          options={["sharp", "round", "soft"]}
-          onChange={(v) => setTweak('radius', v)}
-        />
-
-        <TweakSection label="Theme" />
-        <TweakToggle
-          label="Dark mode"
-          value={dark}
-          onChange={(v) => setDark(v)}
-        />
-
-        <TweakSection label="Quick actions" />
-        <TweakButton label="Open cart drawer" onClick={() => setCartOpen(true)} />
-        <TweakButton label="Scroll to tokens" onClick={() => {
-          const el = document.getElementById('tokens');
-          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
-        }} />
-        <TweakButton label="Scroll to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
-      </TweaksPanel>
     </div>
   );
 }

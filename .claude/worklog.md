@@ -60,3 +60,11 @@
 - Scroll-to-top: ScrollTop component (primitives) shows after 500px scroll, fixed bottom-right lavender circle (arrow-up icon), smooth scroll; rendered in app.jsx on all pages. Added arrow-up icon.
 - Flash hover: .btn-flash (shine sweep on hover) added to custom Send button (now small + centered, not full-width xl), the Newsletter social buttons (Follow on Instagram / WhatsApp / catalogue), cart Send button, and the scroll-top.
 - Compact cart: smaller header (19px), 52px thumbs, smaller title/price/total, base-size Send button (h48), tighter UPI panel + 48px QR. Global (no desktop-only rules) so Android gets it too. Verified both items fit without the footer dominating.
+
+## Strip dev tooling, remove scroll-top, header spacing, dark ink panel
+- Files: app.jsx, primitives.jsx, styles.css, index/shop/custom/about/contact.html; moved tweaks-panel.jsx + tokens-sheet.jsx -> design-system/
+- Removed Tweaks panel + TokenSheet from the live site: decoupled useTweaks (app.jsx now uses `const t = TWEAK_DEFAULTS`), dropped the ?tweaks opener, removed <TokenSheet/> + <TweaksPanel> block, removed the two <script> tags from all 5 HTML pages. The two files are preserved under design-system/ (off-site).
+- Removed the scroll-to-top button entirely (app render, ScrollTop component + export in primitives, .scrolltop CSS). .btn-flash kept (used by buttons).
+- Header spacing: nav centred with `margin:0 auto`, tighter inter-link gap but more per-link padding (9px 16px) + white-space:nowrap, so brand · nav · actions breathe like the reference.
+- Dark mode: `[data-theme=dark] .panel.ink` now lifts to an elevated bordered surface (var(--bg-subtle)/--line-2) instead of blending into the page; light text still reads.
+- Verified light header + dark Newsletter panel; home renders with dev tooling gone (no dangling refs).

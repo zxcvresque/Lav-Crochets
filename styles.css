@@ -954,14 +954,15 @@ textarea:focus-visible {
 .header nav {
   display: flex;
   align-items: center;
-  gap: 4px;
-  margin-left: 8px;
+  gap: 2px;
+  margin: 0 auto;            /* keep the nav centred between brand and actions */
 }
 .header nav a {
-  padding: 8px 14px;
+  padding: 9px 16px;
   border-radius: 99px;
   font-size: 14px;
   font-weight: 500;
+  white-space: nowrap;
   color: var(--fg-soft);
   transition: color var(--dur-base) var(--ease-out-soft), background var(--dur-base) var(--ease-out-soft);
 }
@@ -1086,12 +1087,19 @@ textarea:focus-visible {
 .panel.ink { background: var(--ink); color: var(--paper); border-color: transparent; }
 .panel.sun { background: var(--sun-500); color: oklch(0.30 0.05 70); border-color: transparent; }
 .panel.plum { background: var(--iris-500); color: white; border-color: transparent; }
+/* In dark mode the near-black ink panel blends into the page; lift it into a
+   distinct, elevated bordered surface (its light text still reads fine). */
+[data-theme="dark"] .panel.ink { background: var(--bg-subtle); border: 1px solid var(--line-2); }
 
 /* ── "How ordering works" timeline ───────────────────────────────────────
    Numbered badges joined by a connector line. The list fills the panel
    (li { flex: 1 }) so the 5 steps share the height evenly instead of leaving
    a void in the middle. The connector hangs from each badge to the row bottom
-   (= the next badge), so it stays aligned even if a step wraps. */
+   (= the next badge), so it stays aligned even if a step wraps.
+
+   Badges are translucent outlined circles by default; the OrderSteps component
+   adds `.is-lit` to each point as it scrolls past (and keeps it lit) and
+   `.is-active` to the current point, so the timeline lights up 1 -> 5. */
 .order-card .order-steps {
   list-style: none;
   margin: 24px 0 0;
@@ -1115,8 +1123,13 @@ textarea:focus-visible {
   top: 34px;             /* badge bottom */
   bottom: 0;             /* row bottom = next badge top */
   width: 2px;
-  background: color-mix(in oklch, var(--joy-950) 22%, transparent);
+  background: color-mix(in oklch, var(--joy-950) 14%, transparent);
   border-radius: 2px;
+  transition: background var(--dur-med) var(--ease-out-soft);
+}
+/* lit segment of the connector fills in as the steps light up */
+.order-card .order-steps li.is-lit:not(:last-child)::before {
+  background: color-mix(in oklch, var(--joy-950) 50%, transparent);
 }
 .order-step-num {
   flex: 0 0 auto;
@@ -1126,14 +1139,32 @@ textarea:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--joy-950);
-  color: var(--joy-100);
+  /* default: translucent outlined circle, faint number */
+  background: transparent;
+  border: 1.5px solid color-mix(in oklch, var(--joy-950) 26%, transparent);
+  color: color-mix(in oklch, var(--joy-950) 50%, transparent);
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 16px;
   letter-spacing: -0.01em;
   position: relative;
   z-index: 1;
+  transition: background var(--dur-base) var(--ease-out-soft),
+              border-color var(--dur-base) var(--ease-out-soft),
+              color var(--dur-base) var(--ease-out-soft),
+              box-shadow var(--dur-base) var(--ease-out-soft);
+}
+/* lit: outline + number go fully opaque */
+.order-step.is-lit .order-step-num {
+  border-color: var(--joy-950);
+  color: var(--joy-950);
+}
+/* active: the current point fills in and gets a soft halo */
+.order-step.is-active .order-step-num {
+  background: var(--joy-950);
+  color: var(--joy-100);
+  border-color: var(--joy-950);
+  box-shadow: 0 0 0 5px color-mix(in oklch, var(--joy-950) 12%, transparent);
 }
 .order-step-text {
   font-family: var(--font-display);
@@ -1141,14 +1172,45 @@ textarea:focus-visible {
   font-size: clamp(18px, 1.5vw, 22px);
   letter-spacing: -0.02em;
   line-height: 1.2;
-  color: var(--joy-950);
+  color: color-mix(in oklch, var(--joy-950) 60%, transparent);
   padding-top: 4px;      /* optically centre the first line against the badge */
+  transition: color var(--dur-base) var(--ease-out-soft);
 }
+.order-step.is-lit .order-step-text { color: var(--joy-950); }
+
 @media (max-width: 768px) {
   /* The generic .grid-2 never collapses; stack this section and let the card
      size to content on phones (matches the design system's two-up collapse). */
   #story .grid-2 { grid-template-columns: 1fr; }
   .order-card { aspect-ratio: auto; }
+
+  /* Each step becomes a card that rises into view as it scrolls past. */
+  .order-card .order-steps { gap: 12px; }
+  .order-card .order-steps li {
+    flex: 0 0 auto;
+    align-items: center;
+    padding: 16px;
+    border-radius: var(--r-4);
+    background: color-mix(in oklch, var(--joy-950) 6%, transparent);
+    border: 1px solid color-mix(in oklch, var(--joy-950) 12%, transparent);
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity var(--dur-slow) var(--ease-out-soft),
+                transform var(--dur-slow) var(--ease-out-soft);
+  }
+  .order-card .order-steps li.is-lit { opacity: 1; transform: translateY(0); }
+  /* no connecting line in the stacked card layout */
+  .order-card .order-steps li:not(:last-child)::before { display: none; }
+  .order-step-text { padding-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .order-step-num,
+  .order-step-text,
+  .order-card .order-steps li,
+  .order-card .order-steps li::before { transition: none; }
+  /* never leave content hidden if motion is suppressed */
+  .order-card .order-steps li { opacity: 1; transform: none; }
 }
 
 /* Quote / founder block */
@@ -1486,20 +1548,217 @@ textarea:focus-visible {
 }
 .btn-flash:hover::after { left: 140%; }
 
-/* Floating scroll-to-top button. */
-.scrolltop {
-  position: fixed; right: 22px; bottom: 22px; z-index: 45;
-  width: 46px; height: 46px; border-radius: var(--r-pill);
-  display: inline-flex; align-items: center; justify-content: center;
-  background: var(--brand); color: var(--brand-ink); border: 0; cursor: pointer;
-  box-shadow: var(--shadow-3);
-  opacity: 0; transform: translateY(14px) scale(0.9); pointer-events: none;
-  transition: opacity var(--dur-base) var(--ease-out-soft),
-              transform var(--dur-base) var(--ease-out-soft),
-              background var(--dur-base) var(--ease-out-soft);
+/* ───────────────────────────────────────────────────────────────────────
+   FAQ accordion (home + about)
+   ─────────────────────────────────────────────────────────────────────── */
+.faq-wrap { max-width: 880px; }
+.faq-list { display: flex; flex-direction: column; gap: 12px; }
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  background: var(--bg-elev);
+  overflow: hidden;
+  transition: border-color var(--dur-base) var(--ease-out-soft),
+              box-shadow var(--dur-base) var(--ease-out-soft);
 }
-.scrolltop.show { opacity: 1; transform: none; pointer-events: auto; }
-.scrolltop:hover { background: var(--brand-press); transform: translateY(-2px); }
+.faq-item.open { border-color: var(--line-2); box-shadow: var(--shadow-2); }
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(17px, 1.6vw, 21px);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  color: var(--fg);
+}
+.faq-icon {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-subtle);
+  color: var(--fg-soft);
+  transition: transform var(--dur-med) var(--ease-out-soft),
+              background var(--dur-base) var(--ease-out-soft),
+              color var(--dur-base) var(--ease-out-soft);
+}
+.faq-item.open .faq-icon {
+  transform: rotate(90deg);
+  background: var(--joy-500);
+  color: var(--joy-950);
+}
+.faq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-med) var(--ease-out-soft);
+}
+.faq-item.open .faq-a { grid-template-rows: 1fr; }
+.faq-a > div { overflow: hidden; }
+.faq-a p {
+  margin: 0;
+  padding: 0 24px 24px;
+  max-width: 68ch;
+  color: var(--fg-soft);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   About page
+   ─────────────────────────────────────────────────────────────────────── */
+.about-lead {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.28;
+  color: var(--fg);
+  margin: 0 0 22px;
+  text-wrap: balance;
+}
+.about-story p { color: var(--fg-soft); font-size: 17px; line-height: 1.65; margin: 0 0 18px; max-width: 60ch; }
+.about-sign { font-family: var(--font-display); font-size: 19px; color: var(--fg) !important; margin-top: 28px !important; }
+.about-sign-name {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 30px;
+  color: var(--joy-700) !important;
+  margin: 4px 0 0 !important;
+}
+.about-promise { position: sticky; top: 108px; }
+.promise-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.promise-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(16px, 1.4vw, 19px);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--joy-950);
+}
+.promise-check {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  margin-top: 1px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--joy-950);
+  color: var(--joy-100);
+}
+.about-cta { text-align: center; }
+.about-cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 50px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  margin: 0 auto;
+  max-width: 18ch;
+  color: var(--paper);
+}
+.about-cta-em { font-family: var(--font-italic); font-style: italic; font-weight: 400; color: var(--joy-300); }
+.about-cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
 @media (max-width: 768px) {
-  .scrolltop { right: 16px; bottom: 16px; width: 44px; height: 44px; }
+  .about-grid { grid-template-columns: 1fr; gap: 36px !important; }
+  .about-promise { position: static; }
+  .about-cta-actions .btn { width: 100%; justify-content: center; }
 }
+
+/* ───────────────────────────────────────────────────────────────────────
+   Contact page
+   ─────────────────────────────────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 8px 0 8px;
+}
+@media (max-width: 860px)  { .contact-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px)  { .contact-grid { grid-template-columns: 1fr; } }
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  background: var(--bg-elev);
+  color: var(--fg);
+  transition: transform var(--dur-base) var(--ease-out-soft),
+              box-shadow var(--dur-base) var(--ease-out-soft),
+              border-color var(--dur-base) var(--ease-out-soft);
+}
+.contact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-3); border-color: var(--line-2); }
+.contact-card.brand { background: var(--joy-500); color: var(--joy-950); border-color: transparent; }
+.contact-ico {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-subtle);
+  color: var(--fg);
+  margin-bottom: 14px;
+}
+.contact-card.brand .contact-ico { background: var(--joy-950); color: var(--joy-100); }
+.contact-label {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fg-muted);
+}
+.contact-card.brand .contact-label { color: color-mix(in oklch, var(--joy-950) 62%, transparent); }
+.contact-value {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(20px, 2vw, 25px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.contact-sub { color: var(--fg-soft); font-size: 15px; line-height: 1.5; margin-top: 2px; }
+.contact-card.brand .contact-sub { color: color-mix(in oklch, var(--joy-950) 80%, transparent); }
+.contact-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--joy-700);
+}
+.contact-card.brand .contact-go { color: var(--joy-950); }
+.contact-card:hover .contact-go svg { transform: translateX(3px); }
+.contact-go svg { transition: transform var(--dur-base) var(--ease-out-soft); }
+.contact-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.contact-meta > span:first-child { display: inline-flex; align-items: center; gap: 7px; }
+.contact-dot { width: 4px; height: 4px; border-radius: 999px; background: currentColor; opacity: 0.4; }

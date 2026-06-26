@@ -73,8 +73,8 @@ function MobileNavDrawer({ open, onClose, onOpenCart, dark, onToggleTheme }) {
           <a href="shop.html" onClick={onClose}>Shop</a>
           <a href="shop.html" onClick={onClose}>Collections</a>
           <a href="custom.html" onClick={onClose}>Custom Orders</a>
-          <a href="index.html#story" onClick={onClose}>About</a>
-          <a href="index.html#footer" onClick={onClose}>Contact</a>
+          <a href="about.html" onClick={onClose}>About</a>
+          <a href="contact.html" onClick={onClose}>Contact</a>
 
           <hr className="mobile-nav-rule" aria-hidden="true" />
 
@@ -131,8 +131,8 @@ function Header({ cartCount, onOpenCart, bump, dark, onToggleTheme }) {
             <a href="shop.html">Shop</a>
             <a href="shop.html">Collections</a>
             <a href="custom.html">Custom Orders</a>
-            <a href="index.html#story">About</a>
-            <a href="index.html#footer">Contact</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
           </nav>
 
           <div className="header-actions">

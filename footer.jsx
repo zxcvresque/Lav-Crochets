@@ -12,9 +12,10 @@ function Footer({ dark, onToggleTheme }) {
     { h: "Make", links: [
       { t: "Custom orders", href: "custom.html" },
       { t: "How ordering works", href: "index.html#story" },
-      { t: "About the studio", href: "index.html#story" },
+      { t: "About the studio", href: "about.html" },
     ]},
     { h: "Connect", links: [
+      { t: "Contact us", href: "contact.html" },
       { t: "Message on WhatsApp", href: wa, ext: true },
       { t: `Instagram ${CONFIG.instagramHandle}`, href: CONFIG.instagramUrl, ext: true },
       { t: "Email us", href: `mailto:${CONFIG.supportEmail}` },
