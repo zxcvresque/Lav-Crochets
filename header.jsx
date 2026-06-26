@@ -61,7 +61,7 @@ function MobileNavDrawer({ open, onClose, onOpenCart }) {
       <div className={`scrim ${open ? "open" : ""}`} onClick={onClose} aria-hidden="true" />
       <aside className={`mobile-nav-drawer ${open ? "open" : ""}`} role="dialog" aria-modal="true" aria-label="Primary navigation">
         <div className="mobile-nav-head">
-          <a href="#top" className="brand" onClick={onClose} aria-label={`${CONFIG.brandName} home`}>
+          <a href="index.html" className="brand" onClick={onClose} aria-label={`${CONFIG.brandName} home`}>
             <BrandMark size={26} />
             <Wordmark />
           </a>
@@ -70,11 +70,11 @@ function MobileNavDrawer({ open, onClose, onOpenCart }) {
           </button>
         </div>
         <nav className="mobile-nav-list" aria-label="Primary">
-          <a href="#shop" onClick={onClose}>Shop</a>
-          <a href="#categories" onClick={onClose}>Collections</a>
-          <a href="#custom" onClick={onClose}>Custom Orders</a>
-          <a href="#story" onClick={onClose}>About</a>
-          <a href="#footer" onClick={onClose}>Contact</a>
+          <a href="shop.html" onClick={onClose}>Shop</a>
+          <a href="shop.html" onClick={onClose}>Collections</a>
+          <a href="custom.html" onClick={onClose}>Custom Orders</a>
+          <a href="index.html#story" onClick={onClose}>About</a>
+          <a href="index.html#footer" onClick={onClose}>Contact</a>
 
           <hr className="mobile-nav-rule" aria-hidden="true" />
 
@@ -117,17 +117,17 @@ function Header({ cartCount, onOpenCart, bump }) {
             <Icon name="menu" size={20} />
           </button>
 
-          <a href="#top" className="brand" aria-label={`${CONFIG.brandName} home`}>
+          <a href="index.html" className="brand" aria-label={`${CONFIG.brandName} home`}>
             <BrandMark size={26} />
             <Wordmark />
           </a>
 
           <nav aria-label="Primary">
-            <a href="#shop" className="active">Shop</a>
-            <a href="#categories">Collections</a>
-            <a href="#custom">Custom Orders</a>
-            <a href="#story">About</a>
-            <a href="#footer">Contact</a>
+            <a href="shop.html">Shop</a>
+            <a href="shop.html">Collections</a>
+            <a href="custom.html">Custom Orders</a>
+            <a href="index.html#story">About</a>
+            <a href="index.html#footer">Contact</a>
           </nav>
 
           <div className="header-actions">

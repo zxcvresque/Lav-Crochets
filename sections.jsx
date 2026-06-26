@@ -43,8 +43,7 @@ function SectionHead({ eyebrow, title, action }) {
 // ── Product card ───────────────────────────────────────────────────────
 // Structure (article > image+chip, heart sibling, stretched-link sibling,
 // content) is preserved from the locked spec. Only content + tokens changed.
-function ProductCard({ p }) {
-  const [liked, setLiked] = React.useState(false);
+function ProductCard({ p, onAdd }) {
   const onSale = p.wasINR && p.wasINR > p.priceINR;
   const pct = onSale ? Math.round((1 - p.priceINR / p.wasINR) * 100) : null;
   const isPick = p.chip === "pick";
@@ -62,23 +61,7 @@ function ProductCard({ p }) {
         {isNew && <span className="pcard-chip pcard-chip--free">New</span>}
       </div>
 
-      {/* Favourite heart — session-only toggle, sibling of the stretched link */}
-      <button
-        className="pcard-heart focus-ring"
-        data-on={liked}
-        aria-pressed={liked}
-        aria-label={liked ? `Remove ${p.title} from favourites` : `Save ${p.title} to favourites`}
-        onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLiked(v => !v); }}
-      >
-        <Icon name={liked ? "heart-fill" : "heart"} size={18} />
-      </button>
-
-      {/* Stretched-link overlay — sibling, not parent, of the heart */}
-      <a className="pcard-link" href="#product" aria-label={p.title}>
-        <span className="sr-only">{p.title}</span>
-      </a>
-
-      {/* Tight content cluster: title / price / meta */}
+      {/* Tight content cluster: title / price / meta / add */}
       <div className="pcard-content">
         <h3 className="pcard-title" title={p.title}>{p.title}</h3>
         <div className="pcard-price-row">
@@ -96,24 +79,29 @@ function ProductCard({ p }) {
           <Icon name={ready ? "check" : "spark"} size={12} stroke={1.8} />
           <span>{ready ? "In stock" : "Made to order"}</span>
         </div>
+        {onAdd && (
+          <button className="pcard-add" onClick={() => onAdd(p)}>
+            Add to cart <Icon name="arrow" size={14} />
+          </button>
+        )}
       </div>
     </article>
   );
 }
 
 // ── Featured row ──────────────────────────────────────────────────────
-function FeaturedRow({ products }) {
+function FeaturedRow({ products, onAdd }) {
   return (
     <section className="section" id="shop">
       <div className="wrap">
         <SectionHead
           eyebrow="Fresh off the hook"
           title={<>Handmade pieces,<br/><em>ready to love.</em></>}
-          action={<a className="btn ghost" href="#categories">Browse all <Icon name="arrow" size={14} /></a>}
+          action={<a className="btn ghost" href="shop.html">Shop all <Icon name="arrow" size={14} /></a>}
         />
         <div className="pgrid">
           {products.slice(0, 4).map(p => (
-            <ProductCard key={p.id} p={p} />
+            <ProductCard key={p.id} p={p} onAdd={onAdd} />
           ))}
         </div>
       </div>
@@ -122,7 +110,7 @@ function FeaturedRow({ products }) {
 }
 
 // ── Ready-to-ship row ─────────────────────────────────────────────────
-function FreeRow({ products }) {
+function FreeRow({ products, onAdd }) {
   const ready = products.filter(p => p.stockStatus === "ready");
   return (
     <section className="section tight" id="free" style={{ background: "var(--bg-elev)" }}>
@@ -130,11 +118,11 @@ function FreeRow({ products }) {
         <SectionHead
           eyebrow="In stock"
           title={<>Ready now. <em>Delivered in 4 to 5 days.</em></>}
-          action={<a className="btn ghost" href="#shop">See the shop <Icon name="arrow" size={14} /></a>}
+          action={<a className="btn ghost" href="shop.html">See the shop <Icon name="arrow" size={14} /></a>}
         />
         <div className="pgrid">
           {ready.map(p => (
-            <ProductCard key={p.id} p={p} />
+            <ProductCard key={p.id} p={p} onAdd={onAdd} />
           ))}
         </div>
       </div>
@@ -171,7 +159,7 @@ function CategoryGrid() {
           {CATEGORIES.map((c, i) => {
             const s = tileBg(c.tone);
             return (
-              <Reveal key={c.id} delay={i * 60} className="cat-tile" as="a" href={`#cat-${c.id}`} style={{ background: s.bg, color: s.fg }}>
+              <Reveal key={c.id} delay={i * 60} className="cat-tile" as="a" href={`shop.html?cat=${c.id}`} style={{ background: s.bg, color: s.fg }}>
                 <div className="tile-bg" style={{ color: s.fg }}>
                   <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style={{ width: "100%", height: "100%" }}>
                     {arts[c.id]}
@@ -215,8 +203,8 @@ function CustomOrders() {
             </p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <a href={waHref} target="_blank" rel="noopener" className="btn xl ink" style={{ width: "100%", justifyContent: "center" }}>
-              Start on WhatsApp <Icon name="arrow" size={16} />
+            <a href="custom.html" className="btn xl ink" style={{ width: "100%", justifyContent: "center" }}>
+              Start a custom order <Icon name="arrow" size={16} />
             </a>
             <a href={CONFIG.instagramUrl} target="_blank" rel="noopener" className="btn xl outline" style={{ width: "100%", justifyContent: "center" }}>
               See custom work on Instagram
@@ -341,7 +329,108 @@ function Newsletter() {
   );
 }
 
+// ── Shop page (shop.html) ─────────────────────────────────────────────
+function ShopPage({ products, onAdd }) {
+  const initial = (() => {
+    try { return new URLSearchParams(window.location.search).get("cat") || "all"; }
+    catch (e) { return "all"; }
+  })();
+  const [cat, setCat] = React.useState(initial);
+  const filtered = cat === "all" ? products : products.filter(p => p.category === cat);
+  return (
+    <section className="section page-top" id="shop">
+      <div className="wrap">
+        <SectionHead
+          eyebrow="Shop"
+          title={<>Every piece, <em>hooked by hand.</em></>}
+        />
+        <div className="shop-filters" role="tablist" aria-label="Filter by collection">
+          <button className={`shop-filter ${cat === "all" ? "active" : ""}`} onClick={() => setCat("all")}>All</button>
+          {CATEGORIES.map(c => (
+            <button key={c.id} className={`shop-filter ${cat === c.id ? "active" : ""}`} onClick={() => setCat(c.id)}>{c.title}</button>
+          ))}
+        </div>
+        <div className="pgrid">
+          {filtered.map(p => <ProductCard key={p.id} p={p} onAdd={onAdd} />)}
+        </div>
+        {filtered.length === 0 && (
+          <p style={{ color: "var(--fg-muted)", marginTop: 24 }}>Nothing here yet, check another collection.</p>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// ── Custom order page (custom.html) ───────────────────────────────────
+// A form that composes a WhatsApp message from the fields. No backend.
+function CustomPage() {
+  const [f, setF] = React.useState({ name: "", piece: "", colours: "", size: "", deadline: "", notes: "" });
+  const set = (k) => (e) => setF(s => ({ ...s, [k]: e.target.value }));
+  const submit = (e) => {
+    e.preventDefault();
+    const body = [
+      `Name: ${f.name || "-"}`,
+      `What I'd like: ${f.piece || "-"}`,
+      `Colours: ${f.colours || "-"}`,
+      `Size / quantity: ${f.size || "-"}`,
+      `Need by: ${f.deadline || "-"}`,
+      f.notes ? `Notes: ${f.notes}` : null,
+    ].filter(Boolean).join("\n");
+    const msg = `Hi ${CONFIG.brandName}! I'd like a custom crochet piece.\n\n${body}`;
+    window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+  };
+  return (
+    <section className="section page-top" id="custom">
+      <div className="wrap" style={{ maxWidth: 760 }}>
+        <SectionHead
+          eyebrow="Custom orders"
+          title={<>Let's make <em>something yours.</em></>}
+        />
+        <p className="custom-lead">
+          Tell me what you have in mind, a plushie of your pet, a charm of your favourite character,
+          a bouquet for a gift. Hit send and it opens WhatsApp with your brief, where we'll confirm
+          the design, timing and price together.
+        </p>
+        <form className="cform" onSubmit={submit}>
+          <label className="cfield">
+            <span>Your name</span>
+            <input value={f.name} onChange={set("name")} placeholder="Your name" />
+          </label>
+          <label className="cfield">
+            <span>What would you like? *</span>
+            <textarea rows={3} required value={f.piece} onChange={set("piece")} placeholder="e.g. a plushie of my cat, a Spider-Man charm, a tulip bouquet..." />
+          </label>
+          <div className="cgrid">
+            <label className="cfield">
+              <span>Colours</span>
+              <input value={f.colours} onChange={set("colours")} placeholder="e.g. pastel pinks" />
+            </label>
+            <label className="cfield">
+              <span>Size / quantity</span>
+              <input value={f.size} onChange={set("size")} placeholder="e.g. 2 pieces, palm-size" />
+            </label>
+          </div>
+          <label className="cfield">
+            <span>Need it by? (optional)</span>
+            <input value={f.deadline} onChange={set("deadline")} placeholder="e.g. before 20 July" />
+          </label>
+          <label className="cfield">
+            <span>Anything else? (optional)</span>
+            <textarea rows={2} value={f.notes} onChange={set("notes")} placeholder="Links, references, a story..." />
+          </label>
+          <button type="submit" className="btn xl" style={{ width: "100%", justifyContent: "center" }}>
+            Send on WhatsApp <Icon name="whatsapp" size={16} />
+          </button>
+          <p className="custom-note">
+            Pay by UPI · Making time and final price are confirmed over chat · Delivered in 4 to 5 days once it's ready.
+          </p>
+        </form>
+      </div>
+    </section>
+  );
+}
+
 Object.assign(window, {
   CategoryMarquee, SectionHead, ProductCard, FeaturedRow, FreeRow, CategoryGrid,
-  CustomOrders, QuoteBlock, InstagramRow, Newsletter,
+  CustomOrders, QuoteBlock, InstagramRow, Newsletter, ShopPage, CustomPage,
 });

@@ -29,3 +29,14 @@
 - Redesigned mobile nav drawer to match reference: big nav links, divider, then a smaller icon-led tier (Cart, Instagram, WhatsApp, Share this shop). Added instagram/whatsapp/share icons to the Icon set; desktop header now uses the instagram + whatsapp glyphs. Share uses navigator.share with clipboard fallback. Cart row opens the cart drawer (onOpenCart passed through).
 - Studied screens-desktop-*/screens-mobile CSS for sizing; live styles.css already matches (container 1360/28px -> 16px; grid 4/3/2 cols; header 84->60/60 mobile; section 96px). Will apply to new shop/custom pages.
 - Next: separate pages (shop.html/custom.html), cart localStorage persistence, remove wishlist hearts, ShopPage + CustomPage(form->WhatsApp).
+
+## Separate pages + persistent cart + wishlist removal
+- Files: index.html (data-page=home), shop.html (new), custom.html (new), app.jsx, sections.jsx, header.jsx, hero.jsx, footer.jsx, styles.css
+- Decisions:
+  - Multi-page via shared script bundle + <body data-page>. app.jsx reads document.body.dataset.page and renders HomePage sections / <ShopPage> / <CustomPage>. No router lib.
+  - Cart persists in localStorage key `lav.cart` (init from it, useEffect writes on change). Verified: pre-seeded 3 items -> header badge shows 3 on load, so it survives navigation across the 3 pages.
+  - ProductCard: removed wishlist heart + dead #product stretched link; added optional onAdd -> "Add to cart" button. FeaturedRow/FreeRow/ShopPage pass handleAdd. Home no longer renders the inline ProductScene (redundant; cards add directly).
+  - ShopPage: collection filter chips (All + 3 categories, prefilled from ?cat=), full grid. CustomPage: form whose submit composes a WhatsApp message (window.open wa.me) — no backend.
+  - Cross-page links: header/hero/footer/category-tiles/custom-CTA now point to shop.html, shop.html?cat=, custom.html, index.html#story / #footer.
+  - styles.css: .page-top header clearance, .shop-filters/.shop-filter, .pcard-add, .cform/.cfield/.cgrid/.custom-lead/.custom-note.
+- Verified via headless Chrome: shop (6 photos, prices, add buttons, filters, 0 hearts), custom (form + Send on WhatsApp), home renders, cart badge persists.

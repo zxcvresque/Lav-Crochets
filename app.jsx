@@ -107,10 +107,19 @@ function applyRadius(name) {
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [cart, setCart] = React.useState([]);
+  const [cart, setCart] = React.useState(() => {
+    try { return JSON.parse(localStorage.getItem("lav.cart") || "[]"); } catch (e) { return []; }
+  });
   const [cartOpen, setCartOpen] = React.useState(false);
   const [bump, setBump] = React.useState(false);
   const progress = useScrollProgress();
+  // Which page is this? Each HTML sets <body data-page="home|shop|custom">.
+  const page = (typeof document !== "undefined" && document.body.dataset.page) || "home";
+
+  // Persist the cart across pages + reloads.
+  React.useEffect(() => {
+    try { localStorage.setItem("lav.cart", JSON.stringify(cart)); } catch (e) { /* no-op */ }
+  }, [cart]);
 
   // Apply tweaks live
   React.useEffect(() => { applyPalette(t.palette); }, [t.palette]);
@@ -150,16 +159,23 @@ function App() {
 
       <Header cartCount={cartCount} onOpenCart={() => setCartOpen(true)} bump={bump} />
 
-      <Hero />
-      <FeaturedRow products={PRODUCTS} />
-      <CategoryGrid />
-      <FreeRow products={PRODUCTS} />
-      <ProductScene product={PRODUCTS[1]} onAdd={handleAdd} />
-      <CustomOrders />
-      <QuoteBlock />
-      <InstagramRow />
-      <Newsletter />
-      <TokenSheet />
+      {page === "home" && (
+        <>
+          <Hero />
+          <FeaturedRow products={PRODUCTS} onAdd={handleAdd} />
+          <CategoryGrid />
+          <FreeRow products={PRODUCTS} onAdd={handleAdd} />
+          <CustomOrders />
+          <QuoteBlock />
+          <InstagramRow />
+          <Newsletter />
+          <TokenSheet />
+        </>
+      )}
+
+      {page === "shop" && <ShopPage products={PRODUCTS} onAdd={handleAdd} />}
+
+      {page === "custom" && <CustomPage />}
 
       <Footer />
 

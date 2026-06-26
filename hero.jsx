@@ -11,7 +11,7 @@ function Hero() {
             <span>New this week.</span>
             <span style={{ color: "var(--fg-faint)" }}>·</span>
             <span>Tulip headbands, fresh in.</span>
-            <a href="#shop" style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "var(--fg)", fontWeight: 500 }}>
+            <a href="shop.html" style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "var(--fg)", fontWeight: 500 }}>
               See it <Icon name="arrow" size={14} />
             </a>
           </div>
@@ -38,11 +38,11 @@ function Hero() {
 
         <Reveal delay={620}>
           <div className="hero-actions" style={{ marginTop: 36 }}>
-            <a className="btn xl ink" href="#free">
+            <a className="btn xl ink" href="shop.html">
               Shop ready-to-ship
               <Icon name="arrow" size={16} />
             </a>
-            <a className="btn xl ghost" href="#custom">
+            <a className="btn xl ghost" href="custom.html">
               Start a custom order
             </a>
           </div>

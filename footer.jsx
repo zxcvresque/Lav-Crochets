@@ -4,15 +4,15 @@ function Footer() {
   const wa = `https://wa.me/${CONFIG.whatsappNumber}`;
   const cols = [
     { h: "Shop", links: [
-      { t: "All pieces", href: "#shop" },
-      { t: "Bag charms", href: "#cat-charms" },
-      { t: "Hair accessories", href: "#cat-hair" },
-      { t: "Keychains", href: "#cat-keychains" },
+      { t: "All pieces", href: "shop.html" },
+      { t: "Bag charms", href: "shop.html?cat=charms" },
+      { t: "Hair accessories", href: "shop.html?cat=hair" },
+      { t: "Keychains", href: "shop.html?cat=keychains" },
     ]},
     { h: "Make", links: [
-      { t: "Custom orders", href: "#custom" },
-      { t: "How ordering works", href: "#story" },
-      { t: "About the studio", href: "#story" },
+      { t: "Custom orders", href: "custom.html" },
+      { t: "How ordering works", href: "index.html#story" },
+      { t: "About the studio", href: "index.html#story" },
     ]},
     { h: "Connect", links: [
       { t: "Message on WhatsApp", href: wa, ext: true },
