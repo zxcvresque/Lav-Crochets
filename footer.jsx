@@ -75,11 +75,6 @@ function Footer({ dark, onToggleTheme }) {
             </a>
           </div>
         </div>
-
-        {/* Mega wordmark moment */}
-        <div className="megaword" aria-hidden="true">
-          {CONFIG.wordmarkA}<em>{CONFIG.wordmarkB}</em>
-        </div>
       </div>
     </footer>
   );

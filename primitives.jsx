@@ -57,6 +57,8 @@ const Icon = ({ name, size = 20, stroke = 1.6, ...rest }) => {
       return (<svg {...common}><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.9 4.9l1.4 1.4"/><path d="M17.7 17.7l1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.9 19.1l1.4-1.4"/><path d="M17.7 6.3l1.4-1.4"/></svg>);
     case "arrow-up":
       return (<svg {...common}><path d="M12 20V5"/><path d="m6 11 6-6 6 6"/></svg>);
+    case "trash":
+      return (<svg {...common}><path d="M4 7h16"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13"/><path d="M10 11v6M14 11v6"/></svg>);
     default:
       return null;
   }
@@ -144,17 +146,17 @@ function buildWhatsAppHref(lines, config = window.CONFIG) {
       l.selectedSize && `size: ${l.selectedSize}`,
     ].filter(Boolean).join(", ");
     const sub = fmtPriceINR((l.priceINR || 0) * qty);
-    return `- *${l.title}* x${qty}${opts ? ` (${opts})` : ""} · ${sub}`;
+    return `• *${l.title}* x${qty}${opts ? ` (${opts})` : ""} · ${sub}`;
   });
   const total = (lines || []).reduce((s, l) => s + (l.priceINR || 0) * (l.qty || 1), 0);
-  // WhatsApp markdown: *bold* labels, each answer on the next line as a "- "
-  // bullet, \n line breaks. The trailing fields are left blank for the customer
-  // to fill in on WhatsApp before sending.
+  // WhatsApp markdown: *bold* labels, each answer on the next line as a real "•"
+  // bullet (WhatsApp has no list markdown, so a literal bullet glyph is used).
+  // The trailing fields carry a bullet for the customer to fill in before sending.
   const msg =
     `Hi ${config.brandName}! I would like to *order*:\n\n` +
     rows.join("\n") +
     `\n\n*Total: ${fmtPriceINR(total)}*\n\n` +
-    `*My name:*\n- \n\n*Delivery pincode:*\n- \n\n*Notes (colour / size / custom):*\n- `;
+    `*My name:*\n• \n\n*Delivery pincode:*\n• \n\n*Notes (colour / size / custom):*\n• `;
   return `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(msg)}`;
 }
 

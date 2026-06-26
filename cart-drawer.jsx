@@ -2,8 +2,6 @@
 // Checkout = send the order to WhatsApp; pay by UPI.
 
 function CartDrawer({ open, onClose, lines, onRemove }) {
-  const [copied, setCopied] = React.useState(false);
-
   React.useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape" && open) onClose(); };
     window.addEventListener("keydown", onKey);
@@ -12,14 +10,6 @@ function CartDrawer({ open, onClose, lines, onRemove }) {
 
   const subtotal = lines.reduce((s, l) => s + (l.priceINR || 0) * l.qty, 0);
   const total = fmtPriceINR(subtotal);
-
-  const copyUpi = () => {
-    try {
-      navigator.clipboard.writeText(CONFIG.upiId);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1600);
-    } catch (e) { /* clipboard not available */ }
-  };
 
   return (
     <>
@@ -61,8 +51,8 @@ function CartDrawer({ open, onClose, lines, onRemove }) {
                   </div>
                   <div className="cart-line-right">
                     <div className="price">{lineTotal}</div>
-                    <button className="cart-remove" onClick={() => onRemove(l.id)} aria-label={`Remove ${l.title}`}>
-                      Remove
+                    <button className="cart-remove" onClick={() => onRemove(l.id)} aria-label={`Remove ${l.title}`} title="Remove">
+                      <Icon name="trash" size={15} />
                     </button>
                   </div>
                 </div>
@@ -84,28 +74,7 @@ function CartDrawer({ open, onClose, lines, onRemove }) {
               <Icon name="arrow" size={16} />
             </a>
 
-            <div className="upi-pay">
-              <div className="upi-pay-head"><span className="eyebrow-dot" />Pay by UPI</div>
-              <div className="upi-pay-row">
-                <img
-                  className="upi-qr"
-                  src={CONFIG.upiQrImage}
-                  alt="UPI QR code"
-                  width={48}
-                  height={48}
-                  onError={(e) => { e.currentTarget.style.display = "none"; }}
-                />
-                <div style={{ minWidth: 0 }}>
-                  <div className="upi-k">UPI ID</div>
-                  <button className="upi-copy" onClick={copyUpi} aria-label="Copy UPI ID">
-                    {CONFIG.upiId}
-                    <Icon name={copied ? "check" : "download"} size={13} />
-                  </button>
-                  <div className="upi-hint">{copied ? "Copied" : "Tap to copy"}</div>
-                </div>
-              </div>
-              <p className="upi-note">We confirm stock, the final total and shipping on WhatsApp before you pay.</p>
-            </div>
+            <p className="cart-foot-note">We confirm stock, the final total and shipping on WhatsApp. Pay by UPI.</p>
           </div>
         )}
       </aside>

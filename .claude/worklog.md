@@ -73,3 +73,11 @@
 - Files: styles.css
 - Nav-link hover + .iconbtn hover used color-mix on --ink (dark) -> invisible on dark pages. Switched to var(--fg) 8% so the subtle hover pill shows in both themes. (.scrim stays --ink, correct; line 553 is the removed heart, unused.)
 - Compacted the mobile nav drawer to fit phones like the reference: head padding 13px; main links 18px / 9px-14px padding, gap 0; sub rows 14px / 8px-14px; tighter rule + foot. All rows (5 nav + Cart/Instagram/WhatsApp/Share/theme) now fit without overflow.
+
+## Mobile responsiveness overhaul + cache-busting
+- Files: styles.css, header/footer/sections/cart-drawer/primitives.jsx, all 5 HTML
+- Root cause of "content goes beyond screen": grids used plain `1fr` (=minmax(auto,1fr)) so tracks couldn't shrink below content, and `.panel` had no max-width, so a panel measured 489px inside a 358px cell -> page was 505px wide; `.app{overflow-x:clip}` only hid the scrollbar while cutting content. Verified with a programmatic probe (iframe innerWidth=390, documentElement.scrollWidth was 505 -> now 390).
+- Fixes: all grids -> `minmax(0,1fr)` (.grid-2/3/4, .pgrid, .panel-split, .about-grid, .contact-grid); `.panel { max-width:100%; min-width:0; box-sizing:border-box }`; grid children `min-width:0`; section-head column-stretch + smaller mobile h2; `.btn { white-space:nowrap }`; mobile section/panel padding pass.
+- Other: wa-icon light/dark image swap fixed (specificity: `.wa-ico .wa-light/.wa-dark` beats `.wa-ico img`) so light mode shows ONE icon; panel outline-button hovers (.panel.ink/.brand .btn.outline) no longer go white-on-white; cart rows clamp title (2 lines) + trash icon; removed megaword; footer bottom padding.
+- Cache-busting: appended ?v=20260627 to styles.css + all jsx + image-slot.js in every HTML so browsers fetch fresh (user's hard-reload kept showing stale CSS).
+- NOTE: headless screenshots crop at a ~500px min window width, which fakes overflow at 390; the iframe-innerWidth probe is the reliable check and shows no overflow.

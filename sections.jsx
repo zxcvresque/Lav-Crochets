@@ -366,11 +366,11 @@ function Newsletter() {
             <a href={CONFIG.instagramUrl} target="_blank" rel="noopener" className="btn xl btn-flash" style={{ width: "100%", justifyContent: "center", height: 52 }}>
               Follow on Instagram <Icon name="arrow-up-right" size={16} />
             </a>
-            <a href={waHref} target="_blank" rel="noopener" className="btn xl outline btn-flash" style={{ width: "100%", justifyContent: "center", height: 52, color: "var(--paper)", borderColor: "color-mix(in oklch, var(--paper) 30%, transparent)" }}>
+            <a href={waHref} target="_blank" rel="noopener" className="btn xl outline btn-flash" style={{ width: "100%", justifyContent: "center", height: 52 }}>
               Message on WhatsApp
             </a>
             {CONFIG.whatsappCatalogueUrl && (
-              <a href={CONFIG.whatsappCatalogueUrl} target="_blank" rel="noopener" className="btn xl outline btn-flash" style={{ width: "100%", justifyContent: "center", height: 52, color: "var(--paper)", borderColor: "color-mix(in oklch, var(--paper) 30%, transparent)" }}>
+              <a href={CONFIG.whatsappCatalogueUrl} target="_blank" rel="noopener" className="btn xl outline btn-flash" style={{ width: "100%", justifyContent: "center", height: 52 }}>
                 Browse the WhatsApp catalogue
               </a>
             )}
@@ -523,7 +523,7 @@ function AboutPage() {
             <h2>Ready to find your <span className="about-cta-em">new favourite thing?</span></h2>
             <div className="about-cta-actions">
               <a className="btn xl btn-flash" href="shop.html">Shop the studio <Icon name="arrow" size={16} /></a>
-              <a className="btn xl outline btn-flash" href="contact.html" style={{ color: "var(--paper)", borderColor: "color-mix(in oklch, var(--paper) 30%, transparent)" }}>
+              <a className="btn xl outline btn-flash" href="contact.html">
                 Get in touch
               </a>
             </div>
@@ -636,9 +636,9 @@ function CustomPage() {
   const submit = (e) => {
     e.preventDefault();
     // WhatsApp markdown: each field is a *bold* label on its own line, with the
-    // answer on the next line as a "- " bullet (renders on mobile + WhatsApp Web;
-    // the desktop app may flatten the newlines).
-    const field = (label, val) => `*${label}:*\n- ${(val && val.trim()) || "not specified"}`;
+    // answer on the next line as a real "•" bullet (WhatsApp has no list markdown,
+    // so a literal bullet glyph is used; renders on mobile + WhatsApp Web).
+    const field = (label, val) => `*${label}:*\n• ${(val && val.trim()) || "not specified"}`;
     const parts = [
       field("Name", f.name),
       field("What I'd like", f.piece),
