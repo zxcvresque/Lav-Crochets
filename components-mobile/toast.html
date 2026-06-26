@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Toast · Component · JoyWaveDigital mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../screens-mobile/mobile.css" />
+<style>
+  body { background: var(--bg-subtle) }
+  .mob-stage { background: var(--bg); min-height: auto; padding-bottom: 24px; margin: 24px auto; box-shadow: 0 16px 48px -24px oklch(0.18 0.05 40 / 0.32); border-radius: 12px; overflow: hidden }
+  .ann { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); padding: 12px 16px 4px; background: var(--bg) }
+  .ann strong { color: var(--fg); font-weight: 600 }
+</style>
+</head>
+<body>
+<div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); text-align: center; padding: 18px 0 0">Toast / Snackbar · 4 variants</div>
+
+
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>WishlistReplay (sign-in)</strong></div>
+  
+<main class="mob-main" style="padding-bottom: 96px">
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.025em; margin: 8px 0">Library</h1>
+</main>
+<div class="mob-toast-stack" style="bottom: 36px">
+  <div class="mob-toast" role="status" aria-live="polite">
+    <svg class="icon-sm" viewBox="0 0 24 24" fill="var(--joy-500)" stroke="var(--joy-500)" stroke-width="1.6" stroke-linecap="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg>
+    <span>Added to your wishlist</span>
+    <button class="undo">Undo</button>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>Generic confirmation</strong></div>
+  
+<main class="mob-main" style="padding-bottom: 96px">
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.025em; margin: 8px 0">Profile</h1>
+</main>
+<div class="mob-toast-stack" style="bottom: 36px">
+  <div class="mob-toast" role="status" aria-live="polite">
+    <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="var(--joy-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5 11-11"/></svg>
+    <span>Profile saved</span>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>Error</strong></div>
+  
+<main class="mob-main" style="padding-bottom: 96px">
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.025em; margin: 8px 0">Cart</h1>
+</main>
+<div class="mob-toast-stack" style="bottom: 36px">
+  <div class="mob-toast" role="status" aria-live="polite" style="background: oklch(0.42 0.18 22); color: white">
+    <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4M12 17h.01M3 19h18L12 3 3 19z"/></svg>
+    <span>Could not add to cart. Try again.</span>
+    <button class="undo" style="color: white">Retry</button>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>Stacked toasts (rare)</strong></div>
+  
+<main class="mob-main" style="padding-bottom: 96px">
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.025em; margin: 8px 0">Library</h1>
+</main>
+<div class="mob-toast-stack" style="bottom: 36px">
+  <div class="mob-toast" role="status" aria-live="polite">
+    <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="var(--joy-500)" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <span>2 files added to your library</span>
+  </div>
+  <div class="mob-toast" role="status" aria-live="polite">
+    <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="var(--joy-500)" stroke-width="2" stroke-linecap="round"><path d="m4 12 5 5 11-11"/></svg>
+    <span>Welcome back, Sneha</span>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div><script src="../screens-mobile/_mobile-chrome.js"></script>
+</body>
+</html>

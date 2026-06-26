@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" data-admin-active="orders">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin · Orders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="screens.css" />
+</head>
+<body class="admin">
+<div class="admin-layout">
+  <div data-admin-chrome="side"></div>
+
+  <main class="admin-content">
+
+    <header class="admin-page-head">
+      <div>
+        <h1>Orders</h1>
+        <p class="subhead">$2,847 last 7 days · 312 orders · refund rate 2.1%</p>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn ghost" style="height:38px">Export CSV</button>
+      </div>
+    </header>
+
+    <!-- Filter pills -->
+    <div class="admin-filter-row">
+      <input type="search" class="grow" placeholder="Search by order #, customer email, or item" />
+      <div style="display:flex;gap:4px">
+        <button class="filter-pill" style="background:var(--ink);color:var(--paper);border-color:transparent">All <span style="color:color-mix(in oklch, var(--paper) 60%, transparent)">364</span></button>
+        <button class="filter-pill">Paid <span>312</span></button>
+        <button class="filter-pill">Pending <span>4</span></button>
+        <button class="filter-pill">Failed <span>9</span></button>
+        <button class="filter-pill">Refunded <span>6</span></button>
+        <button class="filter-pill">Partial <span>2</span></button>
+      </div>
+    </div>
+
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th class="sel"><input type="checkbox" aria-label="Select all" /></th>
+          <th class="sorted">Order</th>
+          <th>Customer</th>
+          <th>Items</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="sel"><input type="checkbox" aria-label="Select" /></td>
+          <td><a href="admin-orders-detail.html" style="font-family:var(--font-mono);font-weight:500;text-decoration:underline;text-underline-offset:3px">JW-7F2A9C</a></td>
+          <td>parent@school.edu</td>
+          <td>3 items</td>
+          <td class="num">$17.00</td>
+          <td><span class="status-badge paid">paid</span></td>
+          <td class="meta">15 MAY · 14:31</td>
+        </tr>
+        <tr>
+          <td class="sel"><input type="checkbox" aria-label="Select" /></td>
+          <td><a href="admin-orders-detail.html" style="font-family:var(--font-mono);font-weight:500;text-decoration:underline;text-underline-offset:3px">JW-8A1B3D</a></td>
+          <td>teacher@elementary.io</td>
+          <td>1 item</td>
+          <td class="num">$6.50</td>
+          <td><span class="status-badge pending">pending</span></td>
+          <td class="meta">15 MAY · 11:22</td>
+        </tr>
+        <tr>
+          <td class="sel"><input type="checkbox" aria-label="Select" /></td>
+          <td><a href="admin-orders-detail.html" style="font-family:var(--font-mono);font-weight:500;text-decoration:underline;text-underline-offset:3px">JW-9C4F1E</a></td>
+          <td>homeschool@gmail.com</td>
+          <td>5 items</td>
+          <td class="num">$42.00</td>
+          <td><span class="status-badge paid">paid</span></td>
+          <td class="meta">15 MAY · 09:14</td>
+        </tr>
+        <tr>
+          <td class="sel"><input type="checkbox" aria-label="Select" /></td>
+          <td><a href="admin-orders-detail.html" style="font-family:var(--font-mono);font-weight:500;text-decoration:underline;text-underline-offset:3px">JW-3D7E1F</a></td>
+          <td>sarah.k@email.com</td>
+          <td>1 item · Summer Bundle</td>
+          <td class="num">$24.00</td>
+          <td><span class="status-badge failed">failed</span></td>
+          <td class="meta">14 MAY · 22:48</td>
+        </tr>
+        <tr>
+          <td class="sel"><input type="checkbox" aria-label="Select" /></td>
+          <td><a href="admin-orders-detail.html" style="font-family:var(--font-mono);font-weight:500;text-decoration:underline;text-underline-offset:3px">JW-6E3F2A</a></td>
+          <td>parent@school.edu</td>
+          <td>2 items</td>
+          <td class="num">$12.00</td>
+          <td><span class="status-badge partial">partial</span></td>
+          <td class="meta">10 MAY · 18:02</td>
+        </tr>
+        <tr>
+          <td class="sel"><input type="checkbox" aria-label="Select" /></td>
+          <td><a href="admin-orders-detail.html" style="font-family:var(--font-mono);font-weight:500;text-decoration:underline;text-underline-offset:3px">JW-5C2D8A</a></td>
+          <td>parent@school.edu</td>
+          <td>1 item</td>
+          <td class="num" style="color:var(--fg-muted);text-decoration:line-through">$4.50</td>
+          <td><span class="status-badge refunded">refunded</span></td>
+          <td class="meta">4 MAY · 16:55</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </main>
+</div>
+<script src="_admin_chrome.js"></script>
+</body>
+</html>

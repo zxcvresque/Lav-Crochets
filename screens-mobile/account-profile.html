@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Profile · JoyWaveDigital mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="mobile.css" />
+<style>
+  .fld { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px }
+  .fld label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted) }
+  .fld input, .fld select { height: 48px; padding: 0 16px; background: var(--bg); border: 1px solid var(--line-2); border-radius: 12px; font-size: 16px; font-family: inherit; color: var(--fg) }
+</style>
+</head>
+<body>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="0" data-signed-in></div>
+
+  <nav class="mob-acct-nav" aria-label="Account sections">
+    <a href="account-library.html">Library</a>
+    <a href="account-orders.html">Orders</a>
+    <a href="account-wishlist.html">Wishlist</a>
+    <a href="account-profile.html" class="active">Profile</a>
+    <a href="account-settings.html">Settings</a>
+  </nav>
+
+  <main class="mob-main" id="main">
+    <h1 style="font-family: var(--font-display); font-weight: 600; font-size: clamp(34px, 9vw, 44px); letter-spacing: -0.03em; margin: 8px 0 12px">Profile</h1>
+
+    <form>
+      <div class="fld">
+        <label for="display_name">Display name</label>
+        <input id="display_name" name="display_name" type="text" inputmode="text" autocomplete="name" enterkeyhint="next" value="Sneha" />
+      </div>
+      <div class="fld">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" inputmode="email" autocomplete="email" enterkeyhint="next" value="sneha@example.com" />
+        <p style="margin: 0; color: var(--fg-muted); font-size: var(--t-sm)">Receipts and download links arrive here.</p>
+      </div>
+      <div class="fld">
+        <label for="country">Country</label>
+        <input id="country" name="country" type="text" inputmode="text" autocomplete="country-name" enterkeyhint="done" value="India" placeholder="Start typing" />
+      </div>
+    </form>
+
+    <div style="height: 96px"></div>
+  </main>
+
+  <div class="mob-sticky-cta">
+    <button class="mob-btn ghost" style="height: 44px; padding: 0 14px; font-size: var(--t-sm)">Discard</button>
+    <button class="mob-btn primary" style="flex: 1">Save changes</button>
+  </div>
+
+  <div data-chrome="home"></div>
+</div>
+<script src="_mobile-chrome.js"></script>
+</body>
+</html>

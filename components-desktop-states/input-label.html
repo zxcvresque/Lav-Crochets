@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Input + Label · component states · JoyWaveDigital desktop pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="components.css" />
+</head>
+<body>
+<div class="audit-head">
+  <div class="crumb">Desktop pass · component states · form fields</div>
+  <h1>Input + Label, <em>every state.</em></h1>
+  <p>State variants for this component. Each block carries a mono label. Token references only.</p>
+</div>
+<div class="state-stack">
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Rest</span><span class="desc">empty, not focused</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; max-width: 480px">
+  <label class="eyebrow" style="display: block; margin-bottom: 8px">Email</label>
+  <input type="email" placeholder="you@example.com" style="width: 100%; height: 48px; padding: 0 16px; background: var(--bg); border: 1px solid var(--line-2); border-radius: 12px; font-family: inherit; font-size: 15px; color: var(--fg)" />
+</div></div>
+  <div class="note">Mono eyebrow label above. 48 tall. Border line-2; radius 12. Placeholder uses <code>--fg-muted</code>.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Focus</span><span class="desc">brand-tinted border</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; max-width: 480px">
+  <label class="eyebrow" style="display: block; margin-bottom: 8px">Email</label>
+  <input type="email" value="" autofocus style="width: 100%; height: 48px; padding: 0 16px; background: var(--bg); border: 1.5px solid var(--joy-500); border-radius: 12px; font-family: inherit; font-size: 15px; color: var(--fg)" />
+</div></div>
+  <div class="note">Focus: border thickens to 1.5px and uses brand color. The global <code>.focus-ring</code> 2px outline overrides for keyboard users.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Typing</span><span class="desc">real value</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; max-width: 480px">
+  <label class="eyebrow" style="display: block; margin-bottom: 8px">Email</label>
+  <input type="email" value="sneha@example.com" style="width: 100%; height: 48px; padding: 0 16px; background: var(--bg); border: 1.5px solid var(--joy-500); border-radius: 12px; font-family: inherit; font-size: 15px; color: var(--fg)" />
+</div></div>
+  <div class="note">Text renders in <code>--fg</code> at full opacity once the user types.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Error</span><span class="desc">bad-tinted border + below-field message</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; max-width: 480px">
+  <label class="eyebrow" style="display: block; margin-bottom: 8px">Email</label>
+  <input type="email" value="not-an-email" aria-invalid="true" style="width: 100%; height: 48px; padding: 0 16px; background: var(--bg); border: 1.5px solid var(--bad); border-radius: 12px; font-family: inherit; font-size: 15px; color: var(--fg)" />
+  <p style="margin: 8px 0 0; color: var(--bad); font-size: 13px; display: flex; gap: 6px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 9v4M12 17h.01M3 19h18L12 3 3 19z"/></svg><span>Please enter a valid email address.</span></p>
+</div></div>
+  <div class="note">Error: <code>--bad</code> border + below-field message. <code>aria-invalid="true"</code> on the input.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Disabled</span><span class="desc">opacity 0.55</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; max-width: 480px">
+  <label class="eyebrow" style="display: block; margin-bottom: 8px; opacity: 0.55">Email</label>
+  <input type="email" value="sneha@example.com" disabled style="width: 100%; height: 48px; padding: 0 16px; background: var(--bg-subtle); border: 1px solid var(--line); border-radius: 12px; font-family: inherit; font-size: 15px; color: var(--fg-muted); cursor: not-allowed" />
+</div></div>
+  <div class="note">Subtle background, line border (not line-2), muted text, cursor not-allowed.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Success</span><span class="desc">ok-tinted border + check</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; max-width: 480px">
+  <label class="eyebrow" style="display: block; margin-bottom: 8px">Email</label>
+  <div style="position: relative"><input type="email" value="sneha@example.com" style="width: 100%; height: 48px; padding: 0 48px 0 16px; background: var(--bg); border: 1.5px solid var(--ok); border-radius: 12px; font-family: inherit; font-size: 15px; color: var(--fg)" /><span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--ok)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m4 12 5 5 11-11"/></svg></span></div>
+</div></div>
+  <div class="note">Success: ok-color border + trailing check. Rare; only on confirmed-valid inputs like a server-verified coupon code.</div>
+</div></div></body></html>

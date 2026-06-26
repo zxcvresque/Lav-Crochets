@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>WishlistHeart · Component · JoyWaveDigital mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../screens-mobile/mobile.css" />
+<style>
+  body { background: var(--bg-subtle) }
+  .mob-stage { background: var(--bg); min-height: auto; padding-bottom: 24px; margin: 24px auto; box-shadow: 0 16px 48px -24px oklch(0.18 0.05 40 / 0.32); border-radius: 12px; overflow: hidden }
+  .ann { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); padding: 12px 16px 4px; background: var(--bg) }
+  .ann strong { color: var(--fg); font-weight: 600 }
+</style>
+</head>
+<body>
+<div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); text-align: center; padding: 18px 0 0">WishlistHeart · states</div>
+<div class="mob-stage" style="padding: 32px">
+  <div style="display:flex; gap: 20px; align-items: end; justify-content: center; flex-wrap: wrap">
+    <div style="text-align: center">
+      <div style="position: relative; width: 80px; height: 80px; background: var(--bg-subtle); border-radius: 16px; display: inline-flex">
+        <button class="mob-pcard-heart" style="position: static; margin: auto"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></button>
+      </div>
+      <div class="mob-eyebrow" style="margin-top: 10px">Off</div>
+    </div>
+    <div style="text-align: center">
+      <div style="position: relative; width: 80px; height: 80px; background: var(--bg-subtle); border-radius: 16px; display: inline-flex">
+        <button class="mob-pcard-heart on" style="position: static; margin: auto"><svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></button>
+      </div>
+      <div class="mob-eyebrow" style="margin-top: 10px">On</div>
+    </div>
+    <div style="text-align: center">
+      <div style="position: relative; width: 80px; height: 80px; background: var(--bg-subtle); border-radius: 16px; display: inline-flex">
+        <button class="mob-pcard-heart on" style="position: static; margin: auto; transform: scale(1.18)"><svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></button>
+      </div>
+      <div class="mob-eyebrow" style="margin-top: 10px">Pop peak</div>
+    </div>
+    <div style="text-align: center">
+      <div style="position: relative; width: 80px; height: 80px; background: var(--bg-subtle); border-radius: 16px; display: inline-flex">
+        <button class="mob-pcard-heart" style="position: static; margin: auto; outline: 2px solid var(--brand); outline-offset: 2px"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></button>
+      </div>
+      <div class="mob-eyebrow" style="margin-top: 10px">Focus</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 24px; padding: 16px; background: var(--bg-subtle); border-radius: 12px">
+    <div class="mob-eyebrow" style="margin-bottom: 6px">Hit area</div>
+    <p style="margin: 0; font-size: var(--t-sm); color: var(--fg-soft); line-height: 1.5">Visible icon is 36 × 36. Invisible padding extends the hit area to 44 × 44, satisfying the touch-target minimum. Toggle emits a 15ms haptic on toggle-on; no haptic on toggle-off.</p>
+  </div>
+</div>
+<script src="../screens-mobile/_mobile-chrome.js"></script>
+</body>
+</html>

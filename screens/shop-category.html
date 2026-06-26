@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en" data-active-nav="shop">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Phonics &amp; math · JoyWaveDigital</title>
+<meta name="description" content="Phonics and math printables for ages 3 to 12. Worksheets, number lines, decodable readers, and skip-counting posters." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="screens.css" />
+<style>
+  /* shop-category.html — /shop/[category]. Same shell as /shop with a
+     category hero band. Page-specific bits prefixed .sc-. */
+  .sc-hero {
+    background: var(--joy-100);
+    border: 1px solid var(--joy-300);
+    border-radius: var(--r-5);
+    padding: 40px;
+    display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 720px) { .sc-hero { grid-template-columns: 1fr; gap: 20px; padding: 28px; } }
+  .sc-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 6vw, 84px);
+    font-weight: 500; letter-spacing: -0.04em; line-height: 0.92;
+    margin: 14px 0 12px; color: var(--joy-950);
+  }
+  .sc-hero p { color: var(--joy-900); font-size: var(--t-md); line-height: 1.5; max-width: 52ch; margin: 0; }
+  .sc-hero .eyebrow { color: var(--joy-700); }
+  .sc-hero .eyebrow-dot { background: var(--joy-700); }
+  .sc-stat { text-align: right; }
+  @media (max-width: 720px) { .sc-stat { text-align: left; } }
+  .sc-stat .n { font-family: var(--font-display); font-size: 48px; font-weight: 600; letter-spacing: -0.03em; color: var(--joy-950); line-height: 1; }
+  .sc-stat .l { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--joy-700); margin-top: 6px; }
+
+  .sc-subnav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+  .sc-subnav a {
+    display: inline-flex; align-items: center; height: 34px; padding: 0 16px;
+    border-radius: var(--r-pill); border: 1px solid var(--line);
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em;
+    color: var(--fg-soft); background: var(--bg-elev);
+    transition: background var(--dur-base) var(--ease-out-soft), color var(--dur-base) var(--ease-out-soft);
+  }
+  .sc-subnav a:hover { background: var(--bg-subtle); color: var(--fg); }
+  .sc-subnav a[aria-current="true"] { background: var(--ink); color: var(--paper); border-color: transparent; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div data-chrome="header"></div>
+
+<main id="main" class="shop-main">
+  <div class="wrap">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">JoyWaveDigital</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="shop.html">Shop</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page">Phonics &amp; math</li>
+      </ol>
+    </nav>
+
+    <!-- Category hero -->
+    <header class="sc-hero">
+      <div>
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Category</div>
+        <h1>Phonics &amp; math.</h1>
+        <p>Where reading and number sense meet. Decodable readers, CVC practice, number lines, and skip-counting posters, all classroom-tested for ages 3 to 12.</p>
+      </div>
+      <div class="sc-stat">
+        <div class="n">96</div>
+        <div class="l">printables</div>
+      </div>
+    </header>
+
+    <!-- Sub-category pills -->
+    <nav class="sc-subnav" aria-label="Sub-categories">
+      <a href="#" aria-current="true">All</a>
+      <a href="#">Phonics</a>
+      <a href="#">Number sense</a>
+      <a href="#">Counting</a>
+      <a href="#">Decodable readers</a>
+      <a href="#">Wall posters</a>
+    </nav>
+
+    <!-- Toolbar -->
+    <div class="shop-toolbar" role="toolbar" aria-label="Filter and sort">
+      <button class="btn ghost filter-trigger" aria-controls="filter-sidebar" aria-expanded="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+        Filters
+        <span class="filter-count">2</span>
+      </button>
+      <div class="active-filters">
+        <button class="filter-pill">Phonics &amp; math <span aria-hidden="true">×</span></button>
+        <button class="filter-pill">Ages 5–7 <span aria-hidden="true">×</span></button>
+        <button class="filter-clear">Clear all</button>
+      </div>
+      <div class="shop-sort">
+        <label for="sort" class="eyebrow" style="margin-right:8px">Sort</label>
+        <select id="sort" class="select-min">
+          <option>Most recent</option>
+          <option>Most popular</option>
+          <option>Price, low to high</option>
+          <option>Price, high to low</option>
+          <option>Best value</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Two-column: filter sidebar + product grid -->
+    <div class="shop-layout">
+
+      <aside id="filter-sidebar" class="filter-sidebar" aria-label="Filters">
+        <section class="filter-group">
+          <h2>Sub-category</h2>
+          <ul>
+            <li><label class="check"><input type="checkbox" checked /> <span>Phonics</span> <span class="count">38</span></label></li>
+            <li><label class="check"><input type="checkbox" /> <span>Number sense</span> <span class="count">24</span></label></li>
+            <li><label class="check"><input type="checkbox" /> <span>Counting</span> <span class="count">19</span></label></li>
+            <li><label class="check"><input type="checkbox" /> <span>Decodable readers</span> <span class="count">15</span></label></li>
+          </ul>
+        </section>
+
+        <section class="filter-group">
+          <h2>Age</h2>
+          <ul>
+            <li><label class="check"><input type="checkbox" /> <span>3 to 5</span></label></li>
+            <li><label class="check"><input type="checkbox" checked /> <span>5 to 7</span></label></li>
+            <li><label class="check"><input type="checkbox" /> <span>7 to 10</span></label></li>
+            <li><label class="check"><input type="checkbox" /> <span>10 to 12</span></label></li>
+          </ul>
+        </section>
+
+        <section class="filter-group">
+          <h2>Price</h2>
+          <div class="price-range">
+            <input type="number" placeholder="0" aria-label="Minimum price" min="0" />
+            <span class="dash" aria-hidden="true">to</span>
+            <input type="number" placeholder="50" aria-label="Maximum price" min="0" />
+          </div>
+        </section>
+
+        <section class="filter-group">
+          <label class="toggle">
+            <input type="checkbox" />
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            <span class="toggle-label">Free only</span>
+          </label>
+        </section>
+      </aside>
+
+      <!-- Product grid -->
+      <section class="shop-grid" aria-label="Products">
+        <div class="pgrid">
+
+          <article class="pcard">
+            <div class="pcard-image">
+              <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+                <rect width="400" height="400" fill="var(--joy-100)"/>
+                <line x1="40" y1="200" x2="360" y2="200" stroke="var(--joy-700)" stroke-width="3" opacity="0.7"/>
+                <circle cx="90" cy="200" r="7" fill="var(--joy-700)"/><circle cx="200" cy="200" r="7" fill="var(--joy-600)"/><circle cx="310" cy="200" r="7" fill="var(--joy-500)"/>
+                <text x="200" y="120" text-anchor="middle" font-family="Bricolage Grotesque" font-size="56" font-weight="600" fill="var(--joy-950)">1–100</text>
+              </svg>
+              <span class="pcard-chip pcard-chip--pick">Editor's pick</span>
+            </div>
+            <button class="pcard-heart" aria-pressed="false" aria-label="Save Number-line math to wishlist"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg></button>
+            <a href="product-detail.html" class="pcard-link" aria-label="Number-line math, 1 to 100"><span class="sr-only">Number-line math, 1 to 100</span></a>
+            <div class="pcard-content">
+              <h3 class="pcard-title" title="Number-line math, 1 to 100">Number-line math, 1 to 100</h3>
+              <div class="pcard-price-row"><span class="pcard-price pcard-price--sale">$5.10</span><span class="pcard-price-compare">$8.00</span></div>
+              <div class="pcard-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M4 20h16"/></svg><span>Digital Download</span></div>
+            </div>
+          </article>
+
+          <article class="pcard">
+            <div class="pcard-image">
+              <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+                <rect width="400" height="400" fill="var(--joy-100)"/>
+                <text x="200" y="250" text-anchor="middle" font-family="Bricolage Grotesque" font-size="200" font-weight="600" fill="var(--joy-700)" letter-spacing="-10">Aa</text>
+                <line x1="20" y1="350" x2="380" y2="350" stroke="var(--joy-700)" stroke-opacity="0.3" stroke-width="2"/>
+              </svg>
+              <span class="pcard-chip pcard-chip--free">Free</span>
+            </div>
+            <button class="pcard-heart" aria-pressed="false" aria-label="Save Phonics CVC Pack to wishlist"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg></button>
+            <a href="product-detail.html" class="pcard-link" aria-label="Phonics CVC Pack, Vol. 1"><span class="sr-only">Phonics CVC Pack, Vol. 1</span></a>
+            <div class="pcard-content">
+              <h3 class="pcard-title" title="Phonics CVC Pack, Vol. 1">Phonics CVC Pack, Vol. 1</h3>
+              <div class="pcard-price-row"><span class="pcard-price">Free</span></div>
+              <div class="pcard-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M4 20h16"/></svg><span>Digital Download</span></div>
+            </div>
+          </article>
+
+          <article class="pcard">
+            <div class="pcard-image">
+              <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+                <rect width="400" height="400" fill="var(--joy-950)"/>
+                <text x="200" y="170" text-anchor="middle" font-family="Bricolage Grotesque" font-size="84" font-weight="600" fill="var(--joy-500)" letter-spacing="-4">2 4 6</text>
+                <text x="200" y="280" text-anchor="middle" font-family="Geist Mono" font-size="40" fill="var(--paper)">8 10 12</text>
+              </svg>
+              <span class="pcard-chip pcard-chip--pick">New</span>
+            </div>
+            <button class="pcard-heart" aria-pressed="false" aria-label="Save Skip-counting posters to wishlist"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg></button>
+            <a href="product-detail.html" class="pcard-link" aria-label="Skip-counting wall posters"><span class="sr-only">Skip-counting wall posters</span></a>
+            <div class="pcard-content">
+              <h3 class="pcard-title" title="Skip-counting wall posters">Skip-counting wall posters</h3>
+              <div class="pcard-price-row"><span class="pcard-price">$4.50</span></div>
+              <div class="pcard-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M4 20h16"/></svg><span>Digital Download</span></div>
+            </div>
+          </article>
+
+          <article class="pcard">
+            <div class="pcard-image">
+              <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+                <rect width="400" height="400" fill="var(--joy-200)"/>
+                <rect x="50" y="100" width="220" height="26" rx="6" fill="var(--joy-700)" opacity="0.55"/>
+                <rect x="50" y="160" width="160" height="26" rx="6" fill="var(--joy-700)" opacity="0.55"/>
+                <rect x="50" y="220" width="200" height="26" rx="6" fill="var(--joy-700)" opacity="0.55"/>
+              </svg>
+            </div>
+            <button class="pcard-heart" aria-pressed="false" aria-label="Save Decodable readers to wishlist"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg></button>
+            <a href="product-detail.html" class="pcard-link" aria-label="Decodable readers, Set 3"><span class="sr-only">Decodable readers, Set 3</span></a>
+            <div class="pcard-content">
+              <h3 class="pcard-title" title="Decodable readers, Set 3, short vowels">Decodable readers, Set 3</h3>
+              <div class="pcard-price-row"><span class="pcard-price">$6.00</span></div>
+              <div class="pcard-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M4 20h16"/></svg><span>Digital Download</span></div>
+            </div>
+          </article>
+
+          <article class="pcard">
+            <div class="pcard-image">
+              <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+                <rect width="400" height="400" fill="var(--sun-300)"/>
+                <text x="200" y="250" text-anchor="middle" font-family="Bricolage Grotesque" font-size="150" font-weight="600" fill="var(--joy-950)">123</text>
+              </svg>
+              <span class="pcard-chip pcard-chip--free">Free</span>
+            </div>
+            <button class="pcard-heart" aria-pressed="false" aria-label="Save Counting flashcards to wishlist"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg></button>
+            <a href="product-detail.html" class="pcard-link" aria-label="Counting flashcards, 1 to 20"><span class="sr-only">Counting flashcards, 1 to 20</span></a>
+            <div class="pcard-content">
+              <h3 class="pcard-title" title="Counting flashcards, 1 to 20">Counting flashcards, 1 to 20</h3>
+              <div class="pcard-price-row"><span class="pcard-price">Free</span></div>
+              <div class="pcard-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M4 20h16"/></svg><span>Digital Download</span></div>
+            </div>
+          </article>
+
+          <article class="pcard">
+            <div class="pcard-image">
+              <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+                <rect width="400" height="400" fill="var(--joy-100)"/>
+                <text x="200" y="250" text-anchor="middle" font-family="Bricolage Grotesque" font-size="170" font-weight="600" fill="var(--joy-700)">+−</text>
+              </svg>
+            </div>
+            <button class="pcard-heart" aria-pressed="false" aria-label="Save Addition and subtraction drills to wishlist"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg></button>
+            <a href="product-detail.html" class="pcard-link" aria-label="Addition and subtraction drills"><span class="sr-only">Addition and subtraction drills</span></a>
+            <div class="pcard-content">
+              <h3 class="pcard-title" title="Addition and subtraction drills">Addition &amp; subtraction drills</h3>
+              <div class="pcard-price-row"><span class="pcard-price">$3.50</span></div>
+              <div class="pcard-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M4 20h16"/></svg><span>Digital Download</span></div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Pagination -->
+        <nav class="pagination" aria-label="Pagination">
+          <a href="#" class="page-arrow" aria-label="Previous page" aria-disabled="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg>
+          </a>
+          <a href="#" class="page-num" aria-current="page">1</a>
+          <a href="#" class="page-num">2</a>
+          <a href="#" class="page-num">3</a>
+          <span class="page-gap" aria-hidden="true">…</span>
+          <a href="#" class="page-num">8</a>
+          <a href="#" class="page-arrow" aria-label="Next page">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg>
+          </a>
+        </nav>
+      </section>
+    </div>
+
+  </div>
+</main>
+
+<div data-chrome="footer"></div>
+<script src="_chrome.js"></script>
+</body>
+</html>

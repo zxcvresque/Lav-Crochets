@@ -1,0 +1,96 @@
+
+:root { color-scheme: light }
+* { box-sizing: border-box }
+body {
+  margin: 0; padding: 56px 0 96px;
+  background: oklch(0.94 0.012 70);
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  color: oklch(0.180 0.022 50);
+}
+.head {
+  max-width: 5000px;
+  margin: 0 auto 48px;
+  padding: 0 32px;
+}
+.crumb {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: oklch(0.510 0.020 50);
+  margin-bottom: 14px;
+}
+.head h1 {
+  font-family: "Bricolage Grotesque", ui-sans-serif, system-ui;
+  font-weight: 600;
+  font-size: 44px;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+  margin: 0 0 12px;
+}
+.head p {
+  margin: 0; color: oklch(0.310 0.024 50); font-size: 16px;
+  max-width: 70ch; line-height: 1.55;
+}
+
+.row { display: flex; gap: 48px; align-items: flex-start; padding: 0 32px; overflow-x: auto; padding-bottom: 32px; }
+.shot { flex: 0 0 auto; }
+.shot .lbl {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: oklch(0.510 0.020 50);
+  margin: 0 0 12px;
+}
+.shot .lbl strong {
+  color: oklch(0.180 0.022 50);
+  font-weight: 600;
+  margin-right: 8px;
+  font-size: 13px;
+  letter-spacing: -0.005em;
+  text-transform: none;
+}
+.frame {
+  background: white;
+  border: 1px solid oklch(0.905 0.014 60);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 32px 64px -32px oklch(0.18 0.04 50 / 0.18);
+  transform-origin: top left;
+}
+.frame iframe { display: block; border: 0; background: white; }
+
+/* Each frame renders at its native width then scales down to fit a viewing column.
+   We use a fixed render height of 1000px; the iframe paints at the full route width.
+   The scale factor matches: rendered_col_width / native_width. */
+
+/* 1280 native, displayed at 520px wide */
+.w1280 .frame { width: 1280px; height: 1000px; transform: scale(0.40625); }
+.w1280 .frame-clip { width: 520px; height: 406px; overflow: hidden; }
+
+/* 1440 native, displayed at 580px wide */
+.w1440 .frame { width: 1440px; height: 1000px; transform: scale(0.40278); }
+.w1440 .frame-clip { width: 580px; height: 403px; overflow: hidden; }
+
+/* 1920 native, displayed at 760px wide */
+.w1920 .frame { width: 1920px; height: 1000px; transform: scale(0.39583); }
+.w1920 .frame-clip { width: 760px; height: 396px; overflow: hidden; }
+
+.frame iframe { width: 100%; height: 100%; }
+
+.reflow {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 32px 0;
+}
+.reflow h2 {
+  font-family: "Bricolage Grotesque", ui-sans-serif, system-ui;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.025em;
+  margin: 0 0 12px;
+}
+.reflow ul { margin: 0; padding-left: 22px; color: oklch(0.310 0.024 50); font-size: 14px; line-height: 1.65 }
+.reflow li { margin: 4px 0 }
+.reflow li code { font-family: ui-monospace, Menlo, monospace; font-size: 12px; background: oklch(0.940 0.012 70); padding: 1px 6px; border-radius: 4px }

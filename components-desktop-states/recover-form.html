@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RecoverForm · component states · JoyWaveDigital desktop pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="components.css" />
+</head>
+<body>
+<div class="audit-head">
+  <div class="crumb">Desktop pass · component states </div>
+  <h1>RecoverForm, <em>every state.</em></h1>
+  <p>State variants for this component. Each block carries a mono label. Token references only.</p>
+</div>
+<div class="state-stack">
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Idle</span><span class="desc">single-input hero</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 64px 32px; max-width: 600px; margin: 0 auto">
+  <div class="eyebrow" style="margin-bottom: 12px"><span class="eyebrow-dot"></span>Receipts</div>
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 48px; letter-spacing: -0.035em; line-height: 1.0; margin: 0 0 14px">Find a past order.</h1>
+  <p style="margin: 0 0 22px; color: var(--fg-soft); font-size: 17px; line-height: 1.5">Enter the email you used at checkout.</p>
+  <label class="eyebrow" style="display: block; margin-bottom: 8px">Receipt email</label>
+  <input type="email" placeholder="you@example.com" style="width: 100%; height: 56px; padding: 0 18px; background: var(--bg); border: 1px solid var(--line-2); border-radius: 14px; font-size: 17px" autofocus />
+  <button class="btn xl" style="margin-top: 16px">Send my receipts <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div></div>
+  <div class="note">Single-input page. autofocus permitted. autocomplete=email, inputmode=email, enterkeyhint=send.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Submitting</span><span class="desc">button replaces label</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 64px 32px; max-width: 600px; margin: 0 auto">
+  <div class="eyebrow" style="margin-bottom: 12px"><span class="eyebrow-dot"></span>Receipts</div>
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 48px; letter-spacing: -0.035em; line-height: 1.0; margin: 0 0 14px">Find a past order.</h1>
+  <label class="eyebrow" style="display: block; margin-bottom: 8px">Receipt email</label>
+  <input type="email" value="sneha@example.com" disabled style="width: 100%; height: 56px; padding: 0 18px; background: var(--bg-subtle); border: 1px solid var(--line); border-radius: 14px; font-size: 17px; color: var(--fg-muted)" />
+  <button class="btn xl" disabled style="margin-top: 16px; opacity: 0.85"><span class="skel" style="width: 18px; height: 18px; border-radius: 99px; display: inline-block"></span>Submitting…</button>
+</div></div>
+  <div class="note">Form disables during submit. Skeleton spinner in button.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Anti-enumeration response</span><span class="desc">identical for match / no-match</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 64px 32px; max-width: 600px; margin: 0 auto; text-align: center">
+  <div style="width: 80px; height: 80px; border-radius: 99px; background: var(--joy-100); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 18px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--joy-700)" stroke-width="1.6" stroke-linecap="round"><path d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg></div>
+  <h2 style="font-family: var(--font-display); font-weight: 600; font-size: 32px; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 12px">If we have any orders for that address, you will get a link within a minute.</h2>
+  <p style="margin: 0; color: var(--fg-muted); font-size: 13px">This response is identical whether we found a match or not.</p>
+</div></div>
+  <div class="note">Locked anti-enumeration shape. Same response for both branches.</div>
+</div></div></body></html>

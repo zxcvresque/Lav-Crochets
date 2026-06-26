@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Payment pending · JoyWaveDigital</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="screens.css" />
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div data-chrome="header"></div>
+
+<main id="main" class="thanks-main">
+  <div class="thanks-wrap">
+
+    <span class="thanks-status pending">Payment pending</span>
+
+    <h1 class="thanks-headline">
+      Hang tight, <em>we are checking with your bank.</em>
+    </h1>
+    <p class="thanks-sub">
+      Some payment methods take a minute to confirm. We will email <strong style="color:var(--fg)">parent@school.edu</strong> the moment it clears, and your downloads will unlock right here automatically. No action needed.
+    </p>
+
+    <section class="thanks-order" aria-label="Order details">
+      <header class="thanks-order-head">
+        <span class="num">Order #JW-7F2A9C · 15 May 2026</span>
+        <span class="total">$17.00 USD</span>
+      </header>
+
+      <!-- Pending state: items locked, no download buttons yet -->
+      <div class="thanks-line">
+        <div class="thumb">
+          <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+            <rect width="400" height="400" fill="var(--sun-300)"/>
+            <text x="200" y="280" text-anchor="middle" font-family="Bricolage Grotesque" font-size="240" font-weight="600" fill="var(--joy-950)">½</text>
+          </svg>
+        </div>
+        <div class="ct">
+          <div class="t">Fractions, without tears.</div>
+          <div class="m">PDF · 28 pages</div>
+        </div>
+        <span class="thanks-line-status" style="font-family:var(--font-mono);font-size:11px;color:var(--fg-muted);letter-spacing:.04em;text-transform:uppercase">Awaiting payment</span>
+      </div>
+
+      <div class="thanks-line">
+        <div class="thumb">
+          <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+            <rect width="400" height="400" fill="var(--iris-300)"/>
+            <text x="200" y="280" text-anchor="middle" font-family="Bricolage Grotesque" font-size="240" font-weight="600" fill="var(--paper)">R</text>
+          </svg>
+        </div>
+        <div class="ct">
+          <div class="t">Long-vowel Readers Pack</div>
+          <div class="m">ZIP · 96 pages</div>
+        </div>
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--fg-muted);letter-spacing:.04em;text-transform:uppercase">Awaiting payment</span>
+      </div>
+
+      <div class="thanks-line">
+        <div class="thumb">
+          <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+            <rect width="400" height="400" fill="var(--joy-100)"/>
+            <text x="200" y="260" text-anchor="middle" font-family="Bricolage Grotesque" font-size="200" font-weight="600" fill="var(--joy-700)">Aa</text>
+          </svg>
+        </div>
+        <div class="ct">
+          <div class="t">Phonics CVC Pack, Vol. 1</div>
+          <div class="m">PDF · 64 pages · Free</div>
+        </div>
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--fg-muted);letter-spacing:.04em;text-transform:uppercase">Awaiting payment</span>
+      </div>
+    </section>
+
+    <!-- A subtle live status indicator -->
+    <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;color:var(--fg-muted);letter-spacing:.02em;margin:24px 0">
+      <span style="width:8px;height:8px;border-radius:99px;background:var(--warn);box-shadow:0 0 0 0 var(--warn);animation:pulse 1.8s ease-out infinite"></span>
+      <span>Polling for confirmation. Usually under a minute. You can close this page; the email will arrive either way.</span>
+    </div>
+
+    <aside class="thanks-help">
+      <h3>What if it does not clear?</h3>
+      <p>If your bank rejects the payment, we email you and free your cart. No charge happens. Reach us at <a href="mailto:hello@joywavedigital.shop" style="color:var(--fg);text-decoration:underline">hello@joywavedigital.shop</a> if you have not heard within 30 minutes.</p>
+    </aside>
+
+  </div>
+</main>
+
+<div data-chrome="footer"></div>
+<script src="_chrome.js"></script>
+</body>
+</html>

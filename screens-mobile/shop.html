@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>All printables · JoyWaveDigital mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="mobile.css" />
+</head>
+<body>
+<div class="mob-stage" data-stage>
+  <div data-chrome="status"></div>
+  <div data-chrome="announce"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+
+  <main class="mob-main" id="main">
+    <!-- Pull-to-refresh idle indicator (rendered for QA; in product, it lives in JS state) -->
+    <div class="mob-ptr" aria-hidden="true">↓ Pull to refresh</div>
+
+    <nav class="mob-crumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span class="sep">/</span><span aria-current="page">All printables</span>
+    </nav>
+
+    <div class="mob-eyebrow"><span class="mob-eyebrow-dot"></span>By category</div>
+    <h1 class="mob-h1" style="font-size: clamp(36px, 10vw, 48px); margin-top: 12px">All printables.</h1>
+    <p class="mob-sub" style="margin-bottom: 12px">364 items. Phonics, math, decor, readers, the whole shelf.</p>
+
+    <!-- Inline search trigger -->
+    <button class="mob-btn ghost full" style="justify-content: flex-start; height: 48px; gap: 10px; color: var(--fg-muted); border-color: var(--line)" aria-label="Open search">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      Search 364 printables
+    </button>
+
+    <!-- Toolbar -->
+    <div role="toolbar" aria-label="Filter and sort" style="display:flex; gap: 8px; align-items:center; padding: 16px 0; margin-top: 14px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)">
+      <button class="mob-btn ghost sm" aria-haspopup="dialog" aria-controls="filter-sheet" style="border-color: var(--line-2)">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+        Filters
+        <span style="width:18px; height:18px; border-radius:99px; background: var(--joy-500); color: var(--joy-950); font-family: var(--font-mono); font-size:10px; font-weight:700; display:inline-flex; align-items:center; justify-content:center; margin-left: 2px">3</span>
+      </button>
+      <button class="mob-btn ghost sm" aria-haspopup="dialog" style="border-color: var(--line-2)">
+        Sort: Most recent
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+    </div>
+
+    <!-- Active filter pills (horizontal scroll) -->
+    <div style="display:flex; gap:6px; overflow-x:auto; padding: 12px 0; -webkit-overflow-scrolling: touch">
+      <button style="flex-shrink: 0; height: 30px; padding: 0 10px; background: var(--bg-elev); border:1px solid var(--line); border-radius:99px; font-family: var(--font-mono); font-size:11px; color: var(--fg-soft); display:inline-flex; align-items:center; gap:6px">Worksheets <span style="color:var(--fg-faint); font-weight:600">×</span></button>
+      <button style="flex-shrink: 0; height: 30px; padding: 0 10px; background: var(--bg-elev); border:1px solid var(--line); border-radius:99px; font-family: var(--font-mono); font-size:11px; color: var(--fg-soft); display:inline-flex; align-items:center; gap:6px">Ages 5 to 7 <span style="color:var(--fg-faint); font-weight:600">×</span></button>
+      <button style="flex-shrink: 0; height: 30px; padding: 0 10px; background: var(--bg-elev); border:1px solid var(--line); border-radius:99px; font-family: var(--font-mono); font-size:11px; color: var(--fg-soft); display:inline-flex; align-items:center; gap:6px">Free <span style="color:var(--fg-faint); font-weight:600">×</span></button>
+      <button style="flex-shrink: 0; height: 30px; padding: 0 14px; background: transparent; border:0; font-family: var(--font-mono); font-size:11px; color: var(--fg-muted); text-decoration: underline">Clear all</button>
+    </div>
+
+    <p class="mob-eyebrow" style="margin: 8px 0 12px">28 results</p>
+
+    <!-- Grid -->
+    <div class="mob-grid">
+      <!-- Card 1: Sale -->
+      <article class="mob-pcard">
+        <div class="mob-pcard-img placeholder">
+          <span class="chip sale">36% off</span>
+          <button class="mob-pcard-heart" aria-label="Save to wishlist"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></button>
+          <a href="product-detail.html" class="cover"></a>
+        </div>
+        <h3 title="Number-line math, 1 to 100, color-coded">Number-line math, 1 to 100</h3>
+        <div class="meta">PDF · 18 pages</div>
+        <div class="price"><span class="save">$5.10</span> <span class="strike">$8.00</span></div>
+      </article>
+      <article class="mob-pcard">
+        <div class="mob-pcard-img placeholder">
+          <span class="chip new">New</span>
+          <button class="mob-pcard-heart on" aria-label="Remove from wishlist"><svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></button>
+          <a href="product-detail.html" class="cover"></a>
+        </div>
+        <h3 title="Decodable readers, Set 3, short vowels">Decodable readers, Set 3</h3>
+        <div class="meta">PDF · 24 pages</div>
+        <div class="price">$8.00</div>
+      </article>
+      <article class="mob-pcard">
+        <div class="mob-pcard-img placeholder">
+          <span class="chip free">Free</span>
+          <button class="mob-pcard-heart" aria-label="Save to wishlist"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></button>
+          <a href="product-detail.html" class="cover"></a>
+        </div>
+        <h3 title="Alphabet tracing, lowercase">Alphabet tracing, lowercase</h3>
+        <div class="meta">PDF · 26 pages</div>
+        <div class="price">$0.00</div>
+      </article>
+      <article class="mob-pcard">
+        <div class="mob-pcard-img placeholder">
+          <span class="chip pick">Pick</span>
+          <button class="mob-pcard-heart" aria-label="Save to wishlist"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></button>
+          <a href="product-detail.html" class="cover"></a>
+        </div>
+        <h3 title="Classroom decor bundle, calm-neutrals palette">Classroom decor bundle</h3>
+        <div class="meta">PDF + PNG · 64 pages</div>
+        <div class="price">$18.00</div>
+      </article>
+      <article class="mob-pcard">
+        <div class="mob-pcard-img placeholder">
+          <button class="mob-pcard-heart" aria-label="Save to wishlist"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></button>
+          <a href="product-detail.html" class="cover"></a>
+        </div>
+        <h3 title="Sight-word flashcards, K to 2">Sight-word flashcards</h3>
+        <div class="meta">PDF · 80 cards</div>
+        <div class="price">$6.00</div>
+      </article>
+      <article class="mob-pcard">
+        <div class="mob-pcard-img placeholder">
+          <button class="mob-pcard-heart" aria-label="Save to wishlist"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></button>
+          <a href="product-detail.html" class="cover"></a>
+        </div>
+        <h3 title="Skip-counting wall posters, 2s through 10s">Skip-counting wall posters</h3>
+        <div class="meta">PDF · 9 pages</div>
+        <div class="price">$4.00</div>
+      </article>
+    </div>
+
+    <!-- Pagination -->
+    <div style="display:flex; justify-content: space-between; align-items:center; margin: 28px 0 12px">
+      <button class="mob-btn ghost sm" disabled style="opacity:0.5">← Prev</button>
+      <span class="mob-eyebrow">Page 1 / 3</span>
+      <button class="mob-btn subtle sm">Next →</button>
+    </div>
+  </main>
+
+  <div data-chrome="home"></div>
+</div>
+<script src="_mobile-chrome.js"></script>
+</body>
+</html>

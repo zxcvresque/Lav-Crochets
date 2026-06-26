@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>BottomSheet · Component · JoyWaveDigital mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../screens-mobile/mobile.css" />
+<style>
+  body { background: var(--bg-subtle) }
+  .mob-stage { background: var(--bg); min-height: auto; padding-bottom: 24px; margin: 24px auto; box-shadow: 0 16px 48px -24px oklch(0.18 0.05 40 / 0.32); border-radius: 12px; overflow: hidden }
+  .ann { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); padding: 12px 16px 4px; background: var(--bg) }
+  .ann strong { color: var(--fg); font-weight: 600 }
+</style>
+</head>
+<body>
+<div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); text-align: center; padding: 18px 0 0">BottomSheet · 5 variants</div>
+
+
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>Filter (half snap) · /shop</strong></div>
+  
+<main class="mob-main" style="filter: brightness(0.96)">
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.025em; margin: 8px 0 4px">All printables.</h1>
+  <p class="mob-eyebrow">28 results</p>
+</main>
+<div class="mob-scrim"></div>
+<div class="mob-sheet half" role="dialog" aria-modal="true" aria-label="Filters">
+  <div class="mob-sheet-handle" aria-label="Drag handle"></div>
+  <div class="mob-sheet-head">
+    <h2>Filters · 3 active</h2>
+    <button class="mob-icon" aria-label="Close"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="mob-sheet-body" style="overflow-y: auto; max-height: 100%">
+    <div class="mob-filter-section">
+      <h3>Category</h3>
+      <label class="mob-check"><input type="checkbox" checked> Worksheets <span class="count">142</span></label>
+      <label class="mob-check"><input type="checkbox"> Readers <span class="count">44</span></label>
+      <label class="mob-check"><input type="checkbox"> Flashcards <span class="count">28</span></label>
+    </div>
+    <div class="mob-filter-section">
+      <h3>Age range</h3>
+      <label class="mob-check"><input type="checkbox"> 3 to 5 <span class="count">62</span></label>
+      <label class="mob-check"><input type="checkbox" checked> 5 to 7 <span class="count">98</span></label>
+      <label class="mob-check"><input type="checkbox"> 7 to 9 <span class="count">112</span></label>
+    </div>
+    <div class="mob-filter-section">
+      <h3>Price</h3>
+      <label class="mob-check"><input type="checkbox" checked> Free <span class="count">12</span></label>
+      <label class="mob-check"><input type="checkbox"> Under $5 <span class="count">38</span></label>
+      <label class="mob-check"><input type="checkbox"> $5 to $10 <span class="count">196</span></label>
+    </div>
+  </div>
+  <div class="mob-sheet-footer">
+    <button class="mob-btn ghost" style="flex: 1">Clear all</button>
+    <button class="mob-btn primary" style="flex: 1">Show 28 items</button>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>Sort (peek snap) · /shop</strong></div>
+  
+<main class="mob-main" style="filter: brightness(0.96)">
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.025em; margin: 8px 0 4px">All printables.</h1>
+  <p class="mob-eyebrow">28 results</p>
+</main>
+<div class="mob-sheet" style="height: 360px" role="dialog" aria-modal="true" aria-label="Sort">
+  <div class="mob-sheet-handle" aria-label="Drag handle"></div>
+  <div class="mob-sheet-head">
+    <h2>Sort by</h2>
+    <button class="mob-icon" aria-label="Close"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="mob-sheet-body">
+    <button style="width:100%; text-align:left; padding: 14px 8px; background:transparent; border:0; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; font-size: var(--t-base)">Most recent <span style="color: var(--joy-700)">✓</span></button>
+    <button style="width:100%; text-align:left; padding: 14px 8px; background:transparent; border:0; border-bottom: 1px solid var(--line); font-size: var(--t-base)">Most popular</button>
+    <button style="width:100%; text-align:left; padding: 14px 8px; background:transparent; border:0; border-bottom: 1px solid var(--line); font-size: var(--t-base)">Price, low to high</button>
+    <button style="width:100%; text-align:left; padding: 14px 8px; background:transparent; border:0; border-bottom: 1px solid var(--line); font-size: var(--t-base)">Price, high to low</button>
+    <button style="width:100%; text-align:left; padding: 14px 8px; background:transparent; border:0; font-size: var(--t-base)">Best value</button>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>Sign-in prompt · /cart guest</strong></div>
+  
+<main class="mob-main" style="filter: brightness(0.96)">
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.025em; margin: 8px 0 8px">Cart</h1>
+</main>
+<div class="mob-scrim"></div>
+<div class="mob-sheet" style="height: 320px" role="dialog" aria-modal="true" aria-label="Sign in">
+  <div class="mob-sheet-handle"></div>
+  <div class="mob-sheet-head">
+    <h2>Already a customer?</h2>
+    <button class="mob-icon" aria-label="Close"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="mob-sheet-body">
+    <p style="margin: 0 0 18px; color: var(--fg-soft); font-size: var(--t-base); line-height: 1.5">Sign in so this order joins your library. We will send a one-tap link to your email.</p>
+    <a href="../screens-mobile/sign-in.html" class="mob-btn primary full" style="margin-bottom: 10px">Sign in with email</a>
+    <button class="mob-btn ghost full">Continue as guest</button>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>Price-changed (409) · /cart</strong></div>
+  
+<main class="mob-main" style="filter: brightness(0.96)">
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.025em; margin: 8px 0">Cart</h1>
+</main>
+<div class="mob-scrim"></div>
+<div class="mob-sheet" style="height: 340px" role="alertdialog" aria-modal="true" aria-label="Prices updated">
+  <div class="mob-sheet-handle"></div>
+  <div class="mob-sheet-head">
+    <h2>Prices updated</h2>
+    <button class="mob-icon" aria-label="Close"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="mob-sheet-body">
+    <p style="margin: 0 0 16px; color: var(--fg-soft); font-size: var(--t-base); line-height: 1.5">One item in your cart changed price between page-load and pay. Review the new total before continuing.</p>
+    <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 18px">
+      <span style="color: var(--fg-soft); font-size: var(--t-sm)">Number-line math</span><span style="font-family: var(--font-mono); font-size: var(--t-sm)"><span style="color: var(--fg-faint); text-decoration: line-through">$5.10</span> → <strong>$8.00</strong></span>
+    </div>
+    <a href="../screens-mobile/cart.html" class="mob-btn primary full">Review cart</a>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>Delete account · /account/settings</strong></div>
+  
+<main class="mob-main" style="filter: brightness(0.96)">
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.025em; margin: 8px 0 8px">Settings</h1>
+</main>
+<div class="mob-scrim"></div>
+<div class="mob-sheet" style="height: 480px" role="alertdialog" aria-modal="true" aria-label="Delete account">
+  <div class="mob-sheet-handle"></div>
+  <div class="mob-sheet-head">
+    <h2 style="color: var(--bad)">Delete account?</h2>
+    <button class="mob-icon" aria-label="Close"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="mob-sheet-body">
+    <p style="margin: 0 0 12px; color: var(--fg-soft); font-size: var(--t-base); line-height: 1.5">This hides your library and orders from this account. You can still recover receipts by email.</p>
+    <ul style="margin: 0 0 18px; padding-left: 20px; color: var(--fg-soft); font-size: var(--t-sm); line-height: 1.6">
+      <li>Your purchases stay legally available to you.</li>
+      <li>Refund eligibility is unchanged.</li>
+      <li>This action is reversible within 30 days.</li>
+    </ul>
+    <label style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); display: block; margin-bottom: 6px">Type DELETE to confirm</label>
+    <input type="text" autocomplete="off" inputmode="text" enterkeyhint="done" placeholder="DELETE" style="width: 100%; height: 48px; padding: 0 16px; background: var(--bg); border: 1px solid var(--line-2); border-radius: 12px; font-size: 16px; margin-bottom: 18px" />
+    <button class="mob-btn full" style="background: var(--bad); color: var(--paper); height: 52px; opacity: 0.7" disabled>Delete my account</button>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>Claim deny · /account/library</strong></div>
+  
+<main class="mob-main" style="filter: brightness(0.96)">
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.025em; margin: 8px 0 8px">Library</h1>
+</main>
+<div class="mob-scrim"></div>
+<div class="mob-sheet" style="height: 360px" role="alertdialog" aria-modal="true" aria-label="Confirm not mine">
+  <div class="mob-sheet-handle"></div>
+  <div class="mob-sheet-head">
+    <h2>Mark as not yours?</h2>
+    <button class="mob-icon" aria-label="Close"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="mob-sheet-body">
+    <p style="margin: 0 0 12px; color: var(--fg-soft); font-size: var(--t-base); line-height: 1.5">Order #JWD-28109 will be hidden from this account and will not appear again. This cannot be undone.</p>
+    <p style="margin: 0 0 18px; color: var(--fg-muted); font-size: var(--t-sm); line-height: 1.5">If this was a mistake, contact support and they can re-link the order.</p>
+    <button class="mob-btn full" style="background: transparent; color: var(--bad); border: 1px solid color-mix(in oklch, var(--bad) 50%, var(--line)); margin-bottom: 10px">Yes, not mine</button>
+    <button class="mob-btn ghost full">Cancel</button>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div><script src="../screens-mobile/_mobile-chrome.js"></script>
+</body>
+</html>

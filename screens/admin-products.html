@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en" data-admin-active="products">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin · Products</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="screens.css" />
+</head>
+<body class="admin">
+
+<div class="admin-layout">
+  <div data-admin-chrome="side"></div>
+
+  <main class="admin-content">
+
+    <header class="admin-page-head">
+      <div>
+        <h1>Products</h1>
+        <p class="subhead">364 items · 12 drafts · 8 archived</p>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn ghost" style="height:38px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M4 20h16"/></svg>
+          Export CSV
+        </button>
+        <a href="admin-products-new.html" class="btn ink" style="height:38px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          New product
+        </a>
+      </div>
+    </header>
+
+    <div class="admin-filter-row">
+      <input type="search" class="grow" placeholder="Search 364 products by title or slug" />
+      <select aria-label="Category">
+        <option>All categories</option>
+        <option>Worksheets</option>
+        <option>Readers</option>
+        <option>Activity packs</option>
+        <option>Flashcards</option>
+        <option>Decor</option>
+        <option>Bundles</option>
+      </select>
+      <select aria-label="Status">
+        <option>All statuses</option>
+        <option>Published</option>
+        <option>Draft</option>
+        <option>Archived</option>
+      </select>
+      <select aria-label="Sort">
+        <option>Most recent</option>
+        <option>Best selling</option>
+        <option>Lowest stock</option>
+        <option>Price, low to high</option>
+      </select>
+    </div>
+
+    <!-- Bulk-action toolbar (visible when rows selected) -->
+    <div class="bulk-bar">
+      <span class="count">3 selected</span>
+      <div class="actions">
+        <button>Set status</button>
+        <button>Add tag</button>
+        <button>Add to category</button>
+        <button>Duplicate</button>
+        <button class="danger">Archive</button>
+      </div>
+    </div>
+
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th class="sel"><input type="checkbox" aria-label="Select all" /></th>
+          <th class="img"></th>
+          <th class="sorted">Title</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Sales</th>
+          <th>Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="sel"><input type="checkbox" checked aria-label="Select" /></td>
+          <td class="img"><div class="thumb"><svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><rect width="400" height="400" fill="var(--sun-300)"/><text x="200" y="280" text-anchor="middle" font-family="Bricolage Grotesque" font-size="240" font-weight="600" fill="var(--joy-950)">½</text></svg></div></td>
+          <td>
+            <div style="font-weight:600">Fractions, without tears.</div>
+            <div class="meta">/products/fractions-without-tears</div>
+          </td>
+          <td>Worksheets</td>
+          <td><input class="quick" value="$8.00" /></td>
+          <td><span class="status-badge paid">live</span></td>
+          <td class="num">142</td>
+          <td class="meta">15 MAY</td>
+        </tr>
+        <tr>
+          <td class="sel"><input type="checkbox" checked aria-label="Select" /></td>
+          <td class="img"><div class="thumb"><svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><rect width="400" height="400" fill="var(--iris-300)"/><text x="200" y="280" text-anchor="middle" font-family="Bricolage Grotesque" font-size="240" font-weight="600" fill="var(--paper)">R</text></svg></div></td>
+          <td>
+            <div style="font-weight:600">Long-vowel Readers Pack</div>
+            <div class="meta">/products/long-vowel-readers-pack</div>
+          </td>
+          <td>Readers</td>
+          <td><input class="quick" value="$9.00" /></td>
+          <td><span class="status-badge paid">live</span></td>
+          <td class="num">88</td>
+          <td class="meta">14 MAY</td>
+        </tr>
+        <tr>
+          <td class="sel"><input type="checkbox" checked aria-label="Select" /></td>
+          <td class="img"><div class="thumb"><svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><rect width="400" height="400" fill="var(--joy-100)"/><text x="200" y="260" text-anchor="middle" font-family="Bricolage Grotesque" font-size="200" font-weight="600" fill="var(--joy-700)">Aa</text></svg></div></td>
+          <td>
+            <div style="font-weight:600">Phonics CVC Pack, Vol. 1</div>
+            <div class="meta">/products/phonics-cvc-pack-vol-1 · Featured · Free</div>
+          </td>
+          <td>Activity packs</td>
+          <td><input class="quick" value="Free" /></td>
+          <td><span class="status-badge paid">live</span></td>
+          <td class="num">312</td>
+          <td class="meta">15 MAY</td>
+        </tr>
+        <tr>
+          <td class="sel"><input type="checkbox" aria-label="Select" /></td>
+          <td class="img"><div class="thumb"><svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><rect width="400" height="400" fill="var(--rose-300)"/><g fill="none" stroke="var(--joy-950)" stroke-width="3"><circle cx="200" cy="200" r="100"/></g></svg></div></td>
+          <td>
+            <div style="font-weight:600">Feelings Flashcards (set of 72)</div>
+            <div class="meta">/products/feelings-flashcards-72 · New</div>
+          </td>
+          <td>Flashcards</td>
+          <td><input class="quick" value="$6.50" /></td>
+          <td><span class="status-badge paid">live</span></td>
+          <td class="num">54</td>
+          <td class="meta">12 MAY</td>
+        </tr>
+        <tr>
+          <td class="sel"><input type="checkbox" aria-label="Select" /></td>
+          <td class="img"><div class="thumb"><svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><rect width="400" height="400" fill="var(--paper-3)"/><line x1="20" y1="200" x2="380" y2="200" stroke="var(--joy-950)" stroke-width="1.5"/></svg></div></td>
+          <td>
+            <div style="font-weight:600;color:var(--fg-muted)">Kindergarten Handwriting Mats</div>
+            <div class="meta">/products/kindergarten-handwriting-mats</div>
+          </td>
+          <td>Worksheets</td>
+          <td><input class="quick" value="$5.00" /></td>
+          <td><span class="status-badge pending">draft</span></td>
+          <td class="num">0</td>
+          <td class="meta">10 MAY</td>
+        </tr>
+        <tr>
+          <td class="sel"><input type="checkbox" aria-label="Select" /></td>
+          <td class="img"><div class="thumb"><svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><rect width="400" height="400" fill="var(--joy-950)"/><rect x="20" y="20" width="80" height="80" fill="var(--joy-500)"/><text x="200" y="240" text-anchor="middle" font-family="Bricolage Grotesque" font-size="100" fill="var(--joy-500)">+12</text></svg></div></td>
+          <td>
+            <div style="font-weight:600">Summer Bundle, 2026</div>
+            <div class="meta">/products/summer-bundle-2026 · Sale 37%</div>
+          </td>
+          <td>Bundles</td>
+          <td><input class="quick" value="$24.00" /></td>
+          <td><span class="status-badge paid">live</span></td>
+          <td class="num">22</td>
+          <td class="meta">8 MAY</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Footer / pagination -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;font-family:var(--font-mono);font-size:12px;color:var(--fg-muted);letter-spacing:0.02em">
+      <span>6 of 364</span>
+      <nav class="pagination" aria-label="Pagination" style="margin:0">
+        <a href="#" class="page-arrow" aria-label="Previous" aria-disabled="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg></a>
+        <a href="#" class="page-num" aria-current="page">1</a>
+        <a href="#" class="page-num">2</a>
+        <a href="#" class="page-num">3</a>
+        <span class="page-gap">…</span>
+        <a href="#" class="page-num">61</a>
+        <a href="#" class="page-arrow" aria-label="Next"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></a>
+      </nav>
+    </div>
+
+  </main>
+</div>
+
+<script src="_admin_chrome.js"></script>
+</body>
+</html>

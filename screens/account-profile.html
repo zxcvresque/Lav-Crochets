@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Profile · JoyWaveDigital</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="screens.css" />
+<style>
+  .form-card { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--r-4); padding: 24px; margin-bottom: 18px; max-width: 720px; }
+  .form-card h2 { font-family: var(--font-display); font-size: 22px; font-weight: 500; letter-spacing: -0.02em; margin: 0 0 4px; }
+  .form-card .desc { color: var(--fg-soft); font-size: 13px; margin: 0 0 20px; }
+  .form-row { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 16px 0; border-top: 1px solid var(--line); align-items: center; }
+  .form-row:first-of-type { border-top: 0; padding-top: 0; }
+  .form-row label { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); letter-spacing: 0.04em; text-transform: uppercase; }
+  .form-row input, .form-row select {
+    width: 100%; max-width: 360px; height: 44px; padding: 0 14px;
+    background: var(--bg); border: 1px solid var(--line-2); border-radius: var(--r-2);
+    font: inherit; color: var(--fg);
+  }
+  .form-row input:focus, .form-row select:focus { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .form-row .static { font-size: var(--t-md); color: var(--fg); font-weight: 500; }
+  .form-row .meta { font-size: 12px; color: var(--fg-muted); margin-top: 4px; }
+  @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; gap: 8px; } }
+
+  .danger-card { background: color-mix(in oklch, var(--bad) 6%, var(--bg-elev)); border: 1px solid color-mix(in oklch, var(--bad) 30%, var(--line-2)); border-radius: var(--r-4); padding: 24px; max-width: 720px; }
+  .danger-card h2 { color: var(--bad); }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div data-chrome="header"></div>
+
+<main id="main" class="account-main">
+  <div class="wrap">
+
+    <header class="account-head">
+      <div>
+        <div class="account-meta">YOUR ACCOUNT</div>
+        <h1>Profile.</h1>
+        <p class="account-greeting">Email, password, account state. Changes save when you tab away from a field.</p>
+      </div>
+    </header>
+
+    <nav class="account-nav" aria-label="Account sections">
+      <a href="account-library.html">Library <span class="badge">8</span></a>
+      <a href="account-orders.html">Orders <span class="badge">5</span></a>
+      <a href="account-wishlist.html">Wishlist <span class="badge">12</span></a>
+      <a href="account-profile.html" aria-current="page">Profile</a>
+      <a href="account-settings.html">Settings</a>
+    </nav>
+
+    <section class="form-card" aria-labelledby="prof-h">
+      <h2 id="prof-h">Identity</h2>
+      <p class="desc">Email is how we send receipts and recovery links. Keep it accurate.</p>
+
+      <div class="form-row">
+        <label for="prof-email">Email</label>
+        <div>
+          <input id="prof-email" type="email" value="parent@school.edu" />
+          <div class="meta">Verified · last changed 4 weeks ago</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="prof-name">Display name</label>
+        <input id="prof-name" type="text" value="Onkar K." placeholder="Optional" />
+      </div>
+      <div class="form-row">
+        <label>Sign-in method</label>
+        <div class="static">Magic link + Google</div>
+      </div>
+      <div class="form-row">
+        <label>Member since</label>
+        <div class="static" style="font-family:var(--font-mono);font-size:14px;font-weight:500">14 March 2026</div>
+      </div>
+    </section>
+
+    <section class="form-card" aria-labelledby="pwd-h">
+      <h2 id="pwd-h">Password</h2>
+      <p class="desc">You signed in with a magic link. Set a password if you want to use one as a backup.</p>
+      <button class="btn ghost">Set a password</button>
+    </section>
+
+    <section class="danger-card" aria-labelledby="del-h">
+      <h2 id="del-h">Delete account</h2>
+      <p class="desc" style="color:color-mix(in oklch, var(--bad) 70%, var(--fg-soft))">
+        Permanent. We keep order records for legal reasons (7 years), but your email, wishlist, and library will be deleted within 30 days.
+      </p>
+      <button class="btn" style="background:transparent;color:var(--bad);border:1.5px solid var(--bad)">Delete my account</button>
+    </section>
+
+  </div>
+</main>
+
+<div data-chrome="footer"></div>
+<script src="_chrome.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>MobileNavDrawer · Component · JoyWaveDigital mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../screens-mobile/mobile.css" />
+<style>
+  body { background: var(--bg-subtle) }
+  .mob-stage { background: var(--bg); min-height: auto; padding-bottom: 24px; margin: 24px auto; box-shadow: 0 16px 48px -24px oklch(0.18 0.05 40 / 0.32); border-radius: 12px; overflow: hidden }
+  .ann { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); padding: 12px 16px 4px; background: var(--bg) }
+  .ann strong { color: var(--fg); font-weight: 600 }
+</style>
+</head>
+<body>
+<div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); text-align: center; padding: 18px 0 0">MobileNavDrawer · open state, scrim above page</div>
+<div class="mob-stage" data-stage data-no-announce style="height: 800px; position: relative; overflow: hidden">
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <main class="mob-main" id="main" style="filter: brightness(0.96)">
+    <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 36px; letter-spacing: -0.03em">All printables.</h1>
+    <p class="mob-eyebrow">364 items</p>
+    <div class="mob-grid" style="margin-top: 18px">
+      <div class="mob-pcard"><div class="mob-pcard-img placeholder"></div><h3>Decodable readers</h3><div class="meta">PDF · 24 pages</div><div class="price">$8.00</div></div>
+      <div class="mob-pcard"><div class="mob-pcard-img placeholder"></div><h3>Number-line math</h3><div class="meta">PDF · 18 pages</div><div class="price">$5.10</div></div>
+    </div>
+  </main>
+
+  <div class="mob-scrim"></div>
+
+  <aside class="mob-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="mob-drawer-head">
+      <a href="../screens-mobile/index.html" class="mob-brand">
+        <svg width="22" height="22" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="9" fill="var(--joy-500)"/><path d="M3 16 C 7 8, 9 24, 13 16 S 19 8, 21 16 S 25 24, 27 16" stroke="var(--joy-950)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="14" cy="7" r="2" fill="var(--joy-950)"/></svg>
+        <span>joywave<span class="sep">/digital</span></span>
+      </a>
+      <button class="mob-icon" aria-label="Close menu"><svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <nav class="mob-drawer-nav" aria-label="Primary">
+      <a href="../screens-mobile/shop.html">Shop <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="color: var(--fg-muted)"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a href="../screens-mobile/bundles.html">Bundles <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="color: var(--fg-muted)"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a href="../screens-mobile/freebies.html">Freebies <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="color: var(--fg-muted)"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a href="../screens-mobile/about.html">Story <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="color: var(--fg-muted)"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a href="../screens-mobile/blog.html">Notes <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="color: var(--fg-muted)"><path d="m9 6 6 6-6 6"/></svg></a>
+      <span class="meta">Account</span>
+      <a href="../screens-mobile/account-library.html" style="font-size: 17px">Library</a>
+      <a href="../screens-mobile/account-orders.html" style="font-size: 17px">Orders</a>
+      <a href="../screens-mobile/account-wishlist.html" style="font-size: 17px">Wishlist</a>
+    </nav>
+    <div class="mob-drawer-foot">
+      <a href="../screens-mobile/sign-in.html" class="mob-btn ghost" style="flex: 1">Sign in</a>
+      <a href="../screens-mobile/cart.html" class="mob-btn primary" style="flex: 1">Cart · 2</a>
+    </div>
+  </aside>
+
+  <div data-chrome="home"></div>
+</div>
+<script src="../screens-mobile/_mobile-chrome.js"></script>
+</body>
+</html>

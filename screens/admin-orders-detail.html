@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" data-admin-active="orders">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Order JW-7F2A9C · Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="screens.css" />
+<style>
+  .od-grid { display: grid; grid-template-columns: 1fr 320px; gap: 24px; }
+  @media (max-width: 1024px) { .od-grid { grid-template-columns: 1fr; } }
+  .od-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-3); padding: 18px; margin-bottom: 16px; }
+  .od-card h3 { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-muted); margin: 0 0 12px; font-weight: 500; }
+  .od-item { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; padding: 10px 0; border-top: 1px dashed var(--line); align-items: center; }
+  .od-item:first-of-type { border-top: 0; }
+  .od-item .thumb { aspect-ratio: 1; border-radius: var(--r-2); overflow: hidden; border: 1px solid var(--line); }
+  .od-item .t { font-weight: 500; font-size: 14px; }
+  .od-item .m { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); letter-spacing: 0.02em; }
+  .od-tl { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; padding: 10px 0; border-top: 1px dashed var(--line); }
+  .od-tl:first-of-type { border-top: 0; }
+  .od-dot { width: 28px; height: 28px; border-radius: 99px; display: inline-flex; align-items: center; justify-content: center; background: var(--bg-subtle); color: var(--fg-soft); }
+  .od-dot.ok { background: color-mix(in oklch, var(--ok) 14%, var(--bg)); color: var(--ok); }
+  .od-tl .t { font-size: 13px; font-weight: 500; }
+  .od-tl .m { font-size: 12px; color: var(--fg-muted); margin-top: 2px; }
+  .od-tl .w { font-family: var(--font-mono); font-size: 10px; color: var(--fg-faint); letter-spacing: 0.02em; white-space: nowrap; }
+  .od-kv { display: flex; justify-content: space-between; padding: 6px 0; font-size: 13px; }
+  .od-kv .k { color: var(--fg-muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; }
+  .od-kv .v { font-weight: 500; }
+</style>
+</head>
+<body class="admin">
+<div class="admin-layout">
+  <div data-admin-chrome="side"></div>
+
+  <main class="admin-content">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="admin-orders.html">Orders</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page">JW-7F2A9C</li>
+      </ol>
+    </nav>
+
+    <header class="admin-page-head">
+      <div>
+        <h1>JW-7F2A9C</h1>
+        <p class="subhead"><span class="status-badge paid" style="margin-right:8px">paid</span> 3 items · $17.00 · paid 15 May 2026</p>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn ghost" style="height:38px">Resend receipt</button>
+        <button class="btn ghost" style="height:38px" style="color:var(--bad);border-color:var(--bad)">Refund</button>
+      </div>
+    </header>
+
+    <div class="od-grid">
+
+      <div>
+        <section class="od-card">
+          <h3>Items (3)</h3>
+          <div class="od-item">
+            <div class="thumb"><svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><rect width="400" height="400" fill="var(--sun-300)"/><text x="200" y="280" text-anchor="middle" font-family="Bricolage Grotesque" font-size="240" font-weight="600" fill="var(--joy-950)">½</text></svg></div>
+            <div><div class="t">Fractions, without tears.</div><div class="m">PDF · 28 pages · v1.4 (snapshot at purchase)</div></div>
+            <span style="font-family:var(--font-display);font-weight:600;font-size:16px;letter-spacing:-0.01em">$8.00</span>
+          </div>
+          <div class="od-item">
+            <div class="thumb"><svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><rect width="400" height="400" fill="var(--iris-300)"/><text x="200" y="280" text-anchor="middle" font-family="Bricolage Grotesque" font-size="240" font-weight="600" fill="var(--paper)">R</text></svg></div>
+            <div><div class="t">Long-vowel Readers Pack</div><div class="m">ZIP · 96 pages · v2.0 · sale -$5.00</div></div>
+            <span style="font-family:var(--font-display);font-weight:600;font-size:16px;letter-spacing:-0.01em">$9.00</span>
+          </div>
+          <div class="od-item">
+            <div class="thumb"><svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><rect width="400" height="400" fill="var(--joy-100)"/><text x="200" y="260" text-anchor="middle" font-family="Bricolage Grotesque" font-size="200" font-weight="600" fill="var(--joy-700)">Aa</text></svg></div>
+            <div><div class="t">Phonics CVC Pack, Vol. 1</div><div class="m">PDF · 64 pages · Free</div></div>
+            <span style="font-family:var(--font-display);font-weight:600;font-size:16px;letter-spacing:-0.01em">Free</span>
+          </div>
+        </section>
+
+        <section class="od-card">
+          <h3>Timeline</h3>
+          <div class="od-tl">
+            <div class="od-dot ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12.5 10 18l10-12"/></svg></div>
+            <div><div class="t">Customer downloaded files</div><div class="m">3 unique downloads, latest from IP 49.…36</div></div>
+            <span class="w">16 MAY · 08:24</span>
+          </div>
+          <div class="od-tl">
+            <div class="od-dot ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg></div>
+            <div><div class="t">Receipt email sent</div><div class="m">Delivered to parent@school.edu via Resend</div></div>
+            <span class="w">15 MAY · 14:32</span>
+          </div>
+          <div class="od-tl">
+            <div class="od-dot ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg></div>
+            <div><div class="t">Payment captured by Dodo</div><div class="m">Card ending 4242 · Visa · charge_8x2L9k</div></div>
+            <span class="w">15 MAY · 14:31</span>
+          </div>
+          <div class="od-tl">
+            <div class="od-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 4h2l2.5 12.5a2 2 0 0 0 2 1.5h8a2 2 0 0 0 2-1.6L21 8H6"/></svg></div>
+            <div><div class="t">Checkout started</div><div class="m">Session #d8b2a · referrer: /shop</div></div>
+            <span class="w">15 MAY · 14:28</span>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <section class="od-card">
+          <h3>Customer</h3>
+          <div style="font-weight:600;font-size:15px">Onkar K.</div>
+          <div style="font-family:var(--font-mono);font-size:12px;color:var(--fg-muted);margin-top:4px">parent@school.edu</div>
+          <div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)">
+            <div class="od-kv"><span class="k">Orders</span><span class="v">5</span></div>
+            <div class="od-kv"><span class="k">LTV</span><span class="v">$58.50</span></div>
+            <div class="od-kv"><span class="k">Member since</span><span class="v">14 Mar 2026</span></div>
+          </div>
+          <a href="#" class="btn ghost" style="width:100%;height:36px;justify-content:center;margin-top:10px;font-size:13px">View customer</a>
+        </section>
+
+        <section class="od-card">
+          <h3>Payment</h3>
+          <div class="od-kv"><span class="k">Method</span><span class="v">Card · 4242</span></div>
+          <div class="od-kv"><span class="k">Network</span><span class="v">Visa</span></div>
+          <div class="od-kv"><span class="k">Country</span><span class="v">IN</span></div>
+          <div class="od-kv"><span class="k">Dodo ID</span><span class="v" style="font-family:var(--font-mono);font-size:11px">pi_8x2L9k</span></div>
+        </section>
+
+        <section class="od-card">
+          <h3>Totals</h3>
+          <div class="od-kv"><span class="k">Subtotal</span><span class="v" style="font-variant-numeric:tabular-nums">$17.00</span></div>
+          <div class="od-kv"><span class="k">Tax</span><span class="v" style="font-variant-numeric:tabular-nums">$0.00</span></div>
+          <div class="od-kv" style="border-top:1px solid var(--line);margin-top:6px;padding-top:10px"><span class="k" style="color:var(--fg);font-family:var(--font-body);font-size:14px;font-weight:600;text-transform:none;letter-spacing:0">Paid</span><span class="v" style="font-family:var(--font-display);font-size:20px;letter-spacing:-0.01em">$17.00</span></div>
+        </section>
+      </aside>
+    </div>
+
+  </main>
+</div>
+<script src="_admin_chrome.js"></script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en" data-active-nav="shop">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JoyWaveDigital · Worksheets that respect the buyer and the kid.</title>
+<meta name="description" content="A one-person educational printables shop. Phonics, math, decor, readers. Instant PDF download. No account on first buy." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="screens.css" />
+<style>
+  /* Token references only. */
+
+  /* ── Hero ──────────────────────────────────────────────── */
+  .home-hero { position: relative; padding: 130px 0 32px; overflow: hidden; }
+  /* Override the locked .section spacing on the home, just for this route. */
+  main#main .section { padding: 40px 0; }
+  main#main .section.tight { padding: 24px 0; }
+  .home-hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 6px 14px 6px 8px;
+    border-radius: 99px;
+    background: var(--bg-elev); border: 1px solid var(--line);
+    font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: 0.02em; color: var(--fg-soft);
+    margin-bottom: 32px;
+  }
+  .home-hero-eyebrow .pulse {
+    width: 8px; height: 8px; border-radius: 99px; background: var(--brand);
+    animation: pulse 1.8s ease-out infinite;
+  }
+  .home-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(64px, 9vw, 144px);
+    font-weight: 500; line-height: 0.92;
+    letter-spacing: -0.045em;
+    margin: 0; color: var(--fg);
+    text-wrap: balance;
+    max-width: 18ch;
+  }
+  .home-hero h1 em { font-family: var(--font-display); font-style: normal; font-weight: 500; color: var(--joy-700); }
+  .home-hero h1 .crayon {
+    display: inline-block;
+    padding: 0 0.14em 0.04em;
+    background: var(--joy-500); color: var(--joy-950);
+    border-radius: 14px; transform: rotate(-1deg);
+    margin: 0 0.04em; line-height: 1;
+  }
+  .home-hero-sub {
+    font-family: var(--font-body);
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.5; color: var(--fg-soft);
+    max-width: 60ch; margin: 32px 0 0;
+    text-wrap: pretty;
+  }
+  .home-hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
+  .home-hero-orb { position: absolute; top: 60px; right: -8%; width: 38%; max-width: 520px; pointer-events: none; opacity: 0.55; z-index: 0; }
+
+  /* ── Trust strip (4-cell mono grid; mirror of mobile) ──── */
+  .home-trust-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin: 48px 0 0;
+  }
+  .home-trust-strip > div {
+    padding: 24px 28px;
+    display: flex; flex-direction: column; gap: 6px;
+    border-right: 1px solid var(--line);
+  }
+  .home-trust-strip > div:last-child { border-right: 0; }
+  .home-trust-strip strong {
+    font-family: var(--font-display);
+    font-weight: 600; color: var(--fg);
+    font-size: 28px; letter-spacing: -0.015em;
+    line-height: 1;
+  }
+  .home-trust-strip span {
+    font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+
+  /* ── "Shop by category" (4 cards on desktop) ───────────── */
+  .home-cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 1023px) { .home-cat-grid { grid-template-columns: repeat(2, 1fr); } }
+  .home-cat-card {
+    display: block;
+    padding: 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--r-4);
+    text-decoration: none; color: inherit;
+    transition: transform var(--dur-base) var(--ease-out-soft), border-color var(--dur-base) var(--ease-out-soft);
+  }
+  .home-cat-card:hover { transform: translateY(-2px); border-color: var(--line-2); }
+  .home-cat-art {
+    aspect-ratio: 16 / 9;
+    border-radius: var(--r-2);
+    margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--fg-muted);
+    background: repeating-linear-gradient(135deg, var(--bg-elev), var(--bg-elev) 8px, var(--bg-subtle) 8px, var(--bg-subtle) 14px);
+  }
+  .home-cat-art.joy { background: var(--joy-100); color: var(--joy-700); }
+  .home-cat-art.sun { background: var(--sun-300); color: oklch(0.30 0.05 70); }
+  .home-cat-art.iris { background: var(--iris-300); color: var(--paper); }
+  .home-cat-art.rose { background: var(--rose-300); color: white; }
+  .home-cat-card h3 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 22px; letter-spacing: -0.025em;
+    margin: 0;
+  }
+  .home-cat-card .count {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--fg-muted); margin-top: 4px;
+  }
+
+  /* ── "Made by one person" (brand panel · 2-col) ────────── */
+  .home-maker {
+    padding: 56px;
+    background: var(--joy-100);
+    border-radius: var(--r-5);
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 880px) { .home-maker { grid-template-columns: 1fr; padding: 32px; gap: 32px; } }
+  .home-maker .eyebrow { margin-bottom: 18px; color: var(--joy-700); }
+  .home-maker .eyebrow-dot { background: var(--joy-700); }
+  .home-maker h2 {
+    margin: 0;
+    font-family: var(--font-display); font-weight: 500;
+    font-size: clamp(32px, 3.6vw, 48px);
+    letter-spacing: -0.025em; line-height: 1.15;
+    color: var(--joy-950);
+    text-wrap: balance;
+  }
+  .home-maker .cta { margin-top: 24px; display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 99px; border: 1px solid var(--joy-700); color: var(--joy-950); background: transparent; font: inherit; font-weight: 500; font-size: 15px; text-decoration: none; transition: background var(--dur-base) var(--ease-out-soft); }
+  .home-maker .cta:hover { background: color-mix(in oklch, var(--joy-700) 10%, transparent); }
+  .home-maker .portrait {
+    aspect-ratio: 1 / 1;
+    border-radius: var(--r-4);
+    background: repeating-linear-gradient(135deg, var(--joy-200), var(--joy-200) 14px, var(--joy-300) 14px, var(--joy-300) 24px);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em;
+    color: var(--joy-700); text-transform: uppercase;
+  }
+
+  /* ── Newsletter (bordered card · mobile mirror) ────────── */
+  .home-newsletter {
+    padding: 56px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-5);
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 880px) { .home-newsletter { grid-template-columns: 1fr; padding: 32px; gap: 24px; } }
+  .home-newsletter h2 {
+    margin: 0 0 12px;
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(32px, 3.4vw, 44px);
+    letter-spacing: -0.025em; line-height: 1.05;
+    color: var(--fg);
+    text-wrap: balance;
+  }
+  .home-newsletter .lede { margin: 0 0 8px; color: var(--fg-soft); font-size: 17px; line-height: 1.5; }
+  .home-newsletter .form { display: flex; flex-direction: column; gap: 12px; }
+  .home-newsletter input {
+    height: 56px; padding: 0 20px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line-2);
+    border-radius: 99px;
+    font: inherit; font-size: 16px; color: var(--fg);
+    transition: border-color var(--dur-base) var(--ease-out-soft);
+  }
+  .home-newsletter input:focus { outline: none; border-color: var(--brand); }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div data-chrome="header"></div>
+
+<main id="main">
+
+  <!-- ── Hero ──────────────────────────────────────────────────── -->
+  <section class="home-hero">
+    <svg class="home-hero-orb" viewBox="0 0 600 400" aria-hidden="true">
+      <path d="M0,200 C100,100 200,300 300,200 S 500,100 600,200" stroke="var(--joy-500)" stroke-width="48" fill="none" stroke-linecap="round" opacity="0.6"/>
+    </svg>
+
+    <div class="wrap" style="position: relative; z-index: 1">
+      <div class="home-hero-eyebrow">
+        <span class="pulse"></span>
+        <span>Printables shop &middot; est. 2022 &middot; Mumbai</span>
+      </div>
+
+      <h1>
+        Worksheets<br/>
+        that <em>respect</em><br/>
+        the buyer and the<br/>
+        <span class="crayon">kid.</span>
+      </h1>
+
+      <p class="home-hero-sub">
+        Phonics, math, decor, readers. Instant PDF download. No account on first buy.
+      </p>
+
+      <div class="home-hero-actions">
+        <a href="shop.html" class="btn xl">
+          Browse 364 printables
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="freebies.html" class="btn xl ghost">Try a free sample</a>
+      </div>
+
+      <!-- Trust strip · mirror of mobile, in 4 columns -->
+      <div class="home-trust-strip" aria-label="What we promise">
+        <div><strong>300+</strong><span>orders on Etsy</span></div>
+        <div><strong>4 sec</strong><span>average download</span></div>
+        <div><strong>PDF + PNG</strong><span>both included</span></div>
+        <div><strong>40 countries</strong><span>shipped to</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Shop by category (4 cards) ───────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" style="margin-bottom: 16px"><span class="eyebrow-dot"></span>Shop by category</div>
+          <h2>The whole shelf,<br/><em>sorted by what you need.</em></h2>
+        </div>
+        <div class="right">
+          <a class="btn ghost" href="shop.html">All categories <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="home-cat-grid">
+        <a href="shop.html" class="home-cat-card">
+          <div class="home-cat-art joy">[ phonics art ]</div>
+          <h3>Phonics</h3>
+          <div class="count">142 items</div>
+        </a>
+        <a href="shop.html" class="home-cat-card">
+          <div class="home-cat-art sun">[ math art ]</div>
+          <h3>Math</h3>
+          <div class="count">98 items</div>
+        </a>
+        <a href="shop.html" class="home-cat-card">
+          <div class="home-cat-art iris">[ readers art ]</div>
+          <h3>Readers</h3>
+          <div class="count">44 items</div>
+        </a>
+        <a href="shop.html" class="home-cat-card">
+          <div class="home-cat-art rose">[ decor art ]</div>
+          <h3>Decor</h3>
+          <div class="count">80 items</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Just added (4-card product grid · PATTERN A) ─────────── -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" style="margin-bottom: 16px"><span class="eyebrow-dot"></span>This week's shelf</div>
+          <h2>Just added,<br/><em>built for the long week.</em></h2>
+        </div>
+        <div class="right">
+          <a class="btn ghost" href="shop.html">See all <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="pgrid">
+        <!-- Card 1 · New -->
+        <article class="pcard">
+          <div class="pcard-image">
+            <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+              <rect width="400" height="400" fill="var(--joy-100)"/>
+              <text x="200" y="240" text-anchor="middle" font-family="Bricolage Grotesque" font-size="240" font-weight="600" fill="var(--joy-700)" letter-spacing="-10">Aa</text>
+            </svg>
+            <span class="pcard-chip" style="background: var(--joy-500); color: var(--joy-950)">New</span>
+          </div>
+          <button class="pcard-heart" aria-pressed="false" aria-label="Save to wishlist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>
+          </button>
+          <a href="shop.html" class="pcard-link"><span class="sr-only">Decodable readers, Set 3</span></a>
+          <div class="pcard-content">
+            <h3 class="pcard-title" title="Decodable readers, Set 3, short vowels">Decodable readers, Set 3</h3>
+            <div class="pcard-price-row"><span class="pcard-price">$8.00</span></div>
+            <div class="pcard-meta">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M4 20h16"/></svg>
+              <span>PDF &middot; 24 pages</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 · Sale -->
+        <article class="pcard">
+          <div class="pcard-image">
+            <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+              <rect width="400" height="400" fill="var(--sun-300)"/>
+              <g stroke="var(--joy-950)" stroke-width="2" opacity="0.7"><line x1="40" y1="200" x2="360" y2="200"/></g>
+              <g fill="var(--joy-950)" opacity="0.85">
+                <circle cx="80" cy="200" r="6"/><circle cx="160" cy="200" r="6"/><circle cx="240" cy="200" r="6"/><circle cx="320" cy="200" r="6"/>
+              </g>
+              <text x="200" y="100" text-anchor="middle" font-family="Geist Mono" font-size="22" fill="var(--joy-950)" font-weight="600" letter-spacing="2">1 \u00b7 25 \u00b7 50 \u00b7 75 \u00b7 100</text>
+            </svg>
+            <span class="pcard-chip" style="background: var(--rose-500); color: white">36% off</span>
+          </div>
+          <button class="pcard-heart" data-on="true" aria-pressed="true" aria-label="Remove from wishlist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>
+          </button>
+          <a href="shop.html" class="pcard-link"><span class="sr-only">Number-line math, 1 to 100</span></a>
+          <div class="pcard-content">
+            <h3 class="pcard-title" title="Number-line math, 1 to 100">Number-line math, 1 to 100</h3>
+            <div class="pcard-price-row">
+              <span class="pcard-price pcard-price--sale">$5.10</span>
+              <span class="pcard-price-compare">$8.00</span>
+              <span class="pcard-pct">36% off</span>
+            </div>
+            <div class="pcard-meta">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M4 20h16"/></svg>
+              <span>PDF + PNG &middot; 18 pages</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 · Free -->
+        <article class="pcard">
+          <div class="pcard-image">
+            <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+              <rect width="400" height="400" fill="var(--iris-300)"/>
+              <text x="200" y="240" text-anchor="middle" font-family="Bricolage Grotesque" font-size="200" font-weight="600" fill="var(--paper)" letter-spacing="-8">abc</text>
+              <g stroke="var(--paper)" stroke-opacity="0.3" stroke-width="2">
+                <line x1="40" y1="320" x2="360" y2="320"/>
+                <line x1="40" y1="350" x2="360" y2="350"/>
+              </g>
+            </svg>
+            <span class="pcard-chip pcard-chip--free">Free</span>
+          </div>
+          <button class="pcard-heart" aria-pressed="false" aria-label="Save to wishlist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>
+          </button>
+          <a href="shop.html" class="pcard-link"><span class="sr-only">Alphabet tracing, lowercase</span></a>
+          <div class="pcard-content">
+            <h3 class="pcard-title" title="Alphabet tracing, lowercase">Alphabet tracing, lowercase</h3>
+            <div class="pcard-price-row"><span class="pcard-price">$0.00</span></div>
+            <div class="pcard-meta">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M4 20h16"/></svg>
+              <span>PDF &middot; 26 pages</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 · Pick -->
+        <article class="pcard">
+          <div class="pcard-image">
+            <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">
+              <rect width="400" height="400" fill="var(--paper-3)"/>
+              <g stroke="var(--ink)" stroke-width="2.5" fill="none" opacity="0.7">
+                <rect x="40" y="60" width="140" height="120" rx="6"/>
+                <rect x="220" y="60" width="140" height="120" rx="6"/>
+                <rect x="40" y="220" width="140" height="120" rx="6"/>
+                <rect x="220" y="220" width="140" height="120" rx="6"/>
+              </g>
+              <text x="200" y="380" text-anchor="middle" font-family="Geist Mono" font-size="18" fill="var(--ink)" font-weight="500" letter-spacing="2">64 PAGES</text>
+            </svg>
+            <span class="pcard-chip pcard-chip--pick">Editor&#8217;s pick</span>
+          </div>
+          <button class="pcard-heart" aria-pressed="false" aria-label="Save to wishlist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>
+          </button>
+          <a href="shop.html" class="pcard-link"><span class="sr-only">Classroom decor bundle</span></a>
+          <div class="pcard-content">
+            <h3 class="pcard-title" title="Classroom decor bundle, calm-neutrals palette">Classroom decor bundle</h3>
+            <div class="pcard-price-row"><span class="pcard-price">$18.00</span></div>
+            <div class="pcard-meta">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v12"/><path d="m6 11 6 6 6-6"/><path d="M4 20h16"/></svg>
+              <span>PDF + PNG &middot; 64 pages</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Made by one person (brand panel) ─────────────────────── -->
+  <section class="section tight">
+    <div class="wrap">
+      <div class="home-maker">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-dot"></span>Made by one person</div>
+          <h2>Designed in Mumbai. Sold to 40 countries. Every printable is drawn, set, and proofed by the same person who answers your email.</h2>
+          <a href="about.html" class="cta">
+            Read the story
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="portrait">[ founder portrait ]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Get freebies first (newsletter) ──────────────────────── -->
+  <section class="section tight">
+    <div class="wrap">
+      <div class="home-newsletter">
+        <div>
+          <div class="eyebrow" style="margin-bottom: 18px"><span class="eyebrow-dot"></span>Get freebies first</div>
+          <h2>One short email,<br/>twice a month.</h2>
+          <p class="lede">Sample packs, new releases. No spam. Unsubscribe in one click.</p>
+        </div>
+
+        <form class="form" onsubmit="event.preventDefault(); return false;">
+          <label for="nl-email" class="sr-only">Email address</label>
+          <input
+            id="nl-email"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            enterkeyhint="send"
+            placeholder="you@example.com"
+            required
+          />
+          <button type="submit" class="btn xl" style="width: 100%; justify-content: center">
+            Send me freebies
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div data-chrome="footer"></div>
+<script src="_chrome.js"></script>
+</body>
+</html>

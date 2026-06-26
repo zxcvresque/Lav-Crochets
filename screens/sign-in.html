@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sign in · JoyWaveDigital</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="screens.css" />
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div data-chrome="header"></div>
+
+<main id="main" class="thanks-main">
+  <div class="signin-shell">
+
+    <h1>Welcome <em>back.</em></h1>
+    <p class="sub">Sign in to access your library, orders, and wishlist. No password needed; we send a magic link to your email.</p>
+
+    <section class="signin-card" aria-labelledby="signin-h">
+      <h2 id="signin-h" class="sr-only">Sign in</h2>
+
+      <form novalidate>
+        <label for="si-email">Email</label>
+        <input id="si-email" type="email" required placeholder="you@school.edu" autocomplete="email" />
+        <button type="submit" class="btn xl ink submit">
+          Send magic link
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <div class="signin-divider">or</div>
+
+      <button class="signin-google" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M22 12c0-.7-.06-1.37-.18-2H12v3.8h5.6c-.24 1.27-.97 2.34-2.07 3.06v2.55h3.36C20.85 17.6 22 15.07 22 12z"/>
+          <path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.6-2.42l-3.2-2.5c-.9.6-2.04.95-3.4.95-2.61 0-4.82-1.76-5.6-4.13H2.94v2.59C4.57 19.74 8.06 22 12 22z"/>
+          <path fill="#FBBC05" d="M6.4 13.9a6.06 6.06 0 0 1 0-3.8V7.5H2.94a10 10 0 0 0 0 9l3.46-2.6z"/>
+          <path fill="#EA4335" d="M12 5.88c1.47 0 2.8.51 3.84 1.5l2.87-2.87C16.96 2.9 14.7 2 12 2 8.06 2 4.57 4.26 2.94 7.5L6.4 10.1C7.18 7.74 9.39 5.88 12 5.88z"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <p class="signin-meta">
+        By signing in, you agree to our <a href="policies-terms.html" style="color:var(--fg-soft);text-decoration:underline">Terms</a>. We never sell your email; see <a href="policies-privacy.html" style="color:var(--fg-soft);text-decoration:underline">Privacy</a>.
+      </p>
+    </section>
+
+    <!-- Sent panel (toggled after submit). Hidden by default. -->
+    <section class="signin-card" style="background:color-mix(in oklch, var(--ok) 8%, var(--bg-elev));border-color:color-mix(in oklch, var(--ok) 25%, var(--line-2));margin-top:24px" hidden>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <div style="width:32px;height:32px;border-radius:99px;background:color-mix(in oklch, var(--ok) 16%, var(--bg));color:var(--ok);display:inline-flex;align-items:center;justify-content:center">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12.5 10 18l10-12"/></svg>
+        </div>
+        <h2 style="font-family:var(--font-display);font-size:20px;font-weight:500;letter-spacing:-0.01em;margin:0">Magic link sent.</h2>
+      </div>
+      <p style="color:var(--fg-soft);font-size:14px;margin:0 0 16px;line-height:1.55">
+        Check <strong style="color:var(--fg)">parent@school.edu</strong>. Click the button in the email within 15 minutes to sign in. Did not arrive? Wait 30 seconds, check spam, then <button style="background:transparent;border:0;padding:0;color:var(--fg);text-decoration:underline;cursor:pointer">resend</button>.
+      </p>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--fg-muted);letter-spacing:.02em">Resend in 0:24</div>
+    </section>
+
+    <!-- Cookies disabled banner (browser policy). Hidden unless detected. -->
+    <section class="banner banner-warn" style="margin-top:24px" hidden>
+      <div class="banner-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+      </div>
+      <div class="banner-body">
+        <div class="banner-title">Cookies are disabled.</div>
+        <p>We need cookies to keep you signed in. Enable cookies for joywavedigital.shop in your browser settings, then try again.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div data-chrome="footer"></div>
+<script src="_chrome.js"></script>
+</body>
+</html>

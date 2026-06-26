@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PriceChangedBanner · component states · JoyWaveDigital desktop pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="components.css" />
+</head>
+<body>
+<div class="audit-head">
+  <div class="crumb">Desktop pass · component states </div>
+  <h1>PriceChangedBanner, <em>every state.</em></h1>
+  <p>State variants for this component. Each block carries a mono label. Token references only.</p>
+</div>
+<div class="state-stack">
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Entry</span><span class="desc">409 on submit</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; max-width: 1024px; margin: 0 auto">
+  <div class="banner warn" role="alert"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 9v4M12 17h.01M3 19h18L12 3 3 19z"/></svg><div><strong>Prices updated.</strong> One item was on sale; the sale ended before checkout. Review the new total before continuing.</div></div>
+</div></div>
+  <div class="note">Warn-variant banner at the top of /cart. Slides down + auto-scroll-into-view on entry (380ms outSoft).</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">With cart-line treatment</span><span class="desc">matching line shows was-price strike</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; max-width: 1024px; margin: 0 auto">
+  <div class="banner warn" role="alert" style="margin-bottom: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 9v4M12 17h.01M3 19h18L12 3 3 19z"/></svg><div><strong>Prices updated.</strong> Review the new total before continuing.</div></div>
+  <div style="display: grid; grid-template-columns: 96px 1fr auto; gap: 18px; padding: 16px 0; border-top: 1px solid var(--line); align-items: center; background: color-mix(in oklch, var(--warn) 8%, transparent); margin: 0 -16px; padding-left: 16px; padding-right: 16px; border-radius: 12px">
+    <div class="ph" style="aspect-ratio: 1; border-radius: 12px">[ ]</div>
+    <div><h3 style="margin: 0 0 4px; font-family: var(--font-body); font-size: 16px; font-weight: 500">Number-line math, 1 to 100</h3><div style="font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted)">PDF + PNG · 18 pages</div></div>
+    <div style="font-family: var(--font-mono); font-weight: 600">$8.00 <span style="color: var(--fg-faint); text-decoration: line-through; font-weight: 400; margin-left: 4px">was $5.10</span></div>
+  </div>
+</div></div>
+  <div class="note">The affected line picks up a warm-tinted background. Old price is struck through inline.</div>
+</div></div></body></html>

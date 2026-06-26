@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Profile · states · JoyWaveDigital desktop pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="states.css" />
+</head>
+<body>
+<div class="audit-head">
+  <div class="crumb">Desktop pass · state variants · /account/profile</div>
+  <h1>Profile, <em>every state.</em></h1>
+  <p>Stacked state mockups for the route. Each card carries a mono label and a one-line note about what is happening visually. The "Default" state iframes the existing desktop mockup at <code>screens/account-profile.html</code>. Header states show the same screen with the inner page scrolled to 0 (flat) or 240 (pill). Loading / empty / error / success states are focused mockups, not full re-renders.</p>
+</div>
+<div class="state-stack">
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Header · flat</span><span class="desc">Header · flat (scrollY ≤ 40)</span></div>
+  <div class="state-card-body"><iframe class="state-iframe" loading="lazy" src="../screens/account-profile.html#scroll=0" title="account-profile.html flat" onload="try{const w=this.contentWindow;if(w&&w.document){w.scrollTo({top:0,behavior:'instant'});}}catch(e){}"></iframe><div class="note">Top of page. AnnouncementBar visible above the header; nav links visible inline; no pill chrome; full container width.</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Header · scrolled</span><span class="desc">Header · scrolled to pill (scrollY > 40)</span></div>
+  <div class="state-card-body"><iframe class="state-iframe" loading="lazy" src="../screens/account-profile.html#scroll=200" title="account-profile.html scrolled" onload="try{const w=this.contentWindow;if(w&&w.document){w.scrollTo({top:240,behavior:'instant'});}}catch(e){}"></iframe><div class="note">Pill collapses to <code>min(1080px, calc(100% - 32px))</code> with blurred-glass background. AnnouncementBar hides synchronously. 700ms <code>cubic-bezier(0.4, 0, 0.2, 1)</code> transition.</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Default</span><span class="desc">Default · the route in its happy-path state</span></div>
+  <div class="state-card-body"><iframe class="state-iframe" loading="lazy" src="../screens/account-profile.html" title="account-profile.html default"></iframe></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Error</span><span class="desc">Error · failure path</span></div>
+  <div class="state-card-body">
+<div class="pad" style="background: var(--bg); padding: 80px 28px 0; max-width: 720px; margin: 0 auto">
+  <div class="banner bad" style="margin-bottom: 18px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 9v4M12 17h.01M3 19h18L12 3 3 19z"/></svg><div><strong>Could not save profile.</strong> The email you entered is already linked to another account. Try a different one, or contact support.</div></div>
+  <label style="display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 6px">Email</label>
+  <input type="email" value="taken@example.com" style="width: 100%; height: 48px; padding: 0 16px; background: var(--bg); border: 1.5px solid var(--bad); border-radius: 12px; font-size: 16px" />
+</div><div class="note">PATCH /me failed: inline banner above the form with the specific field error; sticky save bar shows "Try again".</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Success</span><span class="desc">Success · post-action affirmation</span></div>
+  <div class="state-card-body">
+<div class="pad" style="background: var(--bg); padding: 80px 28px; position: relative">
+  <p style="color: var(--fg-soft); text-align: center; font-size: 14px">Sticky save bar flips to "Saved" with a check, then disappears after 1.6s.</p>
+  <div style="position: fixed; bottom: 0; left: 0; right: 0; padding: 16px 32px; background: color-mix(in oklch, var(--ok) 14%, var(--bg)); border-top: 1px solid color-mix(in oklch, var(--ok) 38%, var(--line)); display: flex; align-items: center; justify-content: center; gap: 10px; font-family: var(--font-mono); font-size: 13px; color: oklch(0.40 0.13 145); font-weight: 600">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m4 12 5 5 11-11"/></svg>
+    SAVED
+  </div>
+</div><div class="note">After Save: sticky save bar flips to "Saved" with a check, then disappears after 1.6s.</div></div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Settings · JoyWaveDigital mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="mobile.css" />
+<style>
+  .stg-section { padding: 16px 0; border-bottom: 1px solid var(--line) }
+  .stg-section h2 { margin: 0 0 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); font-weight: 600 }
+  .stg-row { display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding: 6px 0 }
+  .stg-row .label { font-size: var(--t-base); color: var(--fg) }
+  .stg-row .meta { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); margin-top: 2px }
+  /* Toggle */
+  .switch { width: 48px; height: 28px; background: var(--bg-subtle); border-radius: 99px; position: relative; cursor: pointer; transition: background 220ms var(--ease-out-soft) }
+  .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 24px; height: 24px; border-radius: 99px; background: var(--paper); box-shadow: 0 1px 3px oklch(0.18 0.04 50 / 0.16); transition: transform 220ms var(--ease-out-soft) }
+  .switch.on { background: var(--joy-500) }
+  .switch.on::after { transform: translateX(20px) }
+  /* Segmented */
+  .seg { display: flex; background: var(--bg-subtle); border-radius: 99px; padding: 4px; gap: 4px }
+  .seg button { flex: 1; height: 32px; background: transparent; border: 0; border-radius: 99px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); cursor: pointer }
+  .seg button.active { background: var(--bg); color: var(--fg); box-shadow: 0 1px 2px oklch(0.18 0.04 50 / 0.08) }
+</style>
+</head>
+<body>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="0" data-signed-in></div>
+
+  <nav class="mob-acct-nav" aria-label="Account sections">
+    <a href="account-library.html">Library</a>
+    <a href="account-orders.html">Orders</a>
+    <a href="account-wishlist.html">Wishlist</a>
+    <a href="account-profile.html">Profile</a>
+    <a href="account-settings.html" class="active">Settings</a>
+  </nav>
+
+  <main class="mob-main" id="main">
+    <h1 style="font-family: var(--font-display); font-weight: 600; font-size: clamp(34px, 9vw, 44px); letter-spacing: -0.03em; margin: 8px 0 4px">Settings</h1>
+
+    <div class="stg-section">
+      <h2>Theme</h2>
+      <div class="seg" role="group" aria-label="Theme">
+        <button type="button" class="active">System</button>
+        <button type="button">Light</button>
+        <button type="button">Dark</button>
+      </div>
+    </div>
+
+    <div class="stg-section">
+      <h2>Display currency</h2>
+      <div class="seg" role="group" aria-label="Currency">
+        <button type="button" class="active">USD</button>
+        <button type="button">INR</button>
+        <button type="button">EUR</button>
+        <button type="button">GBP</button>
+      </div>
+      <p style="margin: 10px 0 0; color: var(--fg-muted); font-size: var(--t-sm)">Prices are charged in USD. We show your chosen currency for reference.</p>
+    </div>
+
+    <div class="stg-section">
+      <h2>Email</h2>
+      <div class="stg-row">
+        <div>
+          <div class="label">Order updates</div>
+          <div class="meta">Receipts, claim notices, refunds</div>
+        </div>
+        <div class="switch on" role="switch" aria-checked="true" tabindex="0"></div>
+      </div>
+      <div class="stg-row">
+        <div>
+          <div class="label">Marketing</div>
+          <div class="meta">New drops · twice a month</div>
+        </div>
+        <div class="switch" role="switch" aria-checked="false" tabindex="0"></div>
+      </div>
+      <p style="margin: 8px 0 0; color: var(--fg-muted); font-size: var(--t-sm)">Order emails are transactional. They cannot be turned off while you have an active account.</p>
+    </div>
+
+    <div class="stg-section">
+      <h2>Sessions</h2>
+      <div class="stg-row">
+        <div>
+          <div class="label">This device</div>
+          <div class="meta">iPhone · Mumbai · last seen now</div>
+        </div>
+        <span class="mob-status paid" style="font-size: 10px">Active</span>
+      </div>
+      <div class="stg-row">
+        <div>
+          <div class="label">MacBook Pro</div>
+          <div class="meta">macOS · Mumbai · 3 days ago</div>
+        </div>
+        <button class="mob-btn ghost sm" style="height: 36px; font-size: var(--t-sm)">Sign out</button>
+      </div>
+    </div>
+
+    <div class="stg-section" style="border-bottom: 0">
+      <h2>Account</h2>
+      <button class="mob-btn ghost full" style="margin-bottom: 10px">Sign out</button>
+      <button class="mob-btn full" style="background: transparent; color: var(--bad); border: 1px solid color-mix(in oklch, var(--bad) 40%, var(--line))">Delete account</button>
+      <p style="margin: 10px 0 0; color: var(--fg-muted); font-size: var(--t-sm)">Deleting your account hides your library and orders. Refund eligibility is unchanged.</p>
+    </div>
+  </main>
+
+  <div data-chrome="home"></div>
+</div>
+<script src="_mobile-chrome.js"></script>
+</body>
+</html>

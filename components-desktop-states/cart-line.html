@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CartLine · component states · JoyWaveDigital desktop pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="components.css" />
+</head>
+<body>
+<div class="audit-head">
+  <div class="crumb">Desktop pass · component states </div>
+  <h1>CartLine, <em>every state.</em></h1>
+  <p>State variants for this component. Each block carries a mono label. Token references only.</p>
+</div>
+<div class="state-stack">
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Default</span><span class="desc">rest</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; max-width: 720px; margin: 0 auto">
+  <div style="display: grid; grid-template-columns: 96px 1fr auto; gap: 18px; padding: 16px 0; border-top: 1px solid var(--line); align-items: center">
+    <div class="ph" style="aspect-ratio: 1; border-radius: 12px">[ thumb ]</div>
+    <div><h3 style="margin: 0 0 4px; font-family: var(--font-body); font-size: 16px; font-weight: 500">Number-line math, 1 to 100</h3><div style="font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted)">PDF + PNG · 18 pages</div></div>
+    <div style="display: flex; align-items: center; gap: 16px"><div style="font-family: var(--font-mono); font-weight: 600">$5.10 <span style="color: var(--fg-faint); text-decoration: line-through; font-weight: 400; margin-left: 4px">$8.00</span></div><button style="width: 36px; height: 36px; background: transparent; border: 0; color: var(--fg-muted); cursor: pointer" aria-label="Remove"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  </div>
+</div></div>
+  <div class="note">4-col layout on desktop: thumb 96, content flex, price flush right, remove icon-button. Single-line title; native title attr surfaces the full string.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Hover row</span><span class="desc">subtle bg highlight</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; max-width: 720px; margin: 0 auto">
+  <div style="display: grid; grid-template-columns: 96px 1fr auto; gap: 18px; padding: 16px 16px; margin: 0 -16px; border-top: 1px solid var(--line); background: var(--bg-elev); border-radius: 8px; align-items: center">
+    <div class="ph" style="aspect-ratio: 1; border-radius: 12px">[ thumb ]</div>
+    <div><h3 style="margin: 0 0 4px; font-family: var(--font-body); font-size: 16px; font-weight: 500">Number-line math, 1 to 100</h3><div style="font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted)">PDF + PNG · 18 pages</div></div>
+    <div style="display: flex; align-items: center; gap: 16px"><div style="font-family: var(--font-mono); font-weight: 600">$5.10</div><button style="width: 36px; height: 36px; background: var(--bg-subtle); border: 0; color: var(--fg); cursor: pointer" aria-label="Remove"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  </div>
+</div></div>
+  <div class="note">Hover paints <code>--bg-elev</code> background with 8px radius and a 16px horizontal margin pull. Remove icon picks up the subtle bg too.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Remove pressed · undo affordance</span><span class="desc">4s undo window</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; max-width: 720px; margin: 0 auto">
+  <div style="display: grid; grid-template-columns: 96px 1fr auto; gap: 18px; padding: 16px 0; border-top: 1px solid var(--line); align-items: center; opacity: 0.65">
+    <div class="ph" style="aspect-ratio: 1; border-radius: 12px">[ thumb ]</div>
+    <div><h3 style="margin: 0 0 4px; font-family: var(--font-body); font-size: 16px; font-weight: 500; text-decoration: line-through; color: var(--fg-muted)">Number-line math, 1 to 100</h3><div style="font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted)">Removing…</div></div>
+    <a href="#" style="font-family: var(--font-mono); font-size: 13px; color: var(--joy-700); text-decoration: underline">Undo</a>
+  </div>
+</div></div>
+  <div class="note">On remove tap: line dims to 0.65, title strikes through, meta switches to Removing, and a 4s Undo affordance appears. After 4s the line is deleted.</div>
+</div></div></body></html>

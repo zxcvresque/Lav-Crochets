@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mobile pass · JoyWaveDigital · canvas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  body { background: oklch(0.94 0.012 70); font-family: var(--font-body); margin: 0 }
+  .dc-stage { background: oklch(0.94 0.012 70) }
+  .canvas-intro {
+    position: fixed;
+    top: 16px; left: 16px;
+    max-width: 380px;
+    padding: 18px 20px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 16px 48px -24px oklch(0.18 0.04 50 / 0.32);
+    z-index: 5;
+    font-size: var(--t-sm);
+    line-height: 1.5;
+  }
+  .canvas-intro h1 { margin: 0 0 6px; font-family: var(--font-display); font-weight: 600; font-size: 22px; letter-spacing: -0.025em }
+  .canvas-intro p { margin: 0 0 10px; color: var(--fg-soft) }
+  .canvas-intro .meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted) }
+  .canvas-intro details summary { cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--joy-700); margin-top: 8px }
+  .canvas-intro details ul { margin: 8px 0 0; padding-left: 18px; font-family: var(--font-mono); font-size: 11px; line-height: 1.65; color: var(--fg-muted) }
+  .canvas-intro details a { color: var(--joy-700); text-decoration: underline }
+
+  .iframe-art {
+    width: 100%; height: 100%;
+    border: 0;
+    background: var(--bg);
+    display: block;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<aside class="canvas-intro">
+  <div class="meta">Mobile pass · April 2026</div>
+  <h1>JoyWaveDigital · Mobile</h1>
+  <p>Companion to the desktop bundle. 34 routes, 18 components, all at 390 width. Pan with one finger, pinch to zoom. Click any artboard to focus it.</p>
+  <details>
+    <summary>Read first</summary>
+    <ul>
+      <li><a href="handoff/mobile.md" target="_blank">mobile.md</a> · the narrative</li>
+      <li><a href="handoff/mobile-tokens.css" target="_blank">mobile-tokens.css</a> · 4 token deltas</li>
+      <li><a href="handoff/mobile-motion.ts" target="_blank">mobile-motion.ts</a> · gestures + page transitions</li>
+      <li><a href="handoff/mobile-input-table.md" target="_blank">mobile-input-table.md</a> · every form field</li>
+      <li><a href="handoff/mobile-a11y.md" target="_blank">mobile-a11y.md</a> · Dynamic Type, VoiceOver, focus traps</li>
+      <li><a href="handoff/state-changes.md" target="_blank">state-changes.md</a> · UPDATED (announcement bar restored)</li>
+    </ul>
+  </details>
+</aside>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel">
+  const W = 390;
+
+  // DCArtboard MUST be a direct child of DCSection (the canvas filters by exact
+  // type match) — no wrapper components. The iframe attrs are repeated inline.
+  const App = () => (
+    <DesignCanvas storageKey="jwd-mobile-canvas">
+      <DCSection id="storefront" title="Storefront" subtitle="Home, shop, product, cart, thank-you">
+        <DCArtboard id="home"          label="01 · /"                          width={W} height={1500}><iframe className="iframe-art" loading="lazy" src="screens-mobile/index.html" /></DCArtboard>
+        <DCArtboard id="shop"          label="02 · /shop"                      width={W} height={1100}><iframe className="iframe-art" loading="lazy" src="screens-mobile/shop.html" /></DCArtboard>
+        <DCArtboard id="shop-category" label="03 · /shop/[category]"           width={W} height={1100}><iframe className="iframe-art" loading="lazy" src="screens-mobile/shop-category.html" /></DCArtboard>
+        <DCArtboard id="product"       label="04 · /products/[slug]"           width={W} height={1500}><iframe className="iframe-art" loading="lazy" src="screens-mobile/product.html" /></DCArtboard>
+        <DCArtboard id="cart"          label="05 · /cart (price-changed)"      width={W} height={1300}><iframe className="iframe-art" loading="lazy" src="screens-mobile/cart.html" /></DCArtboard>
+        <DCArtboard id="ty-pending"    label="06 · /orders/thank-you-pending"  width={W} height={800}><iframe className="iframe-art" loading="lazy" src="screens-mobile/thank-you-pending.html" /></DCArtboard>
+        <DCArtboard id="ty-paid"       label="07a · thank-you/[id] · paid"     width={W} height={1100}><iframe className="iframe-art" loading="lazy" src="screens-mobile/thank-you-paid.html" /></DCArtboard>
+        <DCArtboard id="ty-failed"     label="07b · thank-you/[id] · failed"   width={W} height={900}><iframe className="iframe-art" loading="lazy" src="screens-mobile/thank-you-failed.html" /></DCArtboard>
+        <DCArtboard id="ty-refunded"   label="07c · thank-you/[id] · refunded" width={W} height={900}><iframe className="iframe-art" loading="lazy" src="screens-mobile/thank-you-refunded.html" /></DCArtboard>
+        <DCArtboard id="ty-partial"    label="07d · thank-you/[id] · partial"  width={W} height={1100}><iframe className="iframe-art" loading="lazy" src="screens-mobile/thank-you-partial.html" /></DCArtboard>
+        <DCArtboard id="recover"       label="08 · /orders/recover"            width={W} height={800}><iframe className="iframe-art" loading="lazy" src="screens-mobile/orders-recover.html" /></DCArtboard>
+      </DCSection>
+
+      <DCSection id="account" title="Account" subtitle="Library, orders, wishlist, profile, settings">
+        <DCArtboard id="library"      label="10 · /account/library (with claim banner)" width={W} height={1200}><iframe className="iframe-art" loading="lazy" src="screens-mobile/account-library.html" /></DCArtboard>
+        <DCArtboard id="orders"       label="11 · /account/orders"            width={W} height={1000}><iframe className="iframe-art" loading="lazy" src="screens-mobile/account-orders.html" /></DCArtboard>
+        <DCArtboard id="order-detail" label="12 · /account/orders/[id]"       width={W} height={1200}><iframe className="iframe-art" loading="lazy" src="screens-mobile/account-orders-detail.html" /></DCArtboard>
+        <DCArtboard id="wishlist"     label="13 · /account/wishlist"          width={W} height={1100}><iframe className="iframe-art" loading="lazy" src="screens-mobile/account-wishlist.html" /></DCArtboard>
+        <DCArtboard id="profile"      label="14 · /account/profile"           width={W} height={900}><iframe className="iframe-art" loading="lazy" src="screens-mobile/account-profile.html" /></DCArtboard>
+        <DCArtboard id="settings"     label="15 · /account/settings"          width={W} height={1500}><iframe className="iframe-art" loading="lazy" src="screens-mobile/account-settings.html" /></DCArtboard>
+      </DCSection>
+
+      <DCSection id="auth-errors" title="Auth & errors" subtitle="Sign in, recovery, 404, 500">
+        <DCArtboard id="signin"      label="16 · /sign-in"                    width={W} height={800}><iframe className="iframe-art" loading="lazy" src="screens-mobile/sign-in.html" /></DCArtboard>
+        <DCArtboard id="signin-sent" label="17 · /sign-in (sent state)"       width={W} height={800}><iframe className="iframe-art" loading="lazy" src="screens-mobile/sign-in-sent.html" /></DCArtboard>
+        <DCArtboard id="not-found"   label="18 · /not-found"                  width={W} height={800}><iframe className="iframe-art" loading="lazy" src="screens-mobile/not-found.html" /></DCArtboard>
+        <DCArtboard id="500"         label="19 · /500"                        width={W} height={800}><iframe className="iframe-art" loading="lazy" src="screens-mobile/500.html" /></DCArtboard>
+      </DCSection>
+
+      <DCSection id="marketing" title="Marketing" subtitle="About, contact, FAQ, freebies, bundles, collections, blog">
+        <DCArtboard id="about"       label="21 · /about"                      width={W} height={1300}><iframe className="iframe-art" loading="lazy" src="screens-mobile/about.html" /></DCArtboard>
+        <DCArtboard id="contact"     label="22 · /contact"                    width={W} height={1100}><iframe className="iframe-art" loading="lazy" src="screens-mobile/contact.html" /></DCArtboard>
+        <DCArtboard id="faq"         label="23 · /faq"                        width={W} height={900}><iframe className="iframe-art" loading="lazy" src="screens-mobile/faq.html" /></DCArtboard>
+        <DCArtboard id="freebies"    label="24 · /freebies"                   width={W} height={1100}><iframe className="iframe-art" loading="lazy" src="screens-mobile/freebies.html" /></DCArtboard>
+        <DCArtboard id="bundles"     label="25 · /bundles"                    width={W} height={900}><iframe className="iframe-art" loading="lazy" src="screens-mobile/bundles.html" /></DCArtboard>
+        <DCArtboard id="collections" label="26 · /collections/[slug]"         width={W} height={1200}><iframe className="iframe-art" loading="lazy" src="screens-mobile/collections.html" /></DCArtboard>
+        <DCArtboard id="blog"        label="32 · /blog"                       width={W} height={1300}><iframe className="iframe-art" loading="lazy" src="screens-mobile/blog.html" /></DCArtboard>
+        <DCArtboard id="blog-post"   label="33 · /blog/[slug]"                width={W} height={1400}><iframe className="iframe-art" loading="lazy" src="screens-mobile/blog-post.html" /></DCArtboard>
+      </DCSection>
+
+      <DCSection id="policies" title="Policies" subtitle="Terms, privacy, refunds, cookies, accessibility">
+        <DCArtboard id="terms"       label="27 · /policies/terms"             width={W} height={1000}><iframe className="iframe-art" loading="lazy" src="screens-mobile/policies-terms.html" /></DCArtboard>
+        <DCArtboard id="privacy"     label="28 · /policies/privacy"           width={W} height={1000}><iframe className="iframe-art" loading="lazy" src="screens-mobile/policies-privacy.html" /></DCArtboard>
+        <DCArtboard id="refunds"     label="29 · /policies/refunds"           width={W} height={1000}><iframe className="iframe-art" loading="lazy" src="screens-mobile/policies-refunds.html" /></DCArtboard>
+        <DCArtboard id="cookies"     label="30 · /policies/cookies"           width={W} height={1000}><iframe className="iframe-art" loading="lazy" src="screens-mobile/policies-cookies.html" /></DCArtboard>
+        <DCArtboard id="a11y-policy" label="31 · /policies/accessibility"     width={W} height={1000}><iframe className="iframe-art" loading="lazy" src="screens-mobile/policies-accessibility.html" /></DCArtboard>
+        <DCArtboard id="admin"       label="34 · /admin/* (fallback notice)"  width={W} height={800}><iframe className="iframe-art" loading="lazy" src="screens-mobile/admin.html" /></DCArtboard>
+      </DCSection>
+
+      <DCSection id="primitives" title="Mobile-native primitives" subtitle="Drawer, sheet, search, sticky CTA, toast, skeleton">
+        <DCArtboard id="drawer"      label="MobileNavDrawer (open)"           width={W} height={900}><iframe className="iframe-art" loading="lazy" src="components-mobile/mobile-nav-drawer.html" /></DCArtboard>
+        <DCArtboard id="sheet"       label="BottomSheet · 5 variants"         width={W} height={4400}><iframe className="iframe-art" loading="lazy" src="components-mobile/bottom-sheet.html" /></DCArtboard>
+        <DCArtboard id="search"      label="SearchOverlay · 3 states"         width={W} height={2700}><iframe className="iframe-art" loading="lazy" src="components-mobile/search-overlay.html" /></DCArtboard>
+        <DCArtboard id="sticky"      label="StickyCTA · 4 variants"           width={W} height={3600}><iframe className="iframe-art" loading="lazy" src="components-mobile/sticky-cta.html" /></DCArtboard>
+        <DCArtboard id="toast"       label="Toast · 4 variants"               width={W} height={3600}><iframe className="iframe-art" loading="lazy" src="components-mobile/toast.html" /></DCArtboard>
+        <DCArtboard id="skeleton"    label="SkeletonLoader · 5 variants"      width={W} height={4500}><iframe className="iframe-art" loading="lazy" src="components-mobile/skeleton-loader.html" /></DCArtboard>
+        <DCArtboard id="ptr"         label="Pull-to-refresh · 4 phases"       width={W} height={3600}><iframe className="iframe-art" loading="lazy" src="components-mobile/pull-to-refresh.html" /></DCArtboard>
+      </DCSection>
+
+      <DCSection id="components" title="Components" subtitle="Cards, banners, badges, gallery, controls">
+        <DCArtboard id="pcard"          label="ProductCard · variants"        width={W} height={1100}><iframe className="iframe-art" loading="lazy" src="components-mobile/product-card.html" /></DCArtboard>
+        <DCArtboard id="cart-line"      label="CartLine · 4 states"           width={W} height={800}><iframe className="iframe-art" loading="lazy" src="components-mobile/cart-line.html" /></DCArtboard>
+        <DCArtboard id="status-badge"   label="StatusBadge · 5"               width={W} height={500}><iframe className="iframe-art" loading="lazy" src="components-mobile/status-badge.html" /></DCArtboard>
+        <DCArtboard id="heart"          label="WishlistHeart · states"        width={W} height={420}><iframe className="iframe-art" loading="lazy" src="components-mobile/wishlist-heart.html" /></DCArtboard>
+        <DCArtboard id="acct-nav"       label="AccountNav · scroll-snap"      width={W} height={1500}><iframe className="iframe-art" loading="lazy" src="components-mobile/account-nav.html" /></DCArtboard>
+        <DCArtboard id="download"       label="DownloadButton · 4 states"     width={W} height={700}><iframe className="iframe-art" loading="lazy" src="components-mobile/download-button.html" /></DCArtboard>
+        <DCArtboard id="gallery"        label="Image gallery · 3 states"      width={W} height={2400}><iframe className="iframe-art" loading="lazy" src="components-mobile/image-gallery.html" /></DCArtboard>
+        <DCArtboard id="claim"          label="ClaimBanner · 2 states"        width={W} height={1100}><iframe className="iframe-art" loading="lazy" src="components-mobile/claim-banner.html" /></DCArtboard>
+        <DCArtboard id="price-changed"  label="PriceChangedBanner"            width={W} height={800}><iframe className="iframe-art" loading="lazy" src="components-mobile/price-changed-banner.html" /></DCArtboard>
+        <DCArtboard id="offline"        label="Offline state · 2"             width={W} height={1800}><iframe className="iframe-art" loading="lazy" src="components-mobile/offline-state.html" /></DCArtboard>
+        <DCArtboard id="pending-island" label="ThankYouPendingIsland"         width={W} height={800}><iframe className="iframe-art" loading="lazy" src="components-mobile/thank-you-pending-island.html" /></DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<App />);
+</script>
+</body>
+</html>

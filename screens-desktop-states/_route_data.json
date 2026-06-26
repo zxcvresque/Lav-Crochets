@@ -1,0 +1,592 @@
+{
+  "500": {
+    "label": "500 Server error",
+    "path": "/500",
+    "src": "not-found.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": "n/a",
+      "default": {
+        "kind": "500-mock",
+        "message": "Big H1, error reference code in mono, three CTAs (Try again, Back to home, Contact support)."
+      },
+      "loading": false,
+      "empty": false,
+      "error": "route-is-error",
+      "success": false
+    }
+  },
+  "index": {
+    "label": "Home",
+    "path": "/",
+    "src": "index.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "hero+grid",
+        "note": "Hero block reserves height via clamp(); featured grid renders skeleton cards while data fetches."
+      },
+      "empty": false,
+      "error": {
+        "kind": "page-error",
+        "message": "If `/api/products?featured=true` errors, the FeaturedRow falls back to a \"Could not load this week's shelf. Try again.\" inline panel that preserves the row's height to avoid CLS."
+      },
+      "success": false
+    }
+  },
+  "shop": {
+    "label": "All printables",
+    "path": "/shop",
+    "src": "shop.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "shop-grid"
+      },
+      "empty": {
+        "kind": "no-products",
+        "message": "When zero products match the active filters: \"No printables match those filters.\" plus a Clear all CTA."
+      },
+      "error": {
+        "kind": "page-error",
+        "message": "If the shop query errors: \"Could not load printables.\" plus a Retry CTA. Filter sidebar still renders so the user can adjust."
+      },
+      "success": false
+    }
+  },
+  "shop-category": {
+    "label": "Category",
+    "path": "/shop/[category]",
+    "src": "shop.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "shop-grid"
+      },
+      "empty": {
+        "kind": "no-products",
+        "message": "Category exists but has zero published products. Show the empty grid with a \"Coming soon\" panel."
+      },
+      "error": {
+        "kind": "page-error"
+      },
+      "success": false
+    }
+  },
+  "product-detail": {
+    "label": "Product detail",
+    "path": "/products/[slug]",
+    "src": "shop.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "product-detail"
+      },
+      "empty": false,
+      "error": {
+        "kind": "404-product",
+        "message": "Slug not found: redirect to /not-found. Slug found but PDF generation failed: in-page banner offering Re-issue and Contact support."
+      },
+      "success": {
+        "kind": "added-to-cart",
+        "message": "After Add to cart: toast slides in bottom-right, cart icon count bumps with badgePop, sticky CTA briefly flashes the brand glow."
+      }
+    }
+  },
+  "cart": {
+    "label": "Cart",
+    "path": "/cart",
+    "src": "cart.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "cart-lines"
+      },
+      "empty": {
+        "kind": "empty-cart",
+        "message": "Zero line items: centered illustration + \"Your cart is empty.\" + \"Browse all printables\" CTA."
+      },
+      "error": {
+        "kind": "price-changed",
+        "message": "Server returns 409 PRICE_CHANGED: warn-variant banner pushes to the top of the line list and auto-scrolls into view."
+      },
+      "success": false
+    }
+  },
+  "thank-you-pending": {
+    "label": "Thank you · Pending",
+    "path": "/orders/thank-you-pending",
+    "src": "thank-you-pending.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": "n/a",
+      "default": true,
+      "loading": {
+        "kind": "pending-poll",
+        "message": "The route IS the loading state for the order; polling indicator pulses below the headline."
+      },
+      "empty": false,
+      "error": {
+        "kind": "timeout",
+        "message": "After 90s of polling without confirmation: switch to the \"we will email you when this confirms\" branch with a sticky retry banner."
+      },
+      "success": {
+        "kind": "paid-redirect",
+        "message": "When polling confirms: redirect to /orders/thank-you/[id] with the paid variant."
+      }
+    }
+  },
+  "thank-you-paid": {
+    "label": "Thank you · Paid",
+    "path": "/orders/thank-you/[id]",
+    "src": "thank-you-paid.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "downloads"
+      },
+      "empty": false,
+      "error": {
+        "kind": "download-412",
+        "message": "If a download link 412s mid-session (order refunded between page-load and tap): inline error inside the download row pointing to /account/library for live status."
+      },
+      "success": {
+        "kind": "downloaded",
+        "message": "After Download tap: button label switches to \"Downloaded\" with a check; no toast (the file landing is its own confirmation)."
+      }
+    }
+  },
+  "thank-you-failed": {
+    "label": "Thank you · Failed",
+    "path": "/orders/thank-you/[id] · failed",
+    "src": "thank-you-failed.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": false,
+      "empty": false,
+      "error": {
+        "kind": "route-is-error",
+        "message": "The route IS the error state. Sub-error: if the cart-intact lookup fails, hide the cart-still-has section and surface contact support."
+      },
+      "success": false
+    }
+  },
+  "thank-you-refunded": {
+    "label": "Thank you · Refunded",
+    "path": "/orders/thank-you/[id] · refunded",
+    "src": "thank-you-refunded.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": false,
+      "empty": false,
+      "error": false,
+      "success": false
+    }
+  },
+  "thank-you-partial": {
+    "label": "Thank you · Partial",
+    "path": "/orders/thank-you/[id] · partial",
+    "src": "thank-you-partial.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": false,
+      "empty": false,
+      "error": false,
+      "success": false
+    }
+  },
+  "orders-recover": {
+    "label": "Recover a receipt",
+    "path": "/orders/recover",
+    "src": "orders-recover.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": "n/a",
+      "default": true,
+      "loading": {
+        "kind": "submit-pending",
+        "message": "After submit: button replaces label with a skeleton spinner dot; form is disabled."
+      },
+      "empty": false,
+      "error": {
+        "kind": "invalid-email",
+        "message": "Client-side: invalid email pattern shows inline error below the field."
+      },
+      "success": {
+        "kind": "anti-enum",
+        "message": "Anti-enumeration response: regardless of match, show \"If we have any orders for that address, you will get a link within a minute.\""
+      }
+    }
+  },
+  "account-library": {
+    "label": "Library",
+    "path": "/account/library",
+    "src": "account-library.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "library-rows"
+      },
+      "empty": {
+        "kind": "empty-library",
+        "message": "Zero files in library: centered \"Nothing here yet.\" + \"Browse\" CTA. ClaimBanner still shows above if an eligible claim exists."
+      },
+      "error": false,
+      "success": {
+        "kind": "claim-confirmed",
+        "message": "After Claim · Add to library: toast confirms \"2 files added to your library\", rows slide in at the top."
+      }
+    }
+  },
+  "account-orders": {
+    "label": "Orders",
+    "path": "/account/orders",
+    "src": "account-orders.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "order-rows"
+      },
+      "empty": {
+        "kind": "no-orders",
+        "message": "Zero orders for this account: \"No orders yet.\" + \"Browse\" CTA + \"or recover a past order\"."
+      },
+      "error": false,
+      "success": false
+    }
+  },
+  "account-orders-detail": {
+    "label": "Order detail",
+    "path": "/account/orders/[id]",
+    "src": "account-orders-detail.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "order-detail-skel"
+      },
+      "empty": false,
+      "error": {
+        "kind": "404-order",
+        "message": "Order ID not found OR not owned by this account: 404. Anti-enumeration: same response shape for \"not yours\" and \"does not exist\"."
+      },
+      "success": false
+    }
+  },
+  "account-wishlist": {
+    "label": "Wishlist",
+    "path": "/account/wishlist",
+    "src": "account-wishlist.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "shop-grid"
+      },
+      "empty": {
+        "kind": "empty-wishlist",
+        "message": "Zero saved items: \"Tap any heart to save a printable here.\" + browse CTA."
+      },
+      "error": false,
+      "success": {
+        "kind": "wishlist-replay",
+        "message": "On sign-in, guest-session hearts replay to the account. Toast: \"1 item moved to your wishlist\"."
+      }
+    }
+  },
+  "account-profile": {
+    "label": "Profile",
+    "path": "/account/profile",
+    "src": "account-profile.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": false,
+      "empty": false,
+      "error": {
+        "kind": "save-error",
+        "message": "PATCH /me failed: inline banner above the form with the specific field error; sticky save bar shows \"Try again\"."
+      },
+      "success": {
+        "kind": "saved",
+        "message": "After Save: sticky save bar flips to \"Saved\" with a check, then disappears after 1.6s."
+      }
+    }
+  },
+  "account-settings": {
+    "label": "Settings",
+    "path": "/account/settings",
+    "src": "account-settings.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": false,
+      "empty": false,
+      "error": false,
+      "success": {
+        "kind": "theme-applied",
+        "message": "Theme change applies instantly via data-theme=\"dark\" on <html>; tokens swap, no flash."
+      }
+    }
+  },
+  "sign-in": {
+    "label": "Sign in",
+    "path": "/sign-in",
+    "src": "sign-in.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": "n/a",
+      "default": true,
+      "loading": {
+        "kind": "submit-pending"
+      },
+      "empty": false,
+      "error": {
+        "kind": "invalid-email"
+      },
+      "success": {
+        "kind": "magic-link-sent",
+        "message": "After submit: replace form with \"Check your inbox.\" panel + \"Use a different email\" link."
+      }
+    }
+  },
+  "sign-in-sent": {
+    "label": "Sign in · sent state",
+    "path": "/sign-in (sent)",
+    "src": "sign-in.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": "n/a",
+      "default": {
+        "kind": "magic-link-sent",
+        "message": "Sent-state: inbox icon + \"Check your inbox.\" + troubleshooting card + Resend / Use different email."
+      },
+      "loading": false,
+      "empty": false,
+      "error": false,
+      "success": false
+    }
+  },
+  "not-found": {
+    "label": "Not found",
+    "path": "/not-found",
+    "src": "not-found.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": "n/a",
+      "default": true,
+      "loading": false,
+      "empty": false,
+      "error": "route-is-error",
+      "success": false
+    }
+  },
+  "about": {
+    "label": "About",
+    "path": "/about",
+    "src": "about.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": false,
+      "empty": false,
+      "error": false,
+      "success": false
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "path": "/contact",
+    "src": "contact.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "submit-pending"
+      },
+      "empty": false,
+      "error": {
+        "kind": "invalid-email"
+      },
+      "success": {
+        "kind": "message-sent",
+        "message": "After submit: form collapses, success panel \"Got it. I will reply within a working day.\" with link to FAQ."
+      }
+    }
+  },
+  "faq": {
+    "label": "FAQ",
+    "path": "/faq",
+    "src": "faq.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": false,
+      "empty": false,
+      "error": false,
+      "success": false
+    }
+  },
+  "freebies": {
+    "label": "Freebies",
+    "path": "/freebies",
+    "src": "freebies.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "shop-grid"
+      },
+      "empty": false,
+      "error": false,
+      "success": {
+        "kind": "claim-all",
+        "message": "\"Sign in to claim them all\" branded banner; on sign-in, files claim and the banner switches to a success state."
+      }
+    }
+  },
+  "bundles": {
+    "label": "Bundles",
+    "path": "/bundles",
+    "src": "bundles.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "shop-grid"
+      },
+      "empty": false,
+      "error": false,
+      "success": false
+    }
+  },
+  "collections": {
+    "label": "Collection",
+    "path": "/collections/[slug]",
+    "src": "shop.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "shop-grid"
+      },
+      "empty": false,
+      "error": false,
+      "success": false
+    }
+  },
+  "blog": {
+    "label": "Notes",
+    "path": "/blog",
+    "src": "blog.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "blog-list"
+      },
+      "empty": false,
+      "error": false,
+      "success": false
+    }
+  },
+  "blog-post": {
+    "label": "Notes · post",
+    "path": "/blog/[slug]",
+    "src": "blog-post.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true,
+      "loading": {
+        "kind": "blog-post"
+      },
+      "empty": false,
+      "error": false,
+      "success": false
+    }
+  },
+  "policies-terms": {
+    "label": "Terms",
+    "path": "/policies/terms",
+    "src": "policies-terms.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true
+    }
+  },
+  "policies-privacy": {
+    "label": "Privacy",
+    "path": "/policies/privacy",
+    "src": "policies-privacy.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true
+    }
+  },
+  "policies-refunds": {
+    "label": "Refunds",
+    "path": "/policies/refunds",
+    "src": "policies-refunds.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true
+    }
+  },
+  "policies-cookies": {
+    "label": "Cookies",
+    "path": "/policies/cookies",
+    "src": "policies-cookies.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true
+    }
+  },
+  "policies-accessibility": {
+    "label": "Accessibility policy",
+    "path": "/policies/accessibility",
+    "src": "policies-accessibility.html",
+    "states": {
+      "header-flat": true,
+      "header-scrolled": true,
+      "default": true
+    }
+  }
+}

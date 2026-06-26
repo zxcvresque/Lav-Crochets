@@ -1,0 +1,143 @@
+/*
+ * JoyWaveDigital · handoff/mobile-tokens.css
+ * ─────────────────────────────────────────────────────────────────────────
+ * Mobile pass token deltas. Additive to handoff/globals.css. Drop into
+ * app/globals.css AFTER the main @theme block so these override only the
+ * three or four tokens that diverge on small viewports.
+ *
+ * Hard rules baked in:
+ * - WCAG 2.2 AA on every consumed pair (inherited).
+ * - No em dashes anywhere.
+ * - Type-scale overrides are limited to display-tier sizes; body sizes
+ *   stay at their inherited values so the 16px input floor (set per input
+ *   element, see mobile-input-table.md) is the only "mobile font" change.
+ *
+ * What is intentionally NOT here:
+ * - No new color tokens. Roles inherit unchanged.
+ * - No new shadow tokens. Mobile uses shadow-1 and shadow-2 almost
+ *   exclusively; shadow-3 and shadow-4 are reserved for bottom-sheet
+ *   surfaces only.
+ * - No new radius tokens.
+ * - No new easings. The mobile-motion.ts file composes existing easings
+ *   into gesture-specific transitions; the curves are unchanged.
+ * ─────────────────────────────────────────────────────────────────────────
+ */
+
+@theme {
+  /* ── Safe-area insets ────────────────────────────────────────────────
+     Two new tokens. Every mobile sticky surface and every full-bleed
+     scroll container references these. */
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left:   env(safe-area-inset-left, 0px);
+  --safe-right:  env(safe-area-inset-right, 0px);
+
+  /* ── Display-tier overrides ──────────────────────────────────────────
+     Three overrides only. The hero clamp() already covers 184 -> 72
+     across viewports, but at <=430 the floor is too aggressive (still
+     reads as 88-96px in practice) so we re-floor it. The 5xl token is
+     used by section headers; on a 390 viewport the 96px renders larger
+     than the visible viewport width modulo gutter, so we cap it. */
+  --text-hero: clamp(56px, 14vw, 144px);   /* mobile-floor 56, was 72 */
+  --text-5xl:  clamp(56px, 11vw, 96px);    /* mobile-cap, was flat 96 */
+  --text-4xl:  clamp(40px, 8vw, 64px);     /* mobile-floor 40, was flat 64 */
+
+  /* ── Mobile spacing rhythm ───────────────────────────────────────────
+     The 4px base scale survives unchanged. We add one wrap token so
+     mobile pages share one rule. */
+  --wrap-pad-mobile: 16px;   /* horizontal page gutter at <=640 */
+  --wrap-pad-tablet: 28px;   /* the existing .wrap padding-inline */
+
+  /* ── Touch sizing ────────────────────────────────────────────────────
+     One token. Every mobile pressable surface either is this tall or has
+     invisible padding to reach it. */
+  --tap-min: 44px;
+
+  /* ── Mobile motion tweaks ────────────────────────────────────────────
+     The named easings are unchanged. We add three duration aliases tuned
+     for gesture work; rubber-band uses ease-out-spring + a longer settle
+     to feel native-iOS-y, drawer-snap uses ease-in-out-soft + the slow
+     duration to match the desktop drawer-open transition, sheet-snap is
+     a touch shorter than drawer-snap because the bottom-sheet handle
+     visually moves a smaller distance. */
+  --dur-rubber-band: 480ms;
+  --dur-drawer-snap: 640ms;   /* alias of --duration-slow */
+  --dur-sheet-snap:  380ms;   /* alias of --duration-med */
+  --dur-sheet-out:   200ms;   /* shorter than dur-fast cluster intentionally */
+
+  /* ── Z-index extensions ──────────────────────────────────────────────
+     Inherits the desktop z-stack. Adds two slots for mobile-only chrome
+     (search overlay sits above drawer so it can be triggered from inside
+     it; offline banner sits above toast so the user always sees their
+     network state). */
+  --z-search-overlay: 55;   /* drawer 50, modal 60 */
+  --z-offline-banner: 80;   /* toast 70 */
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Utility: respect the safe area on every fixed-bottom surface.
+   ───────────────────────────────────────────────────────────────────────── */
+@layer base {
+  .safe-bottom { padding-bottom: max(var(--safe-bottom), 12px); }
+  .safe-top    { padding-top:    max(var(--safe-top),    8px); }
+
+  /* ── Sticky CTA scaffold ───────────────────────────────────────────
+     Every sticky bottom CTA uses this class. Height is locked at 56
+     (per desktop CTA token). The VisualViewport-driven lift is wired in
+     mobile-motion.ts; the CSS here provides the static fallback. */
+  .sticky-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 12px 16px max(var(--safe-bottom), 12px);
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    z-index: var(--z-sticky);
+    /* JS sets --kbd-lift to the keyboard height when VisualViewport
+       shrinks; we transform by that amount so the CTA sits flush above
+       the keyboard rather than hidden behind it. */
+    transform: translateY(calc(var(--kbd-lift, 0px) * -1));
+    transition: transform var(--dur-sheet-snap) var(--ease-in-out-soft);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sticky-cta { transition-duration: 0.001ms; }
+  }
+
+  /* ── Bottom sheet scaffold ─────────────────────────────────────────
+     The sheet surface itself. mobile-motion.ts handles snap-points and
+     the drag-to-dismiss gesture; this provides resting visuals. */
+  .sheet {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: var(--bg-elev);
+    border-top-left-radius: var(--r-5);
+    border-top-right-radius: var(--r-5);
+    box-shadow: var(--shadow-4);
+    padding: 8px 0 max(var(--safe-bottom), 16px);
+    z-index: var(--z-drawer);
+    will-change: transform;
+    transition: transform var(--dur-sheet-snap) var(--ease-in-out-soft);
+  }
+  .sheet-handle {
+    width: 36px; height: 4px; margin: 6px auto 12px;
+    border-radius: var(--r-pill);
+    background: var(--line-2);
+  }
+  .sheet-scrim {
+    position: fixed; inset: 0;
+    background: oklch(0.18 0.022 50 / 0.42);
+    backdrop-filter: saturate(1.1) blur(2px);
+    z-index: calc(var(--z-drawer) - 1);
+    transition: opacity var(--dur-base) var(--ease-out-soft);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Verified mobile contrast (delta only, full table in globals.css)
+   ─────────────────────────────────────────────────────────────────────────
+   Pair                                          Ratio    Passes
+   --color-ink on --color-bg-elev (sheet body)   15.8:1   AAA
+   --color-ink-muted on --color-bg-elev (meta)    4.5:1   AA
+   --color-paper on bg sheet-scrim overlay        n/a     decorative
+   ───────────────────────────────────────────────────────────────────────── */

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pagination · component states · JoyWaveDigital desktop pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="components.css" />
+</head>
+<body>
+<div class="audit-head">
+  <div class="crumb">Desktop pass · component states </div>
+  <h1>Pagination, <em>every state.</em></h1>
+  <p>State variants for this component. Each block carries a mono label. Token references only.</p>
+</div>
+<div class="state-stack">
+<div class="state-card">
+  <div class="state-card-head"><span class="label">All states</span><span class="desc">on a 5-page set</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; display: flex; gap: 4px; justify-content: center">
+  <button class="btn ghost" disabled style="opacity: 0.55"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+  <button style="width: 40px; height: 40px; background: var(--ink); color: var(--paper); border: 0; border-radius: 8px; font-family: var(--font-mono); font-size: 14px; font-weight: 600">1</button>
+  <button style="width: 40px; height: 40px; background: var(--bg-elev); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; font-family: var(--font-mono); font-size: 14px">2</button>
+  <button style="width: 40px; height: 40px; background: transparent; color: var(--fg); border: 1px solid transparent; border-radius: 8px; font-family: var(--font-mono); font-size: 14px; outline: 2px solid var(--joy-500); outline-offset: 2px">3</button>
+  <button style="width: 40px; height: 40px; background: transparent; color: var(--fg); border: 1px solid transparent; border-radius: 8px; font-family: var(--font-mono); font-size: 14px">4</button>
+  <button style="width: 40px; height: 40px; background: transparent; color: var(--fg-muted); border: 1px solid transparent; border-radius: 8px; font-family: var(--font-mono); font-size: 14px">5</button>
+  <button class="btn ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div></div>
+  <div class="note">Current page = ink fill. Hover = elevated bg + line border. Focus-visible = brand outline. Rest = transparent. Edges disabled at min/max.</div>
+</div></div></body></html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Thank you · Failed · JoyWaveDigital mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="mobile.css" />
+</head>
+<body>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="0"></div>
+
+  <main class="mob-main" id="main">
+    <span class="mob-status failed" style="margin-top: 12px">Failed</span>
+    <h1 style="font-family: var(--font-display); font-weight: 600; font-size: clamp(34px, 9vw, 44px); letter-spacing: -0.03em; line-height: 1.0; margin: 12px 0 8px; text-wrap: balance">Your card declined.</h1>
+    <p style="margin: 0 0 24px; color: var(--fg-soft); font-size: var(--t-md); line-height: 1.5">Order #JWD-29483. No charge was placed. Your cart is intact.</p>
+
+    <div class="mob-banner bad" style="margin-bottom: 22px">
+      <svg class="icon" style="flex-shrink:0; margin-top:1px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 9v4M12 17h.01M3 19h18L12 3 3 19z"/></svg>
+      <div>
+        <strong>Bank decline code 51.</strong>
+        Often "insufficient funds" or "card not approved for online use". Try another card, or contact your bank.
+      </div>
+    </div>
+
+    <a href="cart.html" class="mob-btn primary full" style="margin-bottom: 10px">Try again</a>
+    <a href="contact.html" class="mob-btn ghost full">Contact support</a>
+
+    <h2 class="mob-eyebrow" style="margin: 32px 0 12px">Your cart still has</h2>
+    <div class="mob-cart-line" style="border-top: 1px solid var(--line)">
+      <div class="thumb placeholder"></div>
+      <div>
+        <h3>Number-line math, 1 to 100</h3>
+        <div class="meta">PDF + PNG · 18 pages</div>
+        <div class="price" style="margin-top: 6px">$5.10</div>
+      </div>
+    </div>
+    <div class="mob-cart-line">
+      <div class="thumb placeholder"></div>
+      <div>
+        <h3>Decodable readers, Set 3</h3>
+        <div class="meta">PDF · 24 pages</div>
+        <div class="price" style="margin-top: 6px">$8.00</div>
+      </div>
+    </div>
+  </main>
+
+  <div data-chrome="home"></div>
+</div>
+<script src="_mobile-chrome.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Accessibility · JoyWaveDigital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="screens.css" />
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div data-chrome="header"></div>
+
+<main id="main" class="marketing-main">
+  <div class="wrap" style="max-width:880px">
+
+    <header style="padding: 32px 0 48px">
+      <div class="mk-eyebrow">Policy · accessibility statement</div>
+      <h1 class="mk-h1" style="font-size:clamp(40px,6vw,88px)">Accessibility.</h1>
+      <p class="mk-lede" style="margin-top:20px">Targeting WCAG 2.2 AA across the storefront. Known gaps surfaced below.</p>
+    </header>
+
+    <article class="mk-prose">
+      <h2>What we hold to</h2>
+      <ul>
+        <li>Body text contrast at or above 4.5:1; large text at or above 3:1; non-text UI at or above 3:1.</li>
+        <li>Every interactive element keyboard reachable.</li>
+        <li>Focus-visible outlines on every interactive element.</li>
+        <li>Touch targets at or above 44 by 44 pixels.</li>
+        <li>Reduced-motion fallback for every animation that respects <code>prefers-reduced-motion</code>.</li>
+        <li>Skip-to-content link on every page.</li>
+        <li>Form labels associated with inputs; error messages announced via <code>aria-live</code>.</li>
+        <li>All non-decorative images have alt text.</li>
+        <li>Site navigable end-to-end without a mouse.</li>
+      </ul>
+
+      <h2>Known gaps</h2>
+      <ul>
+        <li>The product cluster on the home hero is decorative; it carries <code>aria-hidden="true"</code> so it does not pollute the screen-reader pass.</li>
+        <li>Tiptap rich-text content in product descriptions inherits from the editor's defaults. Reading order is correct but heading levels in author-provided content depend on the founder.</li>
+      </ul>
+
+      <h2>Reduced motion</h2>
+      <p>The site respects your OS setting. You can also force it on per-account in <a href="account-settings.html">settings</a>. When on, the following animations are disabled or replaced with opacity fades:</p>
+      <ul>
+        <li>Header pill-on-scroll transition (snaps instead of slides)</li>
+        <li>Card hover lift and asymmetric expansion</li>
+        <li>Eyebrow pulse</li>
+        <li>Cart drawer slide (fades instead)</li>
+        <li>Heart badge-pop</li>
+      </ul>
+
+      <h2>Browsers + assistive tech tested</h2>
+      <ul>
+        <li>VoiceOver on macOS Safari (Sequoia)</li>
+        <li>VoiceOver on iOS Safari (iOS 18)</li>
+        <li>NVDA on Windows Firefox + Chrome</li>
+        <li>Keyboard-only navigation in Chrome, Safari, Firefox</li>
+      </ul>
+
+      <h2>Report a barrier</h2>
+      <p>If something on this site stops you from doing what you came to do, please tell us. Email <a href="mailto:accessibility@joywavedigital.shop">accessibility@joywavedigital.shop</a> with what happened and what device you were using. We aim to fix accessibility regressions within 14 days.</p>
+
+      <hr/>
+      <p style="font-size:14px;color:var(--fg-muted)">Last reviewed 15 May 2026. Annual review required. Version 1.0.</p>
+    </article>
+  </div>
+</main>
+<div data-chrome="footer"></div>
+<script src="_chrome.js"></script>
+</body>
+</html>

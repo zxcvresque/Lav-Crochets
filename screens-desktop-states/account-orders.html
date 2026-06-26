@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Orders · states · JoyWaveDigital desktop pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="states.css" />
+</head>
+<body>
+<div class="audit-head">
+  <div class="crumb">Desktop pass · state variants · /account/orders</div>
+  <h1>Orders, <em>every state.</em></h1>
+  <p>Stacked state mockups for the route. Each card carries a mono label and a one-line note about what is happening visually. The "Default" state iframes the existing desktop mockup at <code>screens/account-orders.html</code>. Header states show the same screen with the inner page scrolled to 0 (flat) or 240 (pill). Loading / empty / error / success states are focused mockups, not full re-renders.</p>
+</div>
+<div class="state-stack">
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Header · flat</span><span class="desc">Header · flat (scrollY ≤ 40)</span></div>
+  <div class="state-card-body"><iframe class="state-iframe" loading="lazy" src="../screens/account-orders.html#scroll=0" title="account-orders.html flat" onload="try{const w=this.contentWindow;if(w&&w.document){w.scrollTo({top:0,behavior:'instant'});}}catch(e){}"></iframe><div class="note">Top of page. AnnouncementBar visible above the header; nav links visible inline; no pill chrome; full container width.</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Header · scrolled</span><span class="desc">Header · scrolled to pill (scrollY > 40)</span></div>
+  <div class="state-card-body"><iframe class="state-iframe" loading="lazy" src="../screens/account-orders.html#scroll=200" title="account-orders.html scrolled" onload="try{const w=this.contentWindow;if(w&&w.document){w.scrollTo({top:240,behavior:'instant'});}}catch(e){}"></iframe><div class="note">Pill collapses to <code>min(1080px, calc(100% - 32px))</code> with blurred-glass background. AnnouncementBar hides synchronously. 700ms <code>cubic-bezier(0.4, 0, 0.2, 1)</code> transition.</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Default</span><span class="desc">Default · the route in its happy-path state</span></div>
+  <div class="state-card-body"><iframe class="state-iframe" loading="lazy" src="../screens/account-orders.html" title="account-orders.html default"></iframe></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Loading</span><span class="desc">Loading · skeleton placeholders</span></div>
+  <div class="state-card-body">
+<div class="pad" style="background: var(--bg)">
+  <div style="max-width: 1024px; margin: 0 auto; padding: 80px 28px 0">
+    <div class="skel skel-line" style="width: 26%; height: 36px; margin-bottom: 28px"></div>
+    <div style="display: grid; grid-template-columns: 120px 100px 1fr 100px 80px; gap: 16px; padding: 18px 0; border-top: 1px solid var(--line); align-items: center"><div class="skel skel-line" style="height: 11px"></div><div class="skel skel-line" style="height: 11px"></div><div class="skel skel-line" style="width: 80%"></div><div class="skel" style="height: 24px; border-radius: 99px"></div><div class="skel skel-line" style="height: 14px"></div></div><div style="display: grid; grid-template-columns: 120px 100px 1fr 100px 80px; gap: 16px; padding: 18px 0; border-top: 1px solid var(--line); align-items: center"><div class="skel skel-line" style="height: 11px"></div><div class="skel skel-line" style="height: 11px"></div><div class="skel skel-line" style="width: 80%"></div><div class="skel" style="height: 24px; border-radius: 99px"></div><div class="skel skel-line" style="height: 14px"></div></div><div style="display: grid; grid-template-columns: 120px 100px 1fr 100px 80px; gap: 16px; padding: 18px 0; border-top: 1px solid var(--line); align-items: center"><div class="skel skel-line" style="height: 11px"></div><div class="skel skel-line" style="height: 11px"></div><div class="skel skel-line" style="width: 80%"></div><div class="skel" style="height: 24px; border-radius: 99px"></div><div class="skel skel-line" style="height: 14px"></div></div><div style="display: grid; grid-template-columns: 120px 100px 1fr 100px 80px; gap: 16px; padding: 18px 0; border-top: 1px solid var(--line); align-items: center"><div class="skel skel-line" style="height: 11px"></div><div class="skel skel-line" style="height: 11px"></div><div class="skel skel-line" style="width: 80%"></div><div class="skel" style="height: 24px; border-radius: 99px"></div><div class="skel skel-line" style="height: 14px"></div></div><div style="display: grid; grid-template-columns: 120px 100px 1fr 100px 80px; gap: 16px; padding: 18px 0; border-top: 1px solid var(--line); align-items: center"><div class="skel skel-line" style="height: 11px"></div><div class="skel skel-line" style="height: 11px"></div><div class="skel skel-line" style="width: 80%"></div><div class="skel" style="height: 24px; border-radius: 99px"></div><div class="skel skel-line" style="height: 14px"></div></div>
+  </div>
+</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Empty</span><span class="desc">Empty · no-data state</span></div>
+  <div class="state-card-body">
+<div class="empty">
+  <div class="glyph"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/></svg></div>
+  <h3>No orders yet.</h3>
+  <p>Once you buy a printable, it shows up here with the order timeline and re-download buttons.</p>
+  <div style="display: flex; gap: 10px; margin-top: 12px"><a href="#" class="b">Browse</a><a href="#" class="b ghost">Recover a past order</a></div>
+</div><div class="note">Zero orders for this account: "No orders yet." + "Browse" CTA + "or recover a past order".</div></div></div>
+</div>
+</body>
+</html>

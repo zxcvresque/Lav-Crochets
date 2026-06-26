@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact · JoyWaveDigital</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="screens.css" />
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div data-chrome="header"></div>
+
+<main id="main" class="marketing-main">
+  <div class="wrap">
+
+    <header style="padding: 32px 0 64px">
+      <div class="mk-eyebrow">Contact</div>
+      <h1 class="mk-h1">Say <em>hello.</em></h1>
+      <p class="mk-lede" style="margin-top:24px">
+        One person reads every email. Replies within 24 hours, weekdays Mumbai time. For receipt issues, use the <a href="orders-recover.html" style="color:var(--fg);text-decoration:underline">recovery form</a>; it is faster.
+      </p>
+    </header>
+
+    <section class="contact-grid">
+      <form class="contact-form" novalidate>
+        <div class="field">
+          <label for="c-name">Your name</label>
+          <input id="c-name" type="text" placeholder="Optional" />
+        </div>
+        <div class="field">
+          <label for="c-email">Email</label>
+          <input id="c-email" type="email" required placeholder="you@school.edu" />
+        </div>
+        <div class="field">
+          <label for="c-topic">What about</label>
+          <select id="c-topic">
+            <option>General question</option>
+            <option>Problem with a download</option>
+            <option>Refund request</option>
+            <option>Wholesale or volume licensing</option>
+            <option>Press, partnerships, podcasts</option>
+            <option>Bug report</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="c-msg">Message</label>
+          <textarea id="c-msg" placeholder="Tell me what is going on."></textarea>
+        </div>
+        <button type="submit" class="btn xl ink" style="width:100%;justify-content:center">
+          Send message
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg>
+        </button>
+        <p style="font-family:var(--font-mono);font-size:11px;color:var(--fg-muted);letter-spacing:.02em;margin:14px 0 0;text-align:center">We never sell your email. <a href="policies-privacy.html" style="color:var(--fg-soft);text-decoration:underline">Privacy policy</a>.</p>
+      </form>
+
+      <div class="contact-info">
+        <div>
+          <div class="kv">Email directly</div>
+          <div class="v"><a href="mailto:hello@joywavedigital.shop">hello@joywavedigital.shop</a></div>
+        </div>
+        <div>
+          <div class="kv">For receipt + download issues</div>
+          <div class="v"><a href="orders-recover.html">Recovery form</a></div>
+          <p style="color:var(--fg-soft);font-size:13px;margin:6px 0 0">Resends fresh signed download links in seconds. Faster than email.</p>
+        </div>
+        <div>
+          <div class="kv">Wholesale / volume licensing</div>
+          <p style="color:var(--fg);font-size:15px;margin:0;line-height:1.5">Email with the school or district name and how many seats. We license per classroom by default; bulk pricing starts at 10 seats.</p>
+        </div>
+        <div>
+          <div class="kv">Where the shop lives</div>
+          <p style="color:var(--fg);font-size:15px;margin:0;line-height:1.5">Mumbai, India. Sold worldwide. Prices charged in USD; display follows your locale.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div data-chrome="footer"></div>
+<script src="_chrome.js"></script>
+</body>
+</html>

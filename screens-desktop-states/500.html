@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>500 Server error · states · JoyWaveDigital desktop pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="states.css" />
+</head>
+<body>
+<div class="audit-head">
+  <div class="crumb">Desktop pass · state variants · /500</div>
+  <h1>500 Server error, <em>every state.</em></h1>
+  <p>Stacked state mockups for the route. Each card carries a mono label and a one-line note about what is happening visually. The "Default" state iframes the existing desktop mockup at <code>screens/not-found.html</code>. Header states show the same screen with the inner page scrolled to 0 (flat) or 240 (pill). Loading / empty / error / success states are focused mockups, not full re-renders.</p>
+</div>
+<div class="state-stack">
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Header · flat</span><span class="desc">Header · flat (scrollY ≤ 40)</span></div>
+  <div class="state-card-body"><iframe class="state-iframe" loading="lazy" src="../screens/not-found.html#scroll=0" title="not-found.html flat" onload="try{const w=this.contentWindow;if(w&&w.document){w.scrollTo({top:0,behavior:'instant'});}}catch(e){}"></iframe><div class="note">Top of page. AnnouncementBar visible above the header; nav links visible inline; no pill chrome; full container width.</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Header · scrolled</span><span class="desc">Header · scrolled to pill (scrollY > 40) · NOT APPLICABLE</span></div>
+  <div class="state-card-body"><div class="empty"><div class="glyph"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div><h3>No pill state applicable.</h3><p>This route does not scroll past 40px. The header stays in its flat state throughout the session.</p></div><div class="note">Confirmed in <code>pixel-precision-audit.md</code>.</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Default</span><span class="desc">Default · the route in its happy-path state</span></div>
+  <div class="state-card-body">
+<div class="pad" style="background: var(--bg); padding-top: 96px; max-width: 720px; margin: 0 auto">
+  <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 12px">500</div>
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: clamp(48px, 7vw, 80px); letter-spacing: -0.04em; line-height: 0.95; margin: 0 0 16px">Something on our side broke.</h1>
+  <p style="margin: 0 0 24px; color: var(--fg-soft); font-size: 17px; line-height: 1.5">We were notified and the maker is looking at it. Refresh in a minute; the issue is usually short.</p>
+  <div style="padding: 16px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 18px">
+    <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 8px">Error reference</div>
+    <code style="font-family: var(--font-mono); font-size: 14px">JWD-500-RX-9NF7</code>
+  </div>
+  <div style="display: flex; gap: 10px"><button class="b">Try again</button><a href="#" class="b ghost">Back to home</a><a href="#" class="b ghost">Contact support</a></div>
+</div><div class="note">Big H1, error reference code in mono, three CTAs (Try again, Back to home, Contact support).</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Error</span><span class="desc">Error · failure path</span></div>
+  <div class="state-card-body">
+<div class="pad" style="background: var(--bg); padding-top: 96px; text-align: center">
+  <p style="color: var(--fg-soft); font-size: 14px">This route IS an error state (404 / 500). See the Default state above.</p>
+</div></div></div>
+</div>
+</body>
+</html>

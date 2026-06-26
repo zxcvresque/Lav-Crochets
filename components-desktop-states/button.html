@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Button · component states · JoyWaveDigital desktop pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="components.css" />
+</head>
+<body>
+<div class="audit-head">
+  <div class="crumb">Desktop pass · component states · xl / lg / md · primary / ink / ghost / outline</div>
+  <h1>Button, <em>every state.</em></h1>
+  <p>State variants for this component. Each block carries a mono label. Token references only.</p>
+</div>
+<div class="state-stack">
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Rest</span><span class="desc">all sizes by all variants</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px">
+  <div style="display: grid; grid-template-columns: 120px repeat(4, 1fr); gap: 16px; align-items: center">
+    <span class="eyebrow">XL · 64</span>
+      <button class="btn xl">Add to cart <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <button class="btn xl ink">Pay $16.00 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <button class="btn xl ghost">Browse all</button>
+      <button class="btn xl outline">Sign in</button>
+    <span class="eyebrow">LG · 56</span>
+      <button class="btn lg">Send sign-in link</button>
+      <button class="btn lg ink">Download PDF <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v13M7 11l5 5 5-5M5 21h14"/></svg></button>
+      <button class="btn lg ghost">Cancel</button>
+      <button class="btn lg outline">Save</button>
+    <span class="eyebrow">MD · 44</span>
+      <button class="btn">Apply</button>
+      <button class="btn ink">Delete</button>
+      <button class="btn ghost">Clear all</button>
+      <button class="btn outline">Edit</button>
+  </div>
+</div></div>
+  <div class="note">Primary uses <code>--brand</code> with ink-on-brand text (8.7:1 AAA). Ink uses warm-charcoal ink with paper text. Ghost is transparent with line-2 border. Outline is the high-conversion 1.5px ink border (inverts on hover).</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Hover</span><span class="desc">translateY(-1px) plus brand glow</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; display: flex; gap: 16px; flex-wrap: wrap">
+  <button class="btn xl" style="transform: translateY(-1px); box-shadow: var(--shadow-brand)">Add to cart <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <button class="btn xl ink" style="transform: translateY(-1px); box-shadow: var(--shadow-2)">Pay $16.00 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <button class="btn xl ghost" style="background: var(--bg-elev); box-shadow: var(--shadow-2)">Browse all</button>
+  <button class="btn xl outline" style="background: var(--ink); color: var(--paper); box-shadow: var(--shadow-2)">Sign in</button>
+</div></div>
+  <div class="note"><code>:hover</code> lifts 1px and paints <code>--shadow-brand</code> on the primary (a soft tangerine glow). Ghost picks up the elevated background. Outline inverts to ink fill.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Focus-visible</span><span class="desc">keyboard tab</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; display: flex; gap: 16px; flex-wrap: wrap">
+  <button class="btn xl" style="outline: 2px solid var(--joy-500); outline-offset: 2px">Add to cart</button>
+  <button class="btn xl ink" style="outline: 2px solid var(--joy-500); outline-offset: 2px">Pay $16.00</button>
+  <button class="btn xl ghost" style="outline: 2px solid var(--joy-500); outline-offset: 2px">Browse all</button>
+</div></div>
+  <div class="note">2px brand outline + 2px offset (the locked <code>.focus-ring</code>). Visible on all variants without competing with the button paint.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Active · pressed</span><span class="desc">translateY(0) scale(0.98)</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; display: flex; gap: 16px; flex-wrap: wrap">
+  <button class="btn xl" style="transform: translateY(0) scale(0.98)">Add to cart</button>
+  <button class="btn xl ink" style="transform: translateY(0) scale(0.98)">Pay $16.00</button>
+</div></div>
+  <div class="note">Tap: lift drops back to 0, scale 0.98 for tactile feedback over 120ms (<code>--dur-fast</code>).</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Disabled</span><span class="desc">opacity 0.55 · no hover</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; display: flex; gap: 16px; flex-wrap: wrap">
+  <button class="btn xl" disabled style="opacity: 0.55; cursor: not-allowed">Sign in to claim</button>
+  <button class="btn xl ink" disabled style="opacity: 0.55; cursor: not-allowed">Pay $0.00</button>
+  <button class="btn xl ghost" disabled style="opacity: 0.55; cursor: not-allowed">Apply (empty)</button>
+</div></div>
+  <div class="note"><code>opacity: 0.55</code>, <code>cursor: not-allowed</code>. Disabled state should be rare; rephrase copy to action when possible.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Loading</span><span class="desc">spinner in place of icon</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; display: flex; gap: 16px; flex-wrap: wrap">
+  <button class="btn xl" disabled style="opacity: 0.9">
+    <span class="skel" style="width: 18px; height: 18px; border-radius: 99px; display: inline-block"></span>
+    Adding…
+  </button>
+  <button class="btn xl ink" disabled style="opacity: 0.9">
+    <span class="skel" style="width: 18px; height: 18px; border-radius: 99px; display: inline-block"></span>
+    Processing…
+  </button>
+</div></div>
+  <div class="note">Loading: skeleton dot in place of the icon, label becomes gerund (Adding…, Processing…). Button disabled but visible.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Dark mode</span><span class="desc">all variants on dark stage</span></div>
+  <div class="state-card-body dark">
+<div data-theme="dark" style="padding: 32px; display: flex; gap: 16px; flex-wrap: wrap">
+  <button class="btn xl">Add to cart <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <button class="btn xl ink">Pay $16.00 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <button class="btn xl ghost">Browse all</button>
+</div></div>
+  <div class="note">Dark-mode mapping preserves contrast. Primary still uses brand-500 fill with joy-950 ink.</div>
+</div></div></body></html>

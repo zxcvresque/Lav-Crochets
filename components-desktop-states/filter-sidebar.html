@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Filter sidebar · component states · JoyWaveDigital desktop pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="components.css" />
+</head>
+<body>
+<div class="audit-head">
+  <div class="crumb">Desktop pass · component states </div>
+  <h1>Filter sidebar, <em>every state.</em></h1>
+  <p>State variants for this component. Each block carries a mono label. Token references only.</p>
+</div>
+<div class="state-stack">
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Idle</span><span class="desc">no active filters</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px; max-width: 280px">
+  <h3 class="eyebrow" style="margin-bottom: 12px">Category</h3>
+  <ul style="list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-direction: column; gap: 8px">
+    <li><label style="display: flex; gap: 8px; align-items: center; cursor: pointer"><input type="checkbox" style="width: 16px; height: 16px; accent-color: var(--joy-500)"><span style="font-size: 14px">Worksheets · 142</span></label></li><li><label style="display: flex; gap: 8px; align-items: center; cursor: pointer"><input type="checkbox" style="width: 16px; height: 16px; accent-color: var(--joy-500)"><span style="font-size: 14px">Decodable readers · 38</span></label></li><li><label style="display: flex; gap: 8px; align-items: center; cursor: pointer"><input type="checkbox" style="width: 16px; height: 16px; accent-color: var(--joy-500)"><span style="font-size: 14px">Activity packs · 67</span></label></li><li><label style="display: flex; gap: 8px; align-items: center; cursor: pointer"><input type="checkbox" style="width: 16px; height: 16px; accent-color: var(--joy-500)"><span style="font-size: 14px">Flashcards · 54</span></label></li>
+  </ul>
+  <h3 class="eyebrow" style="margin-bottom: 12px">Price</h3>
+  <div style="display: flex; gap: 8px; align-items: center"><input type="number" placeholder="0" style="width: 80px; height: 36px; border: 1px solid var(--line); border-radius: 8px; padding: 0 8px"><span style="color: var(--fg-muted); font-size: 13px">to</span><input type="number" placeholder="50" style="width: 80px; height: 36px; border: 1px solid var(--line); border-radius: 8px; padding: 0 8px"></div>
+</div></div>
+  <div class="note">Mono section headers (eyebrow). Checkbox list with counts. Locked layout from existing /shop.</div>
+</div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">3 active filters</span><span class="desc">active pills above grid</span></div>
+  <div class="state-card-body">
+<div style="background: var(--bg); padding: 32px">
+  <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-bottom: 24px">
+    <button style="height: 30px; padding: 0 12px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 99px; font-family: var(--font-mono); font-size: 11px; color: var(--fg-soft); display: inline-flex; align-items: center; gap: 6px; cursor: pointer">Worksheets <span style="color: var(--fg-faint); font-weight: 600">×</span></button>
+    <button style="height: 30px; padding: 0 12px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 99px; font-family: var(--font-mono); font-size: 11px; color: var(--fg-soft); display: inline-flex; align-items: center; gap: 6px; cursor: pointer">Ages 5 to 7 <span style="color: var(--fg-faint); font-weight: 600">×</span></button>
+    <button style="height: 30px; padding: 0 12px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 99px; font-family: var(--font-mono); font-size: 11px; color: var(--fg-soft); display: inline-flex; align-items: center; gap: 6px; cursor: pointer">Free <span style="color: var(--fg-faint); font-weight: 600">×</span></button>
+    <button style="background: transparent; border: 0; font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); text-decoration: underline; cursor: pointer; padding: 4px 8px">Clear all (3)</button>
+  </div>
+</div></div>
+  <div class="note">Active filters surface as pills above the grid. Each pill is a remove-this-filter button.</div>
+</div></div></body></html>

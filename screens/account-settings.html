@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Settings · JoyWaveDigital</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="screens.css" />
+<style>
+  .form-card { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--r-4); padding: 24px; margin-bottom: 18px; max-width: 720px; }
+  .form-card h2 { font-family: var(--font-display); font-size: 22px; font-weight: 500; letter-spacing: -0.02em; margin: 0 0 4px; }
+  .form-card .desc { color: var(--fg-soft); font-size: 13px; margin: 0 0 20px; }
+  .pref-row { display: grid; grid-template-columns: 1fr auto; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); align-items: center; }
+  .pref-row:first-of-type { border-top: 0; padding-top: 4px; }
+  .pref-row .t { font-weight: 500; font-size: var(--t-md); }
+  .pref-row .d { font-size: 13px; color: var(--fg-muted); margin-top: 2px; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div data-chrome="header"></div>
+
+<main id="main" class="account-main">
+  <div class="wrap">
+
+    <header class="account-head">
+      <div>
+        <div class="account-meta">YOUR ACCOUNT</div>
+        <h1>Settings.</h1>
+        <p class="account-greeting">Marketing preferences. Quiet by default; opt in to what you want.</p>
+      </div>
+    </header>
+
+    <nav class="account-nav" aria-label="Account sections">
+      <a href="account-library.html">Library <span class="badge">8</span></a>
+      <a href="account-orders.html">Orders <span class="badge">5</span></a>
+      <a href="account-wishlist.html">Wishlist <span class="badge">12</span></a>
+      <a href="account-profile.html">Profile</a>
+      <a href="account-settings.html" aria-current="page">Settings</a>
+    </nav>
+
+    <section class="form-card">
+      <h2>Email preferences</h2>
+      <p class="desc">Receipt and account emails always send. The rest are optional.</p>
+
+      <div class="pref-row">
+        <div>
+          <div class="t">Monthly letter</div>
+          <div class="d">One email a month. A new printable inside.</div>
+        </div>
+        <label class="toggle" aria-label="Monthly letter">
+          <input type="checkbox" checked />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+
+      <div class="pref-row">
+        <div>
+          <div class="t">Sale alerts on wishlisted items</div>
+          <div class="d">We email only when a saved item drops in price.</div>
+        </div>
+        <label class="toggle" aria-label="Sale alerts">
+          <input type="checkbox" checked />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+
+      <div class="pref-row">
+        <div>
+          <div class="t">New-product announcements</div>
+          <div class="d">Mondays only. Skip if you do not need a heads-up.</div>
+        </div>
+        <label class="toggle" aria-label="New product announcements">
+          <input type="checkbox" />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+
+      <div class="pref-row">
+        <div>
+          <div class="t">Seasonal broadcasts</div>
+          <div class="d">Summer pack, back-to-school, holiday bundle. 3 per year.</div>
+        </div>
+        <label class="toggle" aria-label="Seasonal broadcasts">
+          <input type="checkbox" checked />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="form-card">
+      <h2>Display</h2>
+      <p class="desc">Local prices on cards and detail surfaces.</p>
+
+      <div class="pref-row">
+        <div>
+          <div class="t">Currency</div>
+          <div class="d">USD is the canonical charge currency. We display in your local for browsing only.</div>
+        </div>
+        <select style="height:38px;padding:0 32px 0 12px;border:1px solid var(--line-2);border-radius:99px;background:transparent;font:inherit;font-size:13px">
+          <option>USD</option>
+          <option selected>INR</option>
+          <option>EUR</option>
+          <option>GBP</option>
+          <option>AUD</option>
+          <option>CAD</option>
+        </select>
+      </div>
+
+      <div class="pref-row">
+        <div>
+          <div class="t">Reduced motion</div>
+          <div class="d">Calmer animations site-wide. We respect your OS setting too.</div>
+        </div>
+        <label class="toggle" aria-label="Reduced motion">
+          <input type="checkbox" />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="form-card">
+      <h2>Data</h2>
+      <p class="desc">Export everything we have on you, or delete it.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn ghost">Export my data (JSON)</button>
+        <button class="btn ghost">Export order history (CSV)</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div data-chrome="footer"></div>
+<script src="_chrome.js"></script>
+</body>
+</html>

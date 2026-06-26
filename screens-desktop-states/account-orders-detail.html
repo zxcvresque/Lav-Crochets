@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Order detail · states · JoyWaveDigital desktop pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="states.css" />
+</head>
+<body>
+<div class="audit-head">
+  <div class="crumb">Desktop pass · state variants · /account/orders/[id]</div>
+  <h1>Order detail, <em>every state.</em></h1>
+  <p>Stacked state mockups for the route. Each card carries a mono label and a one-line note about what is happening visually. The "Default" state iframes the existing desktop mockup at <code>screens/account-orders-detail.html</code>. Header states show the same screen with the inner page scrolled to 0 (flat) or 240 (pill). Loading / empty / error / success states are focused mockups, not full re-renders.</p>
+</div>
+<div class="state-stack">
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Header · flat</span><span class="desc">Header · flat (scrollY ≤ 40)</span></div>
+  <div class="state-card-body"><iframe class="state-iframe" loading="lazy" src="../screens/account-orders-detail.html#scroll=0" title="account-orders-detail.html flat" onload="try{const w=this.contentWindow;if(w&&w.document){w.scrollTo({top:0,behavior:'instant'});}}catch(e){}"></iframe><div class="note">Top of page. AnnouncementBar visible above the header; nav links visible inline; no pill chrome; full container width.</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Header · scrolled</span><span class="desc">Header · scrolled to pill (scrollY > 40)</span></div>
+  <div class="state-card-body"><iframe class="state-iframe" loading="lazy" src="../screens/account-orders-detail.html#scroll=200" title="account-orders-detail.html scrolled" onload="try{const w=this.contentWindow;if(w&&w.document){w.scrollTo({top:240,behavior:'instant'});}}catch(e){}"></iframe><div class="note">Pill collapses to <code>min(1080px, calc(100% - 32px))</code> with blurred-glass background. AnnouncementBar hides synchronously. 700ms <code>cubic-bezier(0.4, 0, 0.2, 1)</code> transition.</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Default</span><span class="desc">Default · the route in its happy-path state</span></div>
+  <div class="state-card-body"><iframe class="state-iframe" loading="lazy" src="../screens/account-orders-detail.html" title="account-orders-detail.html default"></iframe></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Loading</span><span class="desc">Loading · skeleton placeholders</span></div>
+  <div class="state-card-body">
+<div class="pad" style="background: var(--bg)">
+  <div style="max-width: 1024px; margin: 0 auto; padding: 80px 28px 0">
+    <div class="skel skel-line" style="width: 18%; height: 9px; margin-bottom: 18px"></div>
+    <div class="skel skel-line" style="width: 40%; height: 32px; margin-bottom: 28px"></div>
+    <div style="display: grid; grid-template-columns: 1fr 360px; gap: 48px">
+      <div>
+        <div style="display: grid; grid-template-columns: 80px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line)"><div class="skel skel-square"></div><div><div class="skel skel-line" style="width: 60%; margin-bottom: 8px"></div><div class="skel skel-line" style="width: 30%; height: 9px"></div></div></div><div style="display: grid; grid-template-columns: 80px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line)"><div class="skel skel-square"></div><div><div class="skel skel-line" style="width: 60%; margin-bottom: 8px"></div><div class="skel skel-line" style="width: 30%; height: 9px"></div></div></div>
+      </div>
+      <div class="skel" style="height: 200px; border-radius: 16px"></div>
+    </div>
+  </div>
+</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Error</span><span class="desc">Error · failure path</span></div>
+  <div class="state-card-body">
+<div class="pad" style="background: var(--bg); padding-top: 96px; max-width: 600px; margin: 0 auto; text-align: center">
+  <h2 style="font-family: var(--font-display); font-weight: 600; font-size: 32px; letter-spacing: -0.03em; margin: 0 0 12px">Order not found.</h2>
+  <p style="margin: 0 0 24px; color: var(--fg-soft); font-size: 15px">If you bought this with a different email, recover it instead.</p>
+  <a href="#" class="b">Recover a past order</a>
+</div><div class="note">Order ID not found OR not owned by this account: 404. Anti-enumeration: same response shape for "not yours" and "does not exist".</div></div></div>
+</div>
+</body>
+</html>

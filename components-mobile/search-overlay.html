@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>SearchOverlay · Component · JoyWaveDigital mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../screens-mobile/mobile.css" />
+<style>
+  body { background: var(--bg-subtle) }
+  .mob-stage { background: var(--bg); min-height: auto; padding-bottom: 24px; margin: 24px auto; box-shadow: 0 16px 48px -24px oklch(0.18 0.05 40 / 0.32); border-radius: 12px; overflow: hidden }
+  .ann { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); padding: 12px 16px 4px; background: var(--bg) }
+  .ann strong { color: var(--fg); font-weight: 600 }
+</style>
+</head>
+<body>
+<div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); text-align: center; padding: 18px 0 0">SearchOverlay · 3 states</div>
+
+
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>Empty (just opened)</strong></div>
+  
+<div class="mob-search" style="position: absolute; top: 44px; bottom: 24px; left: 0; right: 0">
+  <div class="mob-search-head">
+    <input type="search" inputmode="search" enterkeyhint="search" autocomplete="off" placeholder="Search 364 printables" autofocus />
+    <button class="mob-search-cancel">Cancel</button>
+  </div>
+  <div class="mob-search-body">
+    <div class="mob-search-section">
+      <h2>Recent</h2>
+      <ul>
+        <li><a href="#"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>cvc worksheets <span class="meta">2 days ago</span></a></li>
+        <li><a href="#"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>spring flashcards <span class="meta">1 week ago</span></a></li>
+      </ul>
+    </div>
+    <div class="mob-search-section">
+      <h2>Popular</h2>
+      <ul>
+        <li><a href="#"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 10c0-6 12-6 12 0v8H6v-8z"/><path d="M9 18v2M15 18v2"/></svg>decodable readers</a></li>
+        <li><a href="#"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 10c0-6 12-6 12 0v8H6v-8z"/><path d="M9 18v2M15 18v2"/></svg>100s chart</a></li>
+        <li><a href="#"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 10c0-6 12-6 12 0v8H6v-8z"/><path d="M9 18v2M15 18v2"/></svg>alphabet tracing</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>Results</strong></div>
+  
+<div class="mob-search" style="position: absolute; top: 44px; bottom: 24px; left: 0; right: 0">
+  <div class="mob-search-head">
+    <input type="search" inputmode="search" enterkeyhint="search" value="number" />
+    <button class="mob-search-cancel">Cancel</button>
+  </div>
+  <div class="mob-search-body">
+    <div class="mob-search-section">
+      <h2>4 results</h2>
+      <ul>
+        <li><a href="#" style="padding: 12px 4px; gap: 12px">
+          <div class="placeholder-img" style="width:44px; height:44px; border-radius:8px; flex-shrink:0">[ ]</div>
+          <div style="display:flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0">
+            <span style="font-size: var(--t-base)"><strong>Number</strong>-line math, 1 to 100</span>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; color: var(--fg-muted)">PDF · $5.10 (was $8.00)</span>
+          </div>
+        </a></li>
+        <li><a href="#" style="padding: 12px 4px; gap: 12px">
+          <div class="placeholder-img" style="width:44px; height:44px; border-radius:8px; flex-shrink:0">[ ]</div>
+          <div style="display:flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0">
+            <span style="font-size: var(--t-base)">Counting <strong>numbers</strong>, 1 to 20</span>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; color: var(--fg-muted)">PDF · $5.00</span>
+          </div>
+        </a></li>
+        <li><a href="#" style="padding: 12px 4px; gap: 12px">
+          <div class="placeholder-img" style="width:44px; height:44px; border-radius:8px; flex-shrink:0">[ ]</div>
+          <div style="display:flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0">
+            <span style="font-size: var(--t-base)"><strong>Number</strong> formation tracing</span>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; color: var(--fg-muted)">PDF · $4.00</span>
+          </div>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>No results</strong></div>
+  
+<div class="mob-search" style="position: absolute; top: 44px; bottom: 24px; left: 0; right: 0">
+  <div class="mob-search-head">
+    <input type="search" inputmode="search" enterkeyhint="search" value="multiplication tables" />
+    <button class="mob-search-cancel">Cancel</button>
+  </div>
+  <div class="mob-search-body" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 48px">
+    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="1.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M8 11h6"/></svg>
+    <h3 style="margin: 18px 0 6px; font-family: var(--font-display); font-weight: 600; font-size: 20px; letter-spacing: -0.025em">No results for "multiplication tables"</h3>
+    <p style="margin: 0 0 18px; color: var(--fg-soft); font-size: var(--t-sm); line-height: 1.5; max-width: 32ch">Try shorter terms, or browse by category. Tell me what you needed and I might draw it.</p>
+    <a href="../screens-mobile/contact.html" class="mob-btn ghost full" style="max-width: 220px">Request a printable</a>
+  </div>
+</div>
+
+  <div data-chrome="home"></div>
+</div><script src="../screens-mobile/_mobile-chrome.js"></script>
+</body>
+</html>

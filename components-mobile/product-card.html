@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ProductCard · Component · JoyWaveDigital mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../screens-mobile/mobile.css" />
+<style>
+  body { background: var(--bg-subtle) }
+  .mob-stage { background: var(--bg); min-height: auto; padding-bottom: 24px; margin: 24px auto; box-shadow: 0 16px 48px -24px oklch(0.18 0.05 40 / 0.32); border-radius: 12px; overflow: hidden }
+  .ann { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); padding: 12px 16px 4px; background: var(--bg) }
+  .ann strong { color: var(--fg); font-weight: 600 }
+</style>
+</head>
+<body>
+<div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); text-align: center; padding: 18px 0 0">ProductCard · mobile variants (structure locked)</div>
+<div class="mob-stage" style="padding: 24px 16px">
+  <div class="mob-eyebrow" style="margin-bottom: 12px">Default · 2-col grid</div>
+  <div class="mob-grid" style="margin-bottom: 24px">
+    <article class="mob-pcard">
+      <div class="mob-pcard-img placeholder">
+        <button class="mob-pcard-heart" aria-label="Save"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></button>
+        <a href="#" class="cover"></a>
+      </div>
+      <h3 title="Decodable readers, Set 3, short vowels">Decodable readers, Set 3</h3>
+      <div class="meta">PDF · 24 pages</div>
+      <div class="price">$8.00</div>
+    </article>
+    <article class="mob-pcard">
+      <div class="mob-pcard-img placeholder">
+        <span class="chip sale">36% off</span>
+        <button class="mob-pcard-heart on" aria-label="Remove"><svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></button>
+      </div>
+      <h3 title="Number-line math, 1 to 100">Number-line math, 1 to 100</h3>
+      <div class="meta">PDF + PNG · 18 pages</div>
+      <div class="price"><span class="save">$5.10</span> <span class="strike">$8.00</span></div>
+    </article>
+  </div>
+
+  <div class="mob-eyebrow" style="margin-bottom: 12px">Chip variants</div>
+  <div class="mob-grid" style="margin-bottom: 24px">
+    <article class="mob-pcard"><div class="mob-pcard-img placeholder"><span class="chip new">New</span></div><h3>New release</h3><div class="meta">PDF</div><div class="price">$6.00</div></article>
+    <article class="mob-pcard"><div class="mob-pcard-img placeholder"><span class="chip free">Free</span></div><h3>Free sample</h3><div class="meta">PDF</div><div class="price">$0.00</div></article>
+    <article class="mob-pcard"><div class="mob-pcard-img placeholder"><span class="chip pick">Pick</span></div><h3>Editor's pick</h3><div class="meta">PDF</div><div class="price">$18.00</div></article>
+    <article class="mob-pcard"><div class="mob-pcard-img placeholder"><span class="chip sale">25% off</span></div><h3>On sale</h3><div class="meta">PDF</div><div class="price"><span class="save">$4.50</span> <span class="strike">$6.00</span></div></article>
+  </div>
+
+  <div class="mob-eyebrow" style="margin-bottom: 12px">Press state</div>
+  <div class="mob-grid">
+    <article class="mob-pcard" style="opacity: 0.7; transform: scale(0.985); transition: none"><div class="mob-pcard-img placeholder"></div><h3>Tapped (active)</h3><div class="meta">PDF</div><div class="price">$8.00</div></article>
+    <article class="mob-pcard"><div class="mob-pcard-img placeholder"></div><h3 style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden">Very long title that gets clamped to one line and shows ellipsis</h3><div class="meta">PDF · 32 pages</div><div class="price">$8.00</div></article>
+  </div>
+</div>
+<script src="../screens-mobile/_mobile-chrome.js"></script>
+</body>
+</html>

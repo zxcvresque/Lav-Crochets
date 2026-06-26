@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thank you · Pending · states · JoyWaveDigital desktop pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="states.css" />
+</head>
+<body>
+<div class="audit-head">
+  <div class="crumb">Desktop pass · state variants · /orders/thank-you-pending</div>
+  <h1>Thank you · Pending, <em>every state.</em></h1>
+  <p>Stacked state mockups for the route. Each card carries a mono label and a one-line note about what is happening visually. The "Default" state iframes the existing desktop mockup at <code>screens/thank-you-pending.html</code>. Header states show the same screen with the inner page scrolled to 0 (flat) or 240 (pill). Loading / empty / error / success states are focused mockups, not full re-renders.</p>
+</div>
+<div class="state-stack">
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Header · flat</span><span class="desc">Header · flat (scrollY ≤ 40)</span></div>
+  <div class="state-card-body"><iframe class="state-iframe" loading="lazy" src="../screens/thank-you-pending.html#scroll=0" title="thank-you-pending.html flat" onload="try{const w=this.contentWindow;if(w&&w.document){w.scrollTo({top:0,behavior:'instant'});}}catch(e){}"></iframe><div class="note">Top of page. AnnouncementBar visible above the header; nav links visible inline; no pill chrome; full container width.</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Header · scrolled</span><span class="desc">Header · scrolled to pill (scrollY > 40) · NOT APPLICABLE</span></div>
+  <div class="state-card-body"><div class="empty"><div class="glyph"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div><h3>No pill state applicable.</h3><p>This route does not scroll past 40px. The header stays in its flat state throughout the session.</p></div><div class="note">Confirmed in <code>pixel-precision-audit.md</code>.</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Default</span><span class="desc">Default · the route in its happy-path state</span></div>
+  <div class="state-card-body"><iframe class="state-iframe" loading="lazy" src="../screens/thank-you-pending.html" title="thank-you-pending.html default"></iframe></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Loading</span><span class="desc">Loading · skeleton placeholders</span></div>
+  <div class="state-card-body">
+<div class="pad" style="background: var(--bg); display: flex; flex-direction: column; align-items: center; padding-top: 120px">
+  <div style="width: 96px; height: 96px; border: 3px solid var(--bg-subtle); border-top-color: var(--joy-500); border-radius: 99px; animation: spin 1.1s linear infinite"></div>
+  <div class="skel skel-line" style="width: 320px; height: 28px; margin-top: 28px"></div>
+  <div class="skel skel-line" style="width: 260px; height: 14px; margin-top: 14px"></div>
+  <style>@keyframes spin { from { transform: rotate(0) } to { transform: rotate(360deg) } } @media (prefers-reduced-motion: reduce) { div[style*="spin"] { animation: none !important } }</style>
+</div><div class="note">The route IS the loading state for the order; polling indicator pulses below the headline.</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Error</span><span class="desc">Error · failure path</span></div>
+  <div class="state-card-body">
+<div class="pad" style="background: var(--bg); padding-top: 96px; max-width: 600px; margin: 0 auto; text-align: center">
+  <div style="width: 80px; height: 80px; border-radius: 99px; background: var(--bg-subtle); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 18px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 13h4"/></svg></div>
+  <h2 style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.025em; margin: 0 0 12px">Still pending after 90 seconds.</h2>
+  <p style="margin: 0 0 24px; color: var(--fg-soft); font-size: 15px; line-height: 1.5">Your bank may still be processing. We will email you the moment it confirms. You can close this page.</p>
+  <a href="#" class="b ghost">Contact support</a>
+</div><div class="note">After 90s of polling without confirmation: switch to the "we will email you when this confirms" branch with a sticky retry banner.</div></div></div>
+<div class="state-card">
+  <div class="state-card-head"><span class="label">Success</span><span class="desc">Success · post-action affirmation</span></div>
+  <div class="state-card-body">
+<div class="pad" style="background: var(--bg); padding-top: 120px; max-width: 600px; margin: 0 auto; text-align: center">
+  <div style="width: 56px; height: 56px; border-radius: 99px; background: color-mix(in oklch, var(--ok) 18%, var(--bg)); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 18px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="oklch(0.40 0.13 145)" stroke-width="2.2" stroke-linecap="round"><path d="m4 12 5 5 11-11"/></svg></div>
+  <h2 style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.025em; margin: 0 0 8px">Payment confirmed.</h2>
+  <p style="margin: 0; color: var(--fg-soft); font-size: 15px">Redirecting to your downloads…</p>
+</div><div class="note">When polling confirms: redirect to /orders/thank-you/[id] with the paid variant.</div></div></div>
+</div>
+</body>
+</html>

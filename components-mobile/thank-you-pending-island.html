@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ThankYouPendingIsland · Component · JoyWaveDigital mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../screens-mobile/mobile.css" />
+<style>
+  body { background: var(--bg-subtle) }
+  .mob-stage { background: var(--bg); min-height: auto; padding-bottom: 24px; margin: 24px auto; box-shadow: 0 16px 48px -24px oklch(0.18 0.05 40 / 0.32); border-radius: 12px; overflow: hidden }
+  .ann { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); padding: 12px 16px 4px; background: var(--bg) }
+  .ann strong { color: var(--fg); font-weight: 600 }
+</style>
+</head>
+<body>
+<div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); text-align: center; padding: 18px 0 0">ThankYouPendingIsland · branded loader</div>
+
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="2"></div>
+  <div class="ann"><strong>Default</strong></div>
+  
+<main class="mob-main" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 56px; padding-bottom: 56px; min-height: 600px">
+  <style>
+    @keyframes pulse-ring {
+      0%, 100% { transform: scale(0.92); opacity: 0.6 }
+      50% { transform: scale(1.04); opacity: 0.2 }
+    }
+    @media (prefers-reduced-motion: reduce) { .pulse-ring { animation: none } }
+  </style>
+  <div style="position: relative; width: 96px; height: 96px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 24px">
+    <div class="pulse-ring" style="position: absolute; inset: 0; border-radius: 99px; border: 2px solid var(--joy-500); animation: pulse-ring 1.6s ease-in-out infinite"></div>
+    <svg width="38" height="38" viewBox="0 0 28 28"><rect width="28" height="28" rx="9" fill="var(--joy-500)"/><path d="M3 16 C 7 8, 9 24, 13 16 S 19 8, 21 16 S 25 24, 27 16" stroke="var(--joy-950)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="14" cy="7" r="2" fill="var(--joy-950)"/></svg>
+  </div>
+  <span class="mob-status pending" style="margin-bottom: 12px">Processing payment</span>
+  <h1 style="font-family: var(--font-display); font-weight: 600; font-size: 32px; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 12px; text-wrap: balance">Hang on, we are confirming.</h1>
+  <p style="margin: 0 0 20px; color: var(--fg-soft); font-size: var(--t-md); line-height: 1.5; max-width: 32ch">Most payments confirm in 5 to 30 seconds.</p>
+  <div class="mob-eyebrow" style="display: inline-flex; gap: 6px; align-items: center">
+    <span style="width: 6px; height: 6px; border-radius: 99px; background: var(--joy-500); animation: pulse-ring 0.9s infinite"></span>
+    Polling · 4s
+  </div>
+</main>
+
+  <div data-chrome="home"></div>
+</div>
+<script src="../screens-mobile/_mobile-chrome.js"></script>
+</body>
+</html>

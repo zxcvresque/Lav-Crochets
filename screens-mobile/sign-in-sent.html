@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Sign in · sent · JoyWaveDigital mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="mobile.css" />
+</head>
+<body>
+<div class="mob-stage" data-stage data-no-announce>
+  <div data-chrome="status"></div>
+  <div data-chrome="header" data-cart-count="0"></div>
+
+  <main class="mob-main" id="main" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 48px">
+    <div style="width: 80px; height: 80px; border-radius: 99px; background: var(--joy-100); display: flex; align-items: center; justify-content: center; margin-bottom: 18px">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--joy-700)" stroke-width="1.6" stroke-linecap="round"><path d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg>
+    </div>
+
+    <h1 style="font-family: var(--font-display); font-weight: 600; font-size: clamp(32px, 9vw, 40px); letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 12px; text-wrap: balance">Check your inbox.</h1>
+    <p style="margin: 0 0 26px; color: var(--fg-soft); font-size: var(--t-md); line-height: 1.5; max-width: 36ch">If we found an account for <strong style="color: var(--fg)">sneha@example.com</strong>, a sign-in link is on the way. Open it on this device to log in here.</p>
+
+    <div class="mob-card" style="width: 100%; text-align: left; margin-bottom: 18px">
+      <h3 style="margin: 0 0 6px; font-family: var(--font-display); font-weight: 600; font-size: 16px">Not arriving?</h3>
+      <ul style="margin: 0; padding-left: 20px; color: var(--fg-soft); font-size: var(--t-sm); line-height: 1.6; display: flex; flex-direction: column; gap: 4px">
+        <li>Check your spam folder.</li>
+        <li>Add <em style="font-style: normal; color: var(--joy-700)">hi@joywavedigital.com</em> to your contacts.</li>
+        <li>The link expires after 30 minutes.</li>
+      </ul>
+    </div>
+
+    <button class="mob-btn ghost full" style="margin-bottom: 10px">Resend link</button>
+    <a href="sign-in.html" class="mob-btn subtle full">Use a different email</a>
+  </main>
+
+  <div data-chrome="home"></div>
+</div>
+<script src="_mobile-chrome.js"></script>
+</body>
+</html>
