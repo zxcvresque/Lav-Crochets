@@ -862,7 +862,7 @@ textarea:focus-visible {
 .mobile-nav-drawer.open { transform: translateX(0); }
 .mobile-nav-head {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 20px;
+  padding: 13px 18px;
   border-bottom: 1px solid var(--line);
 }
 .mobile-nav-head .brand {
@@ -874,19 +874,19 @@ textarea:focus-visible {
 }
 .mobile-nav-list {
   display: flex; flex-direction: column;
-  padding: 12px 12px;
-  gap: 2px;
+  padding: 6px 10px;
+  gap: 0;
   flex: 1;
 }
 .mobile-nav-list a,
 .mobile-nav-list button {
   display: flex; align-items: center; justify-content: space-between;
   width: 100%;
-  padding: 14px 16px;
+  padding: 9px 14px;
   border: 0; background: transparent; cursor: pointer;
   border-radius: var(--r-3);
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
   letter-spacing: -0.015em;
   color: var(--fg);
@@ -901,14 +901,14 @@ textarea:focus-visible {
 /* Secondary tier: smaller, icon-led rows for cart + social + share. */
 .mobile-nav-list .mobile-nav-sub {
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0;
   color: var(--fg-soft);
-  padding: 12px 16px;
+  padding: 8px 14px;
 }
 .mobile-nav-list .mobile-nav-sub:hover { color: var(--fg); }
-.mobile-nav-rule { border: 0; border-top: 1px solid var(--line); margin: 12px 16px; }
+.mobile-nav-rule { border: 0; border-top: 1px solid var(--line); margin: 6px 14px; }
 .mobile-nav-count {
   display: inline-flex; align-items: center; justify-content: center;
   min-width: 22px; height: 22px;
@@ -920,9 +920,9 @@ textarea:focus-visible {
   font-size: 11px; font-weight: 600;
 }
 .mobile-nav-foot {
-  padding: 20px;
+  padding: 12px 18px 14px;
   border-top: 1px solid var(--line);
-  display: flex; flex-direction: column; gap: 14px;
+  display: flex; flex-direction: column; gap: 10px;
 }
 .mobile-nav-meta {
   font-family: var(--font-mono);
@@ -966,7 +966,7 @@ textarea:focus-visible {
   color: var(--fg-soft);
   transition: color var(--dur-base) var(--ease-out-soft), background var(--dur-base) var(--ease-out-soft);
 }
-.header nav a:hover { color: var(--fg); background: color-mix(in oklch, var(--ink) 5%, transparent); }
+.header nav a:hover { color: var(--fg); background: color-mix(in oklch, var(--fg) 8%, transparent); }
 .header nav a.active { color: var(--fg); }
 .header-actions { display: flex; align-items: center; gap: 6px; }
 
@@ -982,7 +982,7 @@ textarea:focus-visible {
   position: relative;
   transition: background var(--dur-base) var(--ease-out-soft), color var(--dur-base) var(--ease-out-soft);
 }
-.iconbtn:hover { background: color-mix(in oklch, var(--ink) 6%, transparent); color: var(--fg); }
+.iconbtn:hover { background: color-mix(in oklch, var(--fg) 8%, transparent); color: var(--fg); }
 .cart-count {
   position: absolute;
   top: 6px; right: 6px;

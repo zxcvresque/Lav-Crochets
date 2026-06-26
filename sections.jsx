@@ -169,7 +169,7 @@ function CategoryGrid() {
                   <span className="count" style={{ opacity: 0.8 }}>{c.count} pieces</span>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", gap: 12 }}>
                     <h3>{c.title}</h3>
-                    <span aria-hidden="true" style={{ display: "inline-flex", width: 40, height: 40, borderRadius: 99, alignItems: "center", justifyContent: "center", background: "color-mix(in oklch, currentColor 14%, transparent)" }}>
+                    <span className="cat-arrow" aria-hidden="true" style={{ display: "inline-flex", width: 40, height: 40, borderRadius: 99, alignItems: "center", justifyContent: "center", background: "color-mix(in oklch, currentColor 14%, transparent)" }}>
                       <Icon name="arrow-up-right" size={18} />
                     </span>
                   </div>
@@ -189,7 +189,7 @@ function CustomOrders() {
   return (
     <section className="section" id="custom">
       <div className="wrap">
-        <div className="panel brand" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 48, alignItems: "center" }}>
+        <div className="panel brand panel-split">
           <div>
             <div className="eyebrow" style={{ color: "color-mix(in oklch, var(--joy-950) 60%, transparent)", marginBottom: 16 }}>
               <span className="eyebrow-dot" style={{ background: "var(--joy-950)" }} />Custom orders
@@ -349,7 +349,7 @@ function Newsletter() {
   return (
     <section className="section tight" id="newsletter">
       <div className="wrap">
-        <div className="panel ink" style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: 48, alignItems: "center" }}>
+        <div className="panel ink panel-split">
           <div>
             <div className="eyebrow" style={{ color: "color-mix(in oklch, var(--paper) 60%, transparent)", marginBottom: 16 }}>
               <span className="eyebrow-dot" style={{ background: "var(--joy-500)" }} />Stay in the loop
@@ -635,17 +635,19 @@ function CustomPage() {
   const set = (k) => (e) => setF(s => ({ ...s, [k]: e.target.value }));
   const submit = (e) => {
     e.preventDefault();
-    // WhatsApp markdown: *bold* labels, \n line breaks (render on mobile +
-    // WhatsApp Web; the desktop app may flatten the newlines).
-    const body = [
-      `*Name:* ${f.name || "-"}`,
-      `*What I'd like:* ${f.piece || "-"}`,
-      `*Colours:* ${f.colours || "-"}`,
-      `*Size / quantity:* ${f.size || "-"}`,
-      `*Need by:* ${f.deadline || "-"}`,
-      f.notes ? `*Notes:* ${f.notes}` : null,
-    ].filter(Boolean).join("\n");
-    const msg = `Hi ${CONFIG.brandName}! I'd like a *custom crochet piece*.\n\n${body}`;
+    // WhatsApp markdown: each field is a *bold* label on its own line, with the
+    // answer on the next line as a "- " bullet (renders on mobile + WhatsApp Web;
+    // the desktop app may flatten the newlines).
+    const field = (label, val) => `*${label}:*\n- ${(val && val.trim()) || "not specified"}`;
+    const parts = [
+      field("Name", f.name),
+      field("What I'd like", f.piece),
+      field("Colours", f.colours),
+      field("Size / quantity", f.size),
+      field("Need by", f.deadline),
+    ];
+    if (f.notes && f.notes.trim()) parts.push(field("Notes", f.notes));
+    const msg = `Hi ${CONFIG.brandName}! I'd like a *custom crochet piece*.\n\n${parts.join("\n\n")}`;
     window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   };
   return (

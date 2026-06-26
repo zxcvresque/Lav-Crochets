@@ -144,15 +144,17 @@ function buildWhatsAppHref(lines, config = window.CONFIG) {
       l.selectedSize && `size: ${l.selectedSize}`,
     ].filter(Boolean).join(", ");
     const sub = fmtPriceINR((l.priceINR || 0) * qty);
-    return `• *${l.title}* x${qty}${opts ? ` (${opts})` : ""} — ${sub}`;
+    return `- *${l.title}* x${qty}${opts ? ` (${opts})` : ""} · ${sub}`;
   });
   const total = (lines || []).reduce((s, l) => s + (l.priceINR || 0) * (l.qty || 1), 0);
-  // WhatsApp markdown: *bold* for titles/labels, \n line breaks.
+  // WhatsApp markdown: *bold* labels, each answer on the next line as a "- "
+  // bullet, \n line breaks. The trailing fields are left blank for the customer
+  // to fill in on WhatsApp before sending.
   const msg =
     `Hi ${config.brandName}! I would like to *order*:\n\n` +
     rows.join("\n") +
     `\n\n*Total: ${fmtPriceINR(total)}*\n\n` +
-    `*My name:*\n*Delivery pincode:*\n*Notes (colour / size / custom):*`;
+    `*My name:*\n- \n\n*Delivery pincode:*\n- \n\n*Notes (colour / size / custom):*\n- `;
   return `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(msg)}`;
 }
 

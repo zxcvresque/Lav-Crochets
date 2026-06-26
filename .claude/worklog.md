@@ -68,3 +68,8 @@
 - Header spacing: nav centred with `margin:0 auto`, tighter inter-link gap but more per-link padding (9px 16px) + white-space:nowrap, so brand · nav · actions breathe like the reference.
 - Dark mode: `[data-theme=dark] .panel.ink` now lifts to an elevated bordered surface (var(--bg-subtle)/--line-2) instead of blending into the page; light text still reads.
 - Verified light header + dark Newsletter panel; home renders with dev tooling gone (no dangling refs).
+
+## Dark hover fix + compact mobile drawer
+- Files: styles.css
+- Nav-link hover + .iconbtn hover used color-mix on --ink (dark) -> invisible on dark pages. Switched to var(--fg) 8% so the subtle hover pill shows in both themes. (.scrim stays --ink, correct; line 553 is the removed heart, unused.)
+- Compacted the mobile nav drawer to fit phones like the reference: head padding 13px; main links 18px / 9px-14px padding, gap 0; sub rows 14px / 8px-14px; tighter rule + foot. All rows (5 nav + Cart/Instagram/WhatsApp/Share/theme) now fit without overflow.
