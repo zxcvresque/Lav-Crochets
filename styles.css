@@ -1087,6 +1087,70 @@ textarea:focus-visible {
 .panel.sun { background: var(--sun-500); color: oklch(0.30 0.05 70); border-color: transparent; }
 .panel.plum { background: var(--iris-500); color: white; border-color: transparent; }
 
+/* ── "How ordering works" timeline ───────────────────────────────────────
+   Numbered badges joined by a connector line. The list fills the panel
+   (li { flex: 1 }) so the 5 steps share the height evenly instead of leaving
+   a void in the middle. The connector hangs from each badge to the row bottom
+   (= the next badge), so it stays aligned even if a step wraps. */
+.order-card .order-steps {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.order-card .order-steps li {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.order-card .order-steps li:last-child { flex: 0 0 auto; }
+.order-card .order-steps li:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 16px;            /* centre of the 34px badge */
+  top: 34px;             /* badge bottom */
+  bottom: 0;             /* row bottom = next badge top */
+  width: 2px;
+  background: color-mix(in oklch, var(--joy-950) 22%, transparent);
+  border-radius: 2px;
+}
+.order-step-num {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--joy-950);
+  color: var(--joy-100);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 1;
+}
+.order-step-text {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(18px, 1.5vw, 22px);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--joy-950);
+  padding-top: 4px;      /* optically centre the first line against the badge */
+}
+@media (max-width: 768px) {
+  /* The generic .grid-2 never collapses; stack this section and let the card
+     size to content on phones (matches the design system's two-up collapse). */
+  #story .grid-2 { grid-template-columns: 1fr; }
+  .order-card { aspect-ratio: auto; }
+}
+
 /* Quote / founder block */
 .quote-block {
   font-family: var(--font-display);
@@ -1191,45 +1255,45 @@ textarea:focus-visible {
 .drawer.open { transform: translateX(0); }
 .drawer-head {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 22px;
+  padding: 14px 18px;
   border-bottom: 1px solid var(--line);
 }
-.drawer-head h3 { font-family: var(--font-display); font-size: 28px; letter-spacing: -0.025em; margin: 0; font-weight: 500; }
-.drawer-body { flex: 1; overflow-y: auto; padding: 12px 22px 20px; display: flex; flex-direction: column; gap: 14px; }
-.drawer-foot { padding: 18px 22px 22px; border-top: 1px solid var(--line); background: var(--bg-elev); }
+.drawer-head h3 { font-family: var(--font-display); font-size: 19px; letter-spacing: -0.02em; margin: 0; font-weight: 600; }
+.drawer-body { flex: 1; overflow-y: auto; padding: 4px 18px 12px; display: flex; flex-direction: column; }
+.drawer-foot { padding: 14px 18px 18px; border-top: 1px solid var(--line); background: var(--bg-elev); }
 
 .cart-line {
   display: grid;
-  grid-template-columns: 72px 1fr auto;
-  gap: 14px;
+  grid-template-columns: 52px 1fr auto;
+  gap: 12px;
   align-items: start;
-  padding: 16px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--line);
 }
 .cart-line:last-child { border-bottom: 0; }
-.cart-line .thumb { width: 72px; height: 72px; aspect-ratio: 1; border-radius: var(--r-3); overflow: hidden; background: var(--bg-subtle); border: 1px solid var(--line); }
-.cart-line .ct { display: flex; flex-direction: column; gap: 5px; min-width: 0; padding-top: 2px; }
-.cart-line .ct .t { font-weight: 600; font-size: 15px; line-height: 1.3; }
-.cart-line .ct .m { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); letter-spacing: 0.04em; text-transform: uppercase; }
-.cart-line-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-.cart-line .price { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.02em; }
-.cart-remove { background: none; border: 0; padding: 0; cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-faint); transition: color var(--dur-base) var(--ease-out-soft); }
+.cart-line .thumb { width: 52px; height: 52px; aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: var(--bg-subtle); border: 1px solid var(--line); }
+.cart-line .ct { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.cart-line .ct .t { font-weight: 600; font-size: 13.5px; line-height: 1.3; }
+.cart-line .ct .m { font-family: var(--font-mono); font-size: 10px; color: var(--fg-muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.cart-line-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.cart-line .price { font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: -0.02em; }
+.cart-remove { background: none; border: 0; padding: 0; cursor: pointer; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-faint); transition: color var(--dur-base) var(--ease-out-soft); }
 .cart-remove:hover { color: var(--bad); }
 
-.cart-totals { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-.cart-totals .row-t { display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; color: var(--fg-soft); }
-.cart-totals .row-t.grand { font-family: var(--font-display); font-size: 24px; font-weight: 600; color: var(--fg); letter-spacing: -0.02em; padding-top: 8px; border-top: 1px solid var(--line); }
+.cart-totals { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.cart-totals .row-t { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; color: var(--fg-soft); }
+.cart-totals .row-t.grand { font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--fg); letter-spacing: -0.02em; padding-top: 6px; border-top: 1px solid var(--line); }
 
 /* UPI panel inside the cart */
-.upi-pay { margin-top: 14px; padding: 14px 16px; border-radius: var(--r-3); background: var(--bg-subtle); border: 1px solid var(--line); }
-.upi-pay-head { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 12px; }
-.upi-pay-row { display: flex; gap: 14px; align-items: center; }
-.upi-qr { border-radius: 10px; background: #fff; flex-shrink: 0; border: 1px solid var(--line); }
-.upi-k { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); }
-.upi-copy { display: inline-flex; align-items: center; gap: 6px; margin-top: 3px; background: transparent; border: 0; padding: 0; cursor: pointer; font-family: var(--font-mono); font-size: 14px; color: var(--fg); }
+.upi-pay { margin-top: 12px; padding: 12px 14px; border-radius: var(--r-3); background: var(--bg-subtle); border: 1px solid var(--line); }
+.upi-pay-head { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 10px; }
+.upi-pay-row { display: flex; gap: 12px; align-items: center; }
+.upi-qr { border-radius: 8px; background: #fff; flex-shrink: 0; border: 1px solid var(--line); }
+.upi-k { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); }
+.upi-copy { display: inline-flex; align-items: center; gap: 6px; margin-top: 2px; background: transparent; border: 0; padding: 0; cursor: pointer; font-family: var(--font-mono); font-size: 13px; color: var(--fg); }
 .upi-copy:hover { color: var(--brand-press); }
-.upi-hint { font-size: 11px; color: var(--fg-muted); margin-top: 3px; }
-.upi-note { font-size: 12px; color: var(--fg-muted); margin: 12px 0 0; line-height: 1.5; }
+.upi-hint { font-size: 10.5px; color: var(--fg-muted); margin-top: 2px; }
+.upi-note { font-size: 11.5px; color: var(--fg-muted); margin: 10px 0 0; line-height: 1.45; }
 
 /* WhatsApp glyph (png): black on light surfaces, white in dark mode and on the
    always-dark footer, black again on lavender buttons. */
@@ -1404,4 +1468,38 @@ textarea:focus-visible {
 @media (max-width: 900px) {
   .header { padding-left: 16px; }
   .header nav { display: none; }
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Flash hover + scroll-to-top
+   ─────────────────────────────────────────────────────────────────────── */
+/* A diagonal shine that sweeps across on hover. */
+.btn-flash { position: relative; overflow: hidden; }
+.btn-flash::after {
+  content: "";
+  position: absolute; top: 0; left: -120%;
+  width: 55%; height: 100%;
+  background: linear-gradient(115deg, transparent 0%, color-mix(in oklch, white 60%, transparent) 50%, transparent 100%);
+  transform: skewX(-18deg);
+  pointer-events: none;
+  transition: left 0.6s var(--ease-out-soft);
+}
+.btn-flash:hover::after { left: 140%; }
+
+/* Floating scroll-to-top button. */
+.scrolltop {
+  position: fixed; right: 22px; bottom: 22px; z-index: 45;
+  width: 46px; height: 46px; border-radius: var(--r-pill);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--brand); color: var(--brand-ink); border: 0; cursor: pointer;
+  box-shadow: var(--shadow-3);
+  opacity: 0; transform: translateY(14px) scale(0.9); pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease-out-soft),
+              transform var(--dur-base) var(--ease-out-soft),
+              background var(--dur-base) var(--ease-out-soft);
+}
+.scrolltop.show { opacity: 1; transform: none; pointer-events: auto; }
+.scrolltop:hover { background: var(--brand-press); transform: translateY(-2px); }
+@media (max-width: 768px) {
+  .scrolltop { right: 16px; bottom: 16px; width: 44px; height: 44px; }
 }

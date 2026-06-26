@@ -53,3 +53,10 @@
 ## Fix dark-mode buttons
 - Files: styles.css
 - .pcard-add, .btn.ink, .btn.outline used hardcoded --ink/--paper (not themed) -> dark-on-dark in dark mode. Switched to --fg/--bg so they invert: light = dark fill + light text (unchanged), dark = light fill + dark text. .pcard-add now solid with a brand-colour hover. Verified shop cards in dark show white buttons.
+
+## WhatsApp formatting, scroll-top, flash hovers, compact cart
+- Files: primitives.jsx, sections.jsx, cart-drawer.jsx, app.jsx, styles.css
+- WhatsApp messages now use *bold* labels/titles + \n line breaks (custom form + cart buildWhatsAppHref). Note: newlines render on mobile/WhatsApp Web; desktop app may flatten them (WhatsApp limitation).
+- Scroll-to-top: ScrollTop component (primitives) shows after 500px scroll, fixed bottom-right lavender circle (arrow-up icon), smooth scroll; rendered in app.jsx on all pages. Added arrow-up icon.
+- Flash hover: .btn-flash (shine sweep on hover) added to custom Send button (now small + centered, not full-width xl), the Newsletter social buttons (Follow on Instagram / WhatsApp / catalogue), cart Send button, and the scroll-top.
+- Compact cart: smaller header (19px), 52px thumbs, smaller title/price/total, base-size Send button (h48), tighter UPI panel + 48px QR. Global (no desktop-only rules) so Android gets it too. Verified both items fit without the footer dominating.

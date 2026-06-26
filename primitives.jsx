@@ -53,6 +53,8 @@ const Icon = ({ name, size = 20, stroke = 1.6, ...rest }) => {
       return (<svg {...common}><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>);
     case "sun":
       return (<svg {...common}><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.9 4.9l1.4 1.4"/><path d="M17.7 17.7l1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.9 19.1l1.4-1.4"/><path d="M17.7 6.3l1.4-1.4"/></svg>);
+    case "arrow-up":
+      return (<svg {...common}><path d="M12 20V5"/><path d="m6 11 6-6 6 6"/></svg>);
     default:
       return null;
   }
@@ -140,14 +142,15 @@ function buildWhatsAppHref(lines, config = window.CONFIG) {
       l.selectedSize && `size: ${l.selectedSize}`,
     ].filter(Boolean).join(", ");
     const sub = fmtPriceINR((l.priceINR || 0) * qty);
-    return `• ${l.title} x${qty}${opts ? ` (${opts})` : ""} — ${sub}`;
+    return `• *${l.title}* x${qty}${opts ? ` (${opts})` : ""} — ${sub}`;
   });
   const total = (lines || []).reduce((s, l) => s + (l.priceINR || 0) * (l.qty || 1), 0);
+  // WhatsApp markdown: *bold* for titles/labels, \n line breaks.
   const msg =
-    `Hi ${config.brandName}! I would like to order:\n\n` +
+    `Hi ${config.brandName}! I would like to *order*:\n\n` +
     rows.join("\n") +
-    `\n\nTotal: ${fmtPriceINR(total)}\n\n` +
-    `My name:\nDelivery pincode:\nNotes (colour / size / custom):`;
+    `\n\n*Total: ${fmtPriceINR(total)}*\n\n` +
+    `*My name:*\n*Delivery pincode:*\n*Notes (colour / size / custom):*`;
   return `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(msg)}`;
 }
 
@@ -179,7 +182,22 @@ function WaIcon({ size = 18 }) {
   );
 }
 
+// Floating scroll-to-top button; appears once you scroll down a bit.
+function ScrollTop() {
+  const show = useScrolled(500);
+  return (
+    <button
+      className={`scrolltop btn-flash ${show ? "show" : ""}`}
+      aria-label="Scroll to top"
+      tabIndex={show ? 0 : -1}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    >
+      <Icon name="arrow-up" size={20} />
+    </button>
+  );
+}
+
 Object.assign(window, {
   Icon, useScrolled, useScrollProgress, useReveal, Reveal,
-  fmtPriceINR, buildWhatsAppHref, buildProductWhatsAppHref, BrandMark, WaIcon,
+  fmtPriceINR, buildWhatsAppHref, buildProductWhatsAppHref, BrandMark, WaIcon, ScrollTop,
 });

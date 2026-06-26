@@ -242,16 +242,16 @@ function QuoteBlock() {
           </Reveal>
 
           <Reveal delay={150}>
-            <div className="panel brand" style={{ aspectRatio: "1.05 / 1", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <div className="panel brand order-card" style={{ aspectRatio: "1.05 / 1", display: "flex", flexDirection: "column" }}>
               <div className="eyebrow" style={{ color: "color-mix(in oklch, var(--joy-950) 60%, transparent)" }}>
                 <span className="eyebrow-dot" style={{ background: "var(--joy-950)" }} />How ordering works
               </div>
-              <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12, fontFamily: "var(--font-display)", fontSize: 24, fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.12, counterReset: "step" }}>
-                <li>1 · Browse and pick your pieces.</li>
-                <li>2 · Send your order on WhatsApp.</li>
-                <li>3 · We confirm stock, total and shipping.</li>
-                <li>4 · Pay securely by UPI.</li>
-                <li>5 · We hook it by hand and ship.</li>
+              <ol className="order-steps">
+                <li><span className="order-step-num">1</span><span className="order-step-text">Browse and pick your pieces.</span></li>
+                <li><span className="order-step-num">2</span><span className="order-step-text">Send your order on WhatsApp.</span></li>
+                <li><span className="order-step-num">3</span><span className="order-step-text">We confirm stock, total and shipping.</span></li>
+                <li><span className="order-step-num">4</span><span className="order-step-text">Pay securely by UPI.</span></li>
+                <li><span className="order-step-num">5</span><span className="order-step-text">We hook it by hand and ship.</span></li>
               </ol>
             </div>
           </Reveal>
@@ -311,14 +311,14 @@ function Newsletter() {
             </p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <a href={CONFIG.instagramUrl} target="_blank" rel="noopener" className="btn xl" style={{ width: "100%", justifyContent: "center", height: 52 }}>
+            <a href={CONFIG.instagramUrl} target="_blank" rel="noopener" className="btn xl btn-flash" style={{ width: "100%", justifyContent: "center", height: 52 }}>
               Follow on Instagram <Icon name="arrow-up-right" size={16} />
             </a>
-            <a href={waHref} target="_blank" rel="noopener" className="btn xl outline" style={{ width: "100%", justifyContent: "center", height: 52, color: "var(--paper)", borderColor: "color-mix(in oklch, var(--paper) 30%, transparent)" }}>
+            <a href={waHref} target="_blank" rel="noopener" className="btn xl outline btn-flash" style={{ width: "100%", justifyContent: "center", height: 52, color: "var(--paper)", borderColor: "color-mix(in oklch, var(--paper) 30%, transparent)" }}>
               Message on WhatsApp
             </a>
             {CONFIG.whatsappCatalogueUrl && (
-              <a href={CONFIG.whatsappCatalogueUrl} target="_blank" rel="noopener" className="btn xl outline" style={{ width: "100%", justifyContent: "center", height: 52, color: "var(--paper)", borderColor: "color-mix(in oklch, var(--paper) 30%, transparent)" }}>
+              <a href={CONFIG.whatsappCatalogueUrl} target="_blank" rel="noopener" className="btn xl outline btn-flash" style={{ width: "100%", justifyContent: "center", height: 52, color: "var(--paper)", borderColor: "color-mix(in oklch, var(--paper) 30%, transparent)" }}>
                 Browse the WhatsApp catalogue
               </a>
             )}
@@ -368,15 +368,17 @@ function CustomPage() {
   const set = (k) => (e) => setF(s => ({ ...s, [k]: e.target.value }));
   const submit = (e) => {
     e.preventDefault();
+    // WhatsApp markdown: *bold* labels, \n line breaks (render on mobile +
+    // WhatsApp Web; the desktop app may flatten the newlines).
     const body = [
-      `Name: ${f.name || "-"}`,
-      `What I'd like: ${f.piece || "-"}`,
-      `Colours: ${f.colours || "-"}`,
-      `Size / quantity: ${f.size || "-"}`,
-      `Need by: ${f.deadline || "-"}`,
-      f.notes ? `Notes: ${f.notes}` : null,
+      `*Name:* ${f.name || "-"}`,
+      `*What I'd like:* ${f.piece || "-"}`,
+      `*Colours:* ${f.colours || "-"}`,
+      `*Size / quantity:* ${f.size || "-"}`,
+      `*Need by:* ${f.deadline || "-"}`,
+      f.notes ? `*Notes:* ${f.notes}` : null,
     ].filter(Boolean).join("\n");
-    const msg = `Hi ${CONFIG.brandName}! I'd like a custom crochet piece.\n\n${body}`;
+    const msg = `Hi ${CONFIG.brandName}! I'd like a *custom crochet piece*.\n\n${body}`;
     window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   };
   return (
@@ -418,7 +420,7 @@ function CustomPage() {
             <span>Anything else? (optional)</span>
             <textarea rows={2} value={f.notes} onChange={set("notes")} placeholder="Links, references, a story..." />
           </label>
-          <button type="submit" className="btn xl" style={{ width: "100%", justifyContent: "center" }}>
+          <button type="submit" className="btn btn-flash" style={{ alignSelf: "center", marginTop: 4 }}>
             Send on WhatsApp <WaIcon size={16} />
           </button>
           <p className="custom-note">

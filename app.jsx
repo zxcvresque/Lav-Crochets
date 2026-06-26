@@ -196,6 +196,8 @@ function App() {
         onRemove={handleRemove}
       />
 
+      <ScrollTop />
+
       <TweaksPanel title="Tweaks">
         <TweakSection label="Brand color" />
         <TweakRadio

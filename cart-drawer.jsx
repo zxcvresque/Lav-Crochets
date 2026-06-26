@@ -79,7 +79,7 @@ function CartDrawer({ open, onClose, lines, onRemove }) {
               <div className="row-t grand"><span>Total</span><span>{total}</span></div>
             </div>
 
-            <a href={buildWhatsAppHref(lines)} target="_blank" rel="noopener" className="btn xl" style={{ width: "100%", justifyContent: "center" }}>
+            <a href={buildWhatsAppHref(lines)} target="_blank" rel="noopener" className="btn btn-flash" style={{ width: "100%", justifyContent: "center", height: 48 }}>
               Send order on WhatsApp
               <Icon name="arrow" size={16} />
             </a>
@@ -91,8 +91,8 @@ function CartDrawer({ open, onClose, lines, onRemove }) {
                   className="upi-qr"
                   src={CONFIG.upiQrImage}
                   alt="UPI QR code"
-                  width={56}
-                  height={56}
+                  width={48}
+                  height={48}
                   onError={(e) => { e.currentTarget.style.display = "none"; }}
                 />
                 <div style={{ minWidth: 0 }}>
