@@ -684,6 +684,12 @@ textarea:focus-visible {
   70%  { box-shadow: 0 0 0 10px color-mix(in oklch, var(--brand) 0%, transparent); }
   100% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--brand) 0%, transparent); }
 }
+/* Keep the hero promo pill on a single tidy line on phones — each phrase
+   stays whole instead of wrapping mid-word. */
+@media (max-width: 480px) {
+  .hero-eyebrow { font-size: 11px; gap: 7px; padding: 5px 11px 5px 7px; }
+  .hero-eyebrow > span, .hero-eyebrow > a { white-space: nowrap; }
+}
 
 .hero-headline {
   font-family: var(--font-display);
@@ -859,7 +865,13 @@ textarea:focus-visible {
 @media (max-width: 768px) {
   /* Hamburger appears, pushed to the right side of the pill.
      Search stays; cart + account hide (the drawer carries those entries). */
-  .header .hamburger { display: inline-flex; order: 99; margin-left: auto; }
+  .header .hamburger { display: inline-flex; order: 99; }
+  /* Brand stays on the left; the cart + hamburger group together on the
+     right (matches the reference mobile header). margin-left:auto on the
+     action group absorbs the free space between brand and the right group,
+     and the tighter header gap keeps cart + hamburger a snug pair. */
+  .header { gap: 14px; }
+  .header-actions { margin-left: auto; }
   /* Hide the inline desktop nav links on mobile — the hamburger replaces
      them and opens the drawer. */
   .header > .header > nav,
@@ -1327,6 +1339,15 @@ textarea:focus-visible {
 .footer-grid ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .footer-grid a { color: var(--paper); opacity: 0.85; font-size: 14px; transition: opacity var(--dur-base) var(--ease-out-soft); }
 .footer-grid a:hover { opacity: 1; color: var(--joy-300); }
+/* Accordion column header. On desktop it renders as a plain heading (chevron
+   hidden, not interactive); the mobile breakpoint turns it into a tap row. */
+.footer-col-head {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; gap: 12px;
+  background: none; border: 0; padding: 0; margin: 0;
+  font: inherit; color: inherit; text-align: left; cursor: default;
+}
+.footer-chev { display: none; color: var(--paper); opacity: 0.6; flex: none; transition: transform var(--dur-base) var(--ease-out-soft); }
 .footer-bottom {
   display: flex;
   align-items: center;
@@ -1337,6 +1358,50 @@ textarea:focus-visible {
   font-size: 11px;
   color: oklch(0.7 0.02 95);
   letter-spacing: 0.02em;
+}
+
+/* Mobile + landscape-phone footer: brand block stays on top; the link
+   columns collapse into tap-to-open accordion rows (matches the reference
+   mobile footer). Single column so nothing crams or wraps in any orientation. */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-bottom: 22px;
+  }
+  /* Brand block: breathing room + a divider before the first accordion row. */
+  .footer-grid > :first-child {
+    padding-bottom: 26px;
+    border-bottom: 1px solid color-mix(in oklch, var(--paper) 14%, transparent);
+  }
+  .footer-col { border-bottom: 1px solid color-mix(in oklch, var(--paper) 14%, transparent); }
+  .footer-col-head { cursor: pointer; padding: 18px 0; }
+  .footer-col-head h4 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--paper);
+  }
+  .footer-chev { display: inline-flex; }
+  .footer-col.open .footer-chev { transform: rotate(180deg); }
+  /* Collapsed by default; expand on open with a height transition. */
+  .footer-col ul {
+    max-height: 0;
+    overflow: hidden;
+    gap: 0;
+    transition: max-height var(--dur-slow) var(--ease-in-out-soft);
+  }
+  .footer-col.open ul { max-height: 340px; padding-bottom: 16px; }
+  .footer-col ul li { padding: 7px 0; }
+  .footer-col a { font-size: 15px; opacity: 0.9; }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
 }
 
 /* ───────────────────────────────────────────────────────────────────────

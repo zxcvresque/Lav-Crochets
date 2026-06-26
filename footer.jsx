@@ -2,6 +2,11 @@
 
 function Footer({ dark, onToggleTheme }) {
   const wa = `https://wa.me/${CONFIG.whatsappNumber}`;
+  // On mobile the link columns collapse into tap-to-open accordion rows
+  // (desktop shows them expanded — the chevron + collapse are CSS-gated to
+  // the mobile breakpoint). `open` tracks which column is expanded.
+  const [open, setOpen] = React.useState({});
+  const toggle = (i) => setOpen((o) => ({ ...o, [i]: !o[i] }));
   const cols = [
     { h: "Shop", links: [
       { t: "All pieces", href: "shop.html" },
@@ -41,9 +46,17 @@ function Footer({ dark, onToggleTheme }) {
             </a>
           </div>
 
-          {cols.map((c) => (
-            <div key={c.h}>
-              <h4>{c.h}</h4>
+          {cols.map((c, i) => (
+            <div className={`footer-col ${open[i] ? "open" : ""}`} key={c.h}>
+              <button
+                type="button"
+                className="footer-col-head"
+                aria-expanded={!!open[i]}
+                onClick={() => toggle(i)}
+              >
+                <h4>{c.h}</h4>
+                <Icon name="chev-down" size={18} className="footer-chev" />
+              </button>
               <ul>
                 {c.links.map((l) => (
                   <li key={l.t}>

@@ -41,6 +41,8 @@ const Icon = ({ name, size = 20, stroke = 1.6, ...rest }) => {
       return (<svg {...common}><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>);
     case "chev-right":
       return (<svg {...common}><path d="m9 6 6 6-6 6"/></svg>);
+    case "chev-down":
+      return (<svg {...common}><path d="m6 9 6 6 6-6"/></svg>);
     case "play":
       return (<svg {...common} fill="currentColor" stroke="none"><path d="M7 5v14l12-7Z"/></svg>);
     case "instagram":

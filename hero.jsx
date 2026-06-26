@@ -8,11 +8,11 @@ function Hero() {
         <Reveal delay={0}>
           <div className="hero-eyebrow" style={{ marginBottom: 28 }}>
             <span className="pulse" aria-hidden="true" />
-            <span>New this week.</span>
+            <span>Fresh in</span>
             <span style={{ color: "var(--fg-faint)" }}>·</span>
-            <span>Tulip headbands, fresh in.</span>
+            <span>Tulip headbands</span>
             <a href="shop.html" style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "var(--fg)", fontWeight: 500 }}>
-              See it <Icon name="arrow" size={14} />
+              See <Icon name="arrow" size={14} />
             </a>
           </div>
         </Reveal>
