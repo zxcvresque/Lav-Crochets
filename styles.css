@@ -724,6 +724,16 @@ textarea:focus-visible {
 @media (max-width: 768px) {
   .hero-orb { width: 60%; opacity: 0.30; top: auto; bottom: -8%; right: -18%; }
 }
+/* Phone (≤640, the locked `sm` breakpoint): the xl CTAs are desktop-sized
+   (64px / 20px). Stack them full-width and size them per the design-system
+   mobile spec — screens-mobile .mob-btn: primary/ink = 56px, base = 48px,
+   stacked column with gap 10. (handoff/responsive.md: "≤640: CTAs stack".) */
+@media (max-width: 640px) {
+  .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .btn.xl { height: 56px; padding: 0 20px; font-size: var(--t-md); }
+  .btn.lg { height: 48px; }
+}
 
 /* Footer wordmark — gigantic, branding moment. */
 .megaword {
@@ -817,22 +827,23 @@ textarea:focus-visible {
 }
 
 /* Hamburger trigger — hidden on desktop, shown on mobile. Sits before
-   the brand mark on the left of the pill. */
-.hamburger { display: none; }
+   the brand mark on the left of the pill.
+   NOTE: scoped to `.header .hamburger` so it out-specifies `.iconbtn`
+   (the button carries both classes, and `.iconbtn { display:inline-flex }`
+   is defined later in this file). Plain `.hamburger` ties on specificity and
+   loses to the later .iconbtn rule, which leaks the hamburger onto desktop. */
+.header .hamburger { display: none; }
 @media (max-width: 768px) {
   /* Hamburger appears, pushed to the right side of the pill.
      Search stays; cart + account hide (the drawer carries those entries). */
-  .hamburger { display: inline-flex; order: 99; margin-left: auto; }
+  .header .hamburger { display: inline-flex; order: 99; margin-left: auto; }
   /* Hide the inline desktop nav links on mobile — the hamburger replaces
      them and opens the drawer. */
   .header > .header > nav,
   .header nav[aria-label="Primary"] { display: none; }
-  /* Cart + account icons hide on mobile — those routes are reachable from
-     inside the drawer instead. Search stays as the only inline action. */
-  .header-actions button[aria-label*="Cart"],
-  .header-actions a[aria-label*="Cart"],
-  .header-actions button[aria-label*="Account"],
-  .header-actions a[aria-label*="Account"] { display: none; }
+  /* On mobile keep only the cart inline next to the hamburger; the Instagram
+     and WhatsApp shortcuts live in the drawer and footer instead. */
+  .header-actions .header-extra { display: none; }
 }
 
 /* Mobile nav drawer — slides in from the right on mobile, modal. */
@@ -867,9 +878,12 @@ textarea:focus-visible {
   gap: 2px;
   flex: 1;
 }
-.mobile-nav-list a {
+.mobile-nav-list a,
+.mobile-nav-list button {
   display: flex; align-items: center; justify-content: space-between;
+  width: 100%;
   padding: 14px 16px;
+  border: 0; background: transparent; cursor: pointer;
   border-radius: var(--r-3);
   font-family: var(--font-display);
   font-size: 22px;
@@ -877,10 +891,23 @@ textarea:focus-visible {
   letter-spacing: -0.015em;
   color: var(--fg);
   text-decoration: none;
+  text-align: left;
   transition: background var(--dur-base) var(--ease-out-soft);
 }
 .mobile-nav-list a:hover,
-.mobile-nav-list a:focus-visible { background: var(--bg-elev); }
+.mobile-nav-list a:focus-visible,
+.mobile-nav-list button:hover,
+.mobile-nav-list button:focus-visible { background: var(--bg-elev); }
+/* Secondary tier: smaller, icon-led rows for cart + social + share. */
+.mobile-nav-list .mobile-nav-sub {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--fg-soft);
+  padding: 12px 16px;
+}
+.mobile-nav-list .mobile-nav-sub:hover { color: var(--fg); }
 .mobile-nav-rule { border: 0; border-top: 1px solid var(--line); margin: 12px 16px; }
 .mobile-nav-count {
   display: inline-flex; align-items: center; justify-content: center;
@@ -1029,12 +1056,23 @@ textarea:focus-visible {
   letter-spacing: -0.025em;
   line-height: 1;
   margin: 0;
+  /* Let the title shrink inside the flex row and break long words so it can
+     never spill past the tile edge (e.g. "accessories", "Keychains"). */
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .cat-tile .count {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+@media (max-width: 640px) {
+  /* Match the design-system mobile collection-card title (screens-mobile
+     .mob-card: 17px / weight 600 / -0.02em). At 28px the long names overflowed
+     the narrow 2-up tiles; 17px is the documented mobile size. */
+  .cat-tile h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; }
+  .cat-tile .tile-fg { padding: 14px 15px; }
 }
 
 /* Confidence accent panels */

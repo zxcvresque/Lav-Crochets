@@ -22,3 +22,10 @@
 - Files: styles.css (.pd .file-meta), app.jsx
 - Decisions: redesigned .file-meta from wrap-flex (uneven, spacious) into a bordered key/value table — 92px mono label column + value, hairline row dividers; more compact and aligned. Added owner-only `?tweaks=1` URL flag that posts __activate_edit_mode so the (otherwise editor-only, hidden-from-visitors) Tweaks panel can be opened locally bottom-right.
 - Verified: full-res preview of the spec block (clean table); ?tweaks=1 opens the panel.
+
+## Mobile header + elegant drawer
+- Files: header.jsx, primitives.jsx, styles.css
+- Decisions: mobile header was overflowing because the new Instagram/WhatsApp icons weren't hidden on mobile. Added `.header-extra` class to those two and hid them <=768 (cart + hamburger remain, matching the reference). Confirmed (computed-style probe) the hamburger renders at x=359, display:flex — earlier "missing hamburger" was a misread screenshot. Pill-on-scroll / full-width-at-top behavior already matches the reference.
+- Redesigned mobile nav drawer to match reference: big nav links, divider, then a smaller icon-led tier (Cart, Instagram, WhatsApp, Share this shop). Added instagram/whatsapp/share icons to the Icon set; desktop header now uses the instagram + whatsapp glyphs. Share uses navigator.share with clipboard fallback. Cart row opens the cart drawer (onOpenCart passed through).
+- Studied screens-desktop-*/screens-mobile CSS for sizing; live styles.css already matches (container 1360/28px -> 16px; grid 4/3/2 cols; header 84->60/60 mobile; section 96px). Will apply to new shop/custom pages.
+- Next: separate pages (shop.html/custom.html), cart localStorage persistence, remove wishlist hearts, ShopPage + CustomPage(form->WhatsApp).

@@ -43,6 +43,12 @@ const Icon = ({ name, size = 20, stroke = 1.6, ...rest }) => {
       return (<svg {...common}><path d="m9 6 6 6-6 6"/></svg>);
     case "play":
       return (<svg {...common} fill="currentColor" stroke="none"><path d="M7 5v14l12-7Z"/></svg>);
+    case "instagram":
+      return (<svg {...common}><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>);
+    case "whatsapp":
+      return (<svg {...common}><path d="M21 11.6a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.6Z"/><path d="M8.8 8.6c.6-.1.9 0 1.1.5l.5 1.2c.1.3 0 .5-.1.7l-.4.5c-.1.2-.2.4 0 .7a5 5 0 0 0 2.3 2.1c.3.1.5.1.7-.1l.5-.6c.2-.2.4-.2.7-.1l1.2.6c.4.2.5.5.4.9-.2.9-1 1.5-2 1.4a7 7 0 0 1-5.8-5.9c-.1-.9.4-1.7 1.2-2.1Z" fill="currentColor" stroke="none"/></svg>);
+    case "share":
+      return (<svg {...common}><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="m8 7 4-4 4 4"/><path d="M12 3v13"/></svg>);
     default:
       return null;
   }

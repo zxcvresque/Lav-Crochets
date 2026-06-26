@@ -34,12 +34,27 @@ function Wordmark() {
   );
 }
 
-function MobileNavDrawer({ open, onClose }) {
+function MobileNavDrawer({ open, onClose, onOpenCart }) {
   React.useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape" && open) onClose(); };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
+
+  const shareShop = async () => {
+    const url = (typeof location !== "undefined") ? location.origin + location.pathname : "";
+    const data = { title: CONFIG.brandName, text: `${CONFIG.brandName} — ${CONFIG.tagline}`, url };
+    try {
+      if (navigator.share) await navigator.share(data);
+      else if (navigator.clipboard) { await navigator.clipboard.writeText(url); }
+    } catch (e) { /* cancelled / unsupported */ }
+  };
+
+  const sub = (icon, label) => (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: 12 }}>
+      <Icon name={icon} size={18} stroke={1.6} /><span>{label}</span>
+    </span>
+  );
 
   return (
     <>
@@ -60,19 +75,23 @@ function MobileNavDrawer({ open, onClose }) {
           <a href="#custom" onClick={onClose}>Custom Orders</a>
           <a href="#story" onClick={onClose}>About</a>
           <a href="#footer" onClick={onClose}>Contact</a>
+
           <hr className="mobile-nav-rule" aria-hidden="true" />
-          <a href="#cart" onClick={onClose}>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 12 }}>
-              <Icon name="cart" size={20} stroke={1.6} />
-              <span>Cart</span>
-            </span>
+
+          <button className="mobile-nav-sub" onClick={() => { onClose(); onOpenCart && onOpenCart(); }}>
+            {sub("cart", "Cart")}
+          </button>
+          <a className="mobile-nav-sub" href={CONFIG.instagramUrl} target="_blank" rel="noopener" onClick={onClose}>
+            {sub("instagram", "Instagram")}
           </a>
+          <a className="mobile-nav-sub" href={`https://wa.me/${CONFIG.whatsappNumber}`} target="_blank" rel="noopener" onClick={onClose}>
+            {sub("whatsapp", "WhatsApp")}
+          </a>
+          <button className="mobile-nav-sub" onClick={shareShop}>
+            {sub("share", "Share this shop")}
+          </button>
         </nav>
         <div className="mobile-nav-foot">
-          <a href={`https://wa.me/${CONFIG.whatsappNumber}`} target="_blank" rel="noopener" className="btn xl ink" style={{ width: "100%", justifyContent: "center" }} onClick={onClose}>
-            Order on WhatsApp
-            <Icon name="arrow" size={16} />
-          </a>
           <p className="mobile-nav-meta">Order on WhatsApp · Pay by UPI · Delivered in 4 to 5 days</p>
         </div>
       </aside>
@@ -112,11 +131,11 @@ function Header({ cartCount, onOpenCart, bump }) {
           </nav>
 
           <div className="header-actions">
-            <a className="iconbtn" href={CONFIG.instagramUrl} target="_blank" rel="noopener" aria-label="Instagram">
-              <Icon name="spark" size={18} />
+            <a className="iconbtn header-extra" href={CONFIG.instagramUrl} target="_blank" rel="noopener" aria-label="Instagram">
+              <Icon name="instagram" size={18} />
             </a>
-            <a className="iconbtn" href={`https://wa.me/${CONFIG.whatsappNumber}`} target="_blank" rel="noopener" aria-label="Message on WhatsApp">
-              <Icon name="globe" size={18} />
+            <a className="iconbtn header-extra" href={`https://wa.me/${CONFIG.whatsappNumber}`} target="_blank" rel="noopener" aria-label="Message on WhatsApp">
+              <Icon name="whatsapp" size={18} />
             </a>
             <button className="iconbtn" aria-label={`Cart, ${cartCount} items`} onClick={onOpenCart}>
               <Icon name="cart" size={18} />
@@ -127,7 +146,7 @@ function Header({ cartCount, onOpenCart, bump }) {
           </div>
         </div>
       </div>
-      <MobileNavDrawer open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <MobileNavDrawer open={menuOpen} onClose={() => setMenuOpen(false)} onOpenCart={onOpenCart} />
     </>
   );
 }
