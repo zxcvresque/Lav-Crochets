@@ -112,6 +112,15 @@ function App() {
   });
   const [cartOpen, setCartOpen] = React.useState(false);
   const [bump, setBump] = React.useState(false);
+  // Theme: persisted, defaults to the OS preference on first visit.
+  const [dark, setDark] = React.useState(() => {
+    try {
+      const saved = localStorage.getItem("lav.theme");
+      if (saved === "dark" || saved === "light") return saved === "dark";
+      return !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    } catch (e) { return false; }
+  });
+  const toggleTheme = () => setDark(d => !d);
   const progress = useScrollProgress();
   // Which page is this? Each HTML sets <body data-page="home|shop|custom">.
   const page = (typeof document !== "undefined" && document.body.dataset.page) || "home";
@@ -127,8 +136,9 @@ function App() {
   React.useEffect(() => { applyDensity(t.density); }, [t.density]);
   React.useEffect(() => { applyRadius(t.radius); }, [t.radius]);
   React.useEffect(() => {
-    document.documentElement.setAttribute("data-theme", t.dark ? "dark" : "light");
-  }, [t.dark]);
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    try { localStorage.setItem("lav.theme", dark ? "dark" : "light"); } catch (e) { /* no-op */ }
+  }, [dark]);
 
   // Owner-only: open the Tweaks panel locally with ?tweaks=1 in the URL.
   // Normal visitors never see it (it stays hidden unless edit mode is activated).
@@ -157,7 +167,7 @@ function App() {
     <div className="app">
       <div className="progress-bar" style={{ transform: `scaleX(${progress})` }} aria-hidden="true" />
 
-      <Header cartCount={cartCount} onOpenCart={() => setCartOpen(true)} bump={bump} />
+      <Header cartCount={cartCount} onOpenCart={() => setCartOpen(true)} bump={bump} dark={dark} onToggleTheme={toggleTheme} />
 
       {page === "home" && (
         <>
@@ -177,7 +187,7 @@ function App() {
 
       {page === "custom" && <CustomPage />}
 
-      <Footer />
+      <Footer dark={dark} onToggleTheme={toggleTheme} />
 
       <CartDrawer
         open={cartOpen}
@@ -228,8 +238,8 @@ function App() {
         <TweakSection label="Theme" />
         <TweakToggle
           label="Dark mode"
-          value={t.dark}
-          onChange={(v) => setTweak('dark', v)}
+          value={dark}
+          onChange={(v) => setDark(v)}
         />
 
         <TweakSection label="Quick actions" />

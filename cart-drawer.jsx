@@ -39,14 +39,14 @@ function CartDrawer({ open, onClose, lines, onRemove }) {
 
         <div className="drawer-body">
           {lines.length === 0 ? (
-            <div style={{ padding: "48px 0", textAlign: "center", color: "var(--fg-muted)" }}>
-              <div style={{ fontFamily: "var(--font-display)", fontSize: 28, color: "var(--fg)", marginBottom: 8, fontStyle: "italic" }}>
+            <div style={{ margin: "auto 0", textAlign: "center", color: "var(--fg-muted)" }}>
+              <div style={{ fontFamily: "var(--font-display)", fontSize: 30, color: "var(--fg)", marginBottom: 10 }}>
                 <span className="font-italic">Empty for now.</span>
               </div>
-              <p style={{ maxWidth: "28ch", margin: "0 auto 16px", fontSize: 14 }}>
+              <p style={{ maxWidth: "28ch", margin: "0 auto 18px", fontSize: 14, lineHeight: 1.5 }}>
                 Add a charm, a clip, or a little keychain to get started.
               </p>
-              <a className="btn" href="#shop" onClick={onClose}>Browse the shop <Icon name="arrow" size={14}/></a>
+              <a className="btn" href="shop.html" onClick={onClose}>Browse the shop <Icon name="arrow" size={14}/></a>
             </div>
           ) : (
             lines.map((l) => {
@@ -56,13 +56,15 @@ function CartDrawer({ open, onClose, lines, onRemove }) {
                 <div className="cart-line" key={l.id}>
                   <div className="thumb"><ProductArt p={l} /></div>
                   <div className="ct">
-                    <div className="t">{l.title}{l.qty > 1 ? ` ×${l.qty}` : ""}</div>
-                    <div className="m">{ready ? "Ready to ship" : "Made to order"}</div>
-                    <button onClick={() => onRemove(l.id)} style={{ alignSelf: "flex-start", marginTop: 4, background: "transparent", border: 0, padding: 0, fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--fg-muted)", letterSpacing: "0.04em", textTransform: "uppercase", cursor: "pointer" }}>
+                    <div className="t">{l.title}</div>
+                    <div className="m">{ready ? "Ready to ship" : "Made to order"}{l.qty > 1 ? ` · Qty ${l.qty}` : ""}</div>
+                  </div>
+                  <div className="cart-line-right">
+                    <div className="price">{lineTotal}</div>
+                    <button className="cart-remove" onClick={() => onRemove(l.id)} aria-label={`Remove ${l.title}`}>
                       Remove
                     </button>
                   </div>
-                  <div className="price">{lineTotal}</div>
                 </div>
               );
             })
@@ -75,9 +77,6 @@ function CartDrawer({ open, onClose, lines, onRemove }) {
               <div className="row-t"><span>Subtotal (crochet)</span><span>{total}</span></div>
               <div className="row-t"><span>Shipping</span><span style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>Confirmed on WhatsApp</span></div>
               <div className="row-t grand"><span>Total</span><span>{total}</span></div>
-              <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--fg-muted)", textAlign: "right", letterSpacing: "0.02em" }}>
-                Plus shipping, confirmed on WhatsApp.
-              </div>
             </div>
 
             <a href={buildWhatsAppHref(lines)} target="_blank" rel="noopener" className="btn xl" style={{ width: "100%", justifyContent: "center" }}>
@@ -85,36 +84,27 @@ function CartDrawer({ open, onClose, lines, onRemove }) {
               <Icon name="arrow" size={16} />
             </a>
 
-            {/* UPI payment panel */}
-            <div style={{ marginTop: 14, padding: 14, borderRadius: "var(--r-3)", background: "var(--bg-subtle)", border: "1px solid var(--line)" }}>
-              <div className="eyebrow" style={{ marginBottom: 10 }}>
-                <span className="eyebrow-dot" />Pay by UPI
-              </div>
-              <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+            <div className="upi-pay">
+              <div className="upi-pay-head"><span className="eyebrow-dot" />Pay by UPI</div>
+              <div className="upi-pay-row">
                 <img
+                  className="upi-qr"
                   src={CONFIG.upiQrImage}
                   alt="UPI QR code"
-                  width={64}
-                  height={64}
-                  style={{ borderRadius: 10, background: "var(--paper)", flexShrink: 0, border: "1px solid var(--line)" }}
+                  width={56}
+                  height={56}
                   onError={(e) => { e.currentTarget.style.display = "none"; }}
                 />
                 <div style={{ minWidth: 0 }}>
-                  <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--fg-muted)", letterSpacing: "0.04em", textTransform: "uppercase" }}>UPI ID</div>
-                  <button
-                    onClick={copyUpi}
-                    style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 2, background: "transparent", border: 0, padding: 0, cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: 14, color: "var(--fg)" }}
-                    aria-label="Copy UPI ID"
-                  >
+                  <div className="upi-k">UPI ID</div>
+                  <button className="upi-copy" onClick={copyUpi} aria-label="Copy UPI ID">
                     {CONFIG.upiId}
-                    <Icon name={copied ? "check" : "download"} size={14} />
+                    <Icon name={copied ? "check" : "download"} size={13} />
                   </button>
-                  <div style={{ fontSize: 11, color: "var(--fg-muted)", marginTop: 2 }}>{copied ? "Copied" : "Tap to copy"}</div>
+                  <div className="upi-hint">{copied ? "Copied" : "Tap to copy"}</div>
                 </div>
               </div>
-              <p style={{ fontSize: 12, color: "var(--fg-muted)", marginTop: 10, lineHeight: 1.45 }}>
-                We confirm stock, the final total and shipping on WhatsApp before you pay.
-              </p>
+              <p className="upi-note">We confirm stock, the final total and shipping on WhatsApp before you pay.</p>
             </div>
           </div>
         )}

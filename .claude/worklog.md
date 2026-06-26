@@ -40,3 +40,12 @@
   - Cross-page links: header/hero/footer/category-tiles/custom-CTA now point to shop.html, shop.html?cat=, custom.html, index.html#story / #footer.
   - styles.css: .page-top header clearance, .shop-filters/.shop-filter, .pcard-add, .cform/.cfield/.cgrid/.custom-lead/.custom-note.
 - Verified via headless Chrome: shop (6 photos, prices, add buttons, filters, 0 hearts), custom (form + Send on WhatsApp), home renders, cart badge persists.
+
+## Dark mode + footer icons + WhatsApp png + cart polish
+- Files: app.jsx, primitives.jsx, header.jsx, footer.jsx, cart-drawer.jsx, sections.jsx, styles.css, assets/upi-qr.svg, whatsapp.png + whatsapp-inverted.png (user-provided)
+- Decisions:
+  - Real theme: `dark` state in app.jsx, init from localStorage `lav.theme` else OS prefers-color-scheme; effect sets <html data-theme> + persists. toggleTheme passed to Header + Footer; dev Tweaks dark toggle wired to same state. Old t.dark mechanism removed.
+  - Toggle buttons: header (sun/moon iconbtn, header-extra so desktop-only), mobile drawer (Light/Dark row), footer (sun/moon). Footer bottom icons now match header: theme + Instagram + WhatsApp.
+  - WhatsApp icon: WaIcon renders two PNGs (whatsapp.png black / whatsapp-inverted.png white); CSS swaps by context — black on light, white in dark + always-dark footer, black on lavender .btn. Used in header, drawer, footer, custom-form send button.
+  - Added sun/moon icons. Cart drawer redesigned: bigger breathing line items, price + subtle Remove right-aligned, divider above Total, refined .upi-pay panel; empty-state links to shop.html. Cleaner UPI QR placeholder (no heart/text).
+- Verified (headless): cart light+dark elegant; full home dark mode proper; header/footer show sun + instagram + white WhatsApp in dark, black on lavender Send button.

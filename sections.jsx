@@ -419,7 +419,7 @@ function CustomPage() {
             <textarea rows={2} value={f.notes} onChange={set("notes")} placeholder="Links, references, a story..." />
           </label>
           <button type="submit" className="btn xl" style={{ width: "100%", justifyContent: "center" }}>
-            Send on WhatsApp <Icon name="whatsapp" size={16} />
+            Send on WhatsApp <WaIcon size={16} />
           </button>
           <p className="custom-note">
             Pay by UPI · Making time and final price are confirmed over chat · Delivered in 4 to 5 days once it's ready.

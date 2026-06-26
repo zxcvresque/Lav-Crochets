@@ -1,6 +1,6 @@
 // footer.jsx — Editorial footer with mega-wordmark and link columns.
 
-function Footer() {
+function Footer({ dark, onToggleTheme }) {
   const wa = `https://wa.me/${CONFIG.whatsappNumber}`;
   const cols = [
     { h: "Shop", links: [
@@ -62,12 +62,15 @@ function Footer() {
             <span style={{ opacity: 0.5 }}>·</span>
             <span>{CONFIG.shippingNote}</span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <a href={CONFIG.instagramUrl} target="_blank" rel="noopener" aria-label="Instagram" style={{ display: "inline-flex", opacity: 0.8 }}>
-              <Icon name="spark" size={16} />
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <button onClick={onToggleTheme} aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} style={{ display: "inline-flex", background: "transparent", border: 0, padding: 0, cursor: "pointer", color: "inherit", opacity: 0.85 }}>
+              <Icon name={dark ? "sun" : "moon"} size={16} />
+            </button>
+            <a href={CONFIG.instagramUrl} target="_blank" rel="noopener" aria-label="Instagram" style={{ display: "inline-flex", opacity: 0.85 }}>
+              <Icon name="instagram" size={16} />
             </a>
-            <a href={wa} target="_blank" rel="noopener" aria-label="WhatsApp" style={{ display: "inline-flex", opacity: 0.8 }}>
-              <Icon name="globe" size={16} />
+            <a href={wa} target="_blank" rel="noopener" aria-label="WhatsApp" style={{ display: "inline-flex", opacity: 0.85 }}>
+              <WaIcon size={16} />
             </a>
           </div>
         </div>

@@ -34,7 +34,7 @@ function Wordmark() {
   );
 }
 
-function MobileNavDrawer({ open, onClose, onOpenCart }) {
+function MobileNavDrawer({ open, onClose, onOpenCart, dark, onToggleTheme }) {
   React.useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape" && open) onClose(); };
     window.addEventListener("keydown", onKey);
@@ -85,10 +85,15 @@ function MobileNavDrawer({ open, onClose, onOpenCart }) {
             {sub("instagram", "Instagram")}
           </a>
           <a className="mobile-nav-sub" href={`https://wa.me/${CONFIG.whatsappNumber}`} target="_blank" rel="noopener" onClick={onClose}>
-            {sub("whatsapp", "WhatsApp")}
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 12 }}>
+              <WaIcon size={18} /><span>WhatsApp</span>
+            </span>
           </a>
           <button className="mobile-nav-sub" onClick={shareShop}>
             {sub("share", "Share this shop")}
+          </button>
+          <button className="mobile-nav-sub" onClick={onToggleTheme}>
+            {sub(dark ? "sun" : "moon", dark ? "Light mode" : "Dark mode")}
           </button>
         </nav>
         <div className="mobile-nav-foot">
@@ -99,7 +104,7 @@ function MobileNavDrawer({ open, onClose, onOpenCart }) {
   );
 }
 
-function Header({ cartCount, onOpenCart, bump }) {
+function Header({ cartCount, onOpenCart, bump, dark, onToggleTheme }) {
   const scrolled = useScrolled(40);
   const [menuOpen, setMenuOpen] = React.useState(false);
   return (
@@ -131,11 +136,14 @@ function Header({ cartCount, onOpenCart, bump }) {
           </nav>
 
           <div className="header-actions">
+            <button className="iconbtn header-extra" onClick={onToggleTheme} aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}>
+              <Icon name={dark ? "sun" : "moon"} size={18} />
+            </button>
             <a className="iconbtn header-extra" href={CONFIG.instagramUrl} target="_blank" rel="noopener" aria-label="Instagram">
               <Icon name="instagram" size={18} />
             </a>
             <a className="iconbtn header-extra" href={`https://wa.me/${CONFIG.whatsappNumber}`} target="_blank" rel="noopener" aria-label="Message on WhatsApp">
-              <Icon name="whatsapp" size={18} />
+              <WaIcon size={18} />
             </a>
             <button className="iconbtn" aria-label={`Cart, ${cartCount} items`} onClick={onOpenCart}>
               <Icon name="cart" size={18} />
@@ -146,7 +154,7 @@ function Header({ cartCount, onOpenCart, bump }) {
           </div>
         </div>
       </div>
-      <MobileNavDrawer open={menuOpen} onClose={() => setMenuOpen(false)} onOpenCart={onOpenCart} />
+      <MobileNavDrawer open={menuOpen} onClose={() => setMenuOpen(false)} onOpenCart={onOpenCart} dark={dark} onToggleTheme={onToggleTheme} />
     </>
   );
 }
