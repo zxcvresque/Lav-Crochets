@@ -121,6 +121,16 @@ function App() {
     document.documentElement.setAttribute("data-theme", t.dark ? "dark" : "light");
   }, [t.dark]);
 
+  // Owner-only: open the Tweaks panel locally with ?tweaks=1 in the URL.
+  // Normal visitors never see it (it stays hidden unless edit mode is activated).
+  React.useEffect(() => {
+    try {
+      if (new URLSearchParams(window.location.search).has("tweaks")) {
+        window.postMessage({ type: "__activate_edit_mode" }, "*");
+      }
+    } catch (e) { /* no-op */ }
+  }, []);
+
   const handleAdd = (p) => {
     setCart(prev => {
       const existing = prev.find(l => l.id === p.id);

@@ -17,3 +17,8 @@
 - Decisions: confirmed catalogue-images/ has all 6 photos (real photos render via ProductArt). Fixed hero sub/eyebrow to match real catalogue (charms/clips/headbands/keychains, not amigurumi/bouquets). Removed fabricated "300+/4.9" hero stats. FreeRow now shows all in-stock items (was slice(0,4), which duplicated Featured and hid the ₹180/₹280 pieces).
 - Verified (headless Chrome http://127.0.0.1:8000): plum theme, lav/crochets wordmark + kept logo, nav, ₹ prices, 3 collections, product scene (₹700 + Add to cart + Order on WhatsApp), 8 wa.me links, 13 instagram links, 0 old-brand terms, full render = no fatal errors.
 - Next: owner to add real UPI id + QR and (optionally) decide whether to hide the dev Tweaks/Tokens panels for the public site. Cart→WhatsApp→UPI flow is wired (UPI panel renders once cart has items).
+
+## Polish: compact product spec block + local tweaks opener
+- Files: styles.css (.pd .file-meta), app.jsx
+- Decisions: redesigned .file-meta from wrap-flex (uneven, spacious) into a bordered key/value table — 92px mono label column + value, hairline row dividers; more compact and aligned. Added owner-only `?tweaks=1` URL flag that posts __activate_edit_mode so the (otherwise editor-only, hidden-from-visitors) Tweaks panel can be opened locally bottom-right.
+- Verified: full-res preview of the spec block (clean table); ?tweaks=1 opens the panel.

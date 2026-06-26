@@ -1218,18 +1218,31 @@ textarea:focus-visible {
 }
 .pd .price-detail .usd { font-family: var(--font-mono); font-size: 14px; color: var(--fg-muted); font-weight: 500; letter-spacing: 0.02em; }
 .pd .file-meta {
-  display: flex; gap: 16px; flex-wrap: wrap;
-  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
   background: var(--bg-elev);
   border: 1px solid var(--line);
   border-radius: var(--r-3);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.02em;
-  margin: 20px 0;
+  margin: 18px 0;
+  overflow: hidden;
 }
-.pd .file-meta .k { color: var(--fg-muted); text-transform: uppercase; font-size: 10px; letter-spacing: 0.08em; }
-.pd .file-meta .v { color: var(--fg); }
+.pd .file-meta > div {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 9px 16px;
+}
+.pd .file-meta > div + div { border-top: 1px solid var(--line); }
+.pd .file-meta .k {
+  font-family: var(--font-mono);
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+}
+.pd .file-meta .v { color: var(--fg); font-size: 14px; line-height: 1.5; }
 .pd-features { display: flex; flex-direction: column; gap: 10px; margin: 24px 0; }
 .pd-features li { display: flex; gap: 10px; font-size: 15px; color: var(--fg-soft); }
 .pd-features li::before { content: ""; flex: 0 0 6px; height: 6px; background: var(--joy-500); border-radius: 99px; margin-top: 10px; }
