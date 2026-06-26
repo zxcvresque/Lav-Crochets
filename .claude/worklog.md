@@ -49,3 +49,7 @@
   - WhatsApp icon: WaIcon renders two PNGs (whatsapp.png black / whatsapp-inverted.png white); CSS swaps by context — black on light, white in dark + always-dark footer, black on lavender .btn. Used in header, drawer, footer, custom-form send button.
   - Added sun/moon icons. Cart drawer redesigned: bigger breathing line items, price + subtle Remove right-aligned, divider above Total, refined .upi-pay panel; empty-state links to shop.html. Cleaner UPI QR placeholder (no heart/text).
 - Verified (headless): cart light+dark elegant; full home dark mode proper; header/footer show sun + instagram + white WhatsApp in dark, black on lavender Send button.
+
+## Fix dark-mode buttons
+- Files: styles.css
+- .pcard-add, .btn.ink, .btn.outline used hardcoded --ink/--paper (not themed) -> dark-on-dark in dark mode. Switched to --fg/--bg so they invert: light = dark fill + light text (unchanged), dark = light fill + dark text. .pcard-add now solid with a brand-colour hover. Verified shop cards in dark show white buttons.
