@@ -13,11 +13,10 @@
 - ✅ app.jsx — INR (no currency plumbing), empty cart, plum palette default, new Custom + Instagram sections; Tweaks/Tokens kept
 - ✅ index.html — title/meta, favicon.svg; tokens-sheet sample copy; assets/upi-qr.svg placeholder
 
-## Doing
-- 🚧 Durable files (plan.md, todo.md, .claude/worklog.md) + git ledger
-
-## Next
-- 🔲 Serve over HTTP + verify with headless Chrome screenshots (theme, cart, WhatsApp link, UPI panel, no console errors)
+## Done (cont.)
+- ✅ Durable files (plan.md, todo.md, .claude/worklog.md) + git init/commit
+- ✅ Verified via headless Chrome: plum theme + logo + wordmark, nav, real photos load from catalogue-images/, ₹ prices, 3 collections, all 6 in-stock cards, 8 wa.me links, 13 instagram links, 0 old-brand terms, page renders (no fatal JS errors)
+- ✅ Post-verify copy fixes: hero sub + eyebrow match real catalogue; removed fabricated 300+/4.9 stats; in-stock row shows all 6
 
 ## Waiting on owner
 - 🔲 Real UPI id + QR image (assets/upi-qr.*)

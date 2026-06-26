@@ -11,3 +11,9 @@
   - screens/*.html (thank-you etc.) left untouched for a later on-site confirmation step.
   - Adopted superclaude.md protocol: plan.md, todo.md, this worklog as durable state.
 - Next: git init + initial commit, then serve over HTTP and verify with headless Chrome (theme, cart→WhatsApp link, UPI panel, console clean).
+
+## Verify + post-verify fixes
+- Files: hero.jsx, sections.jsx, todo.md
+- Decisions: confirmed catalogue-images/ has all 6 photos (real photos render via ProductArt). Fixed hero sub/eyebrow to match real catalogue (charms/clips/headbands/keychains, not amigurumi/bouquets). Removed fabricated "300+/4.9" hero stats. FreeRow now shows all in-stock items (was slice(0,4), which duplicated Featured and hid the ₹180/₹280 pieces).
+- Verified (headless Chrome http://127.0.0.1:8000): plum theme, lav/crochets wordmark + kept logo, nav, ₹ prices, 3 collections, product scene (₹700 + Add to cart + Order on WhatsApp), 8 wa.me links, 13 instagram links, 0 old-brand terms, full render = no fatal errors.
+- Next: owner to add real UPI id + QR and (optionally) decide whether to hide the dev Tweaks/Tokens panels for the public site. Cart→WhatsApp→UPI flow is wired (UPI panel renders once cart has items).

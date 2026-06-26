@@ -133,7 +133,7 @@ function FreeRow({ products }) {
           action={<a className="btn ghost" href="#shop">See the shop <Icon name="arrow" size={14} /></a>}
         />
         <div className="pgrid">
-          {ready.slice(0, 4).map(p => (
+          {ready.map(p => (
             <ProductCard key={p.id} p={p} />
           ))}
         </div>

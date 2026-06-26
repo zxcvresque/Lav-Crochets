@@ -10,7 +10,7 @@ function Hero() {
             <span className="pulse" aria-hidden="true" />
             <span>New this week.</span>
             <span style={{ color: "var(--fg-faint)" }}>·</span>
-            <span>Tulip bouquets, made to order.</span>
+            <span>Tulip headbands, fresh in.</span>
             <a href="#shop" style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "var(--fg)", fontWeight: 500 }}>
               See it <Icon name="arrow" size={14} />
             </a>
@@ -31,8 +31,8 @@ function Hero() {
 
         <Reveal delay={500}>
           <p className="hero-sub" style={{ marginTop: 36, fontSize: "clamp(18px, 1.6vw, 22px)" }}>
-            {CONFIG.brandName} is a tiny crochet studio in {CONFIG.city}. Soft amigurumi, never-wilt
-            bouquets, bags and cosy wearables, each piece hooked by hand. Order on WhatsApp, pay by UPI.
+            {CONFIG.brandName} is a tiny crochet studio in {CONFIG.city}. Cute bag charms, flower
+            clips, headbands and keychains, each piece hooked by hand. Order on WhatsApp, pay by UPI.
           </p>
         </Reveal>
 
@@ -50,9 +50,9 @@ function Hero() {
 
         <Reveal delay={760}>
           <div className="hero-meta" style={{ marginTop: 56 }}>
-            <span><strong style={{ color: "var(--fg)", fontFamily: "var(--font-display)", fontSize: 18 }}>300+</strong> pieces hooked by hand</span>
+            <span>Hooked by hand, one at a time</span>
             <span className="dot" aria-hidden="true" />
-            <span><strong style={{ color: "var(--fg)", fontFamily: "var(--font-display)", fontSize: 18 }}>4.9</strong> from happy gifters</span>
+            <span>New designs on {CONFIG.instagramHandle}</span>
             <span className="dot" aria-hidden="true" />
             <span>Order on WhatsApp. Pay by UPI.</span>
           </div>
