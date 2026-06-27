@@ -4,3 +4,30 @@ Thumbs.db
 
 # Large design export archives
 *.zip
+
+# Internal tooling / planning (kept locally, off the public repo + live site)
+.claude/
+plan.md
+todo.md
+superclaude.md
+CATALOGUE.md
+.design-canvas.state.json
+.image-slots.state.json
+
+# Standalone design artifacts (not loaded by the live site)
+design-canvas.jsx
+mobile-canvas.html
+
+# Reference exports from Claude Design (not part of the published site)
+components-desktop-states/
+components-mobile/
+design-system/
+emails/
+frontend-design/
+handoff/
+screens/
+screens-desktop-states/
+screens-desktop-widths/
+screens-mobile/
+temporary/
+uploads/
