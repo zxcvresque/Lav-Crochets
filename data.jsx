@@ -12,8 +12,8 @@ const CONFIG = {
   city: "Chhatrapati Sambhajinagar, Maharashtra",
 
   // WhatsApp — international format, digits only (no + or spaces) for wa.me links.
-  whatsappNumber: "919960854712",
-  whatsappDisplay: "+91 99608 54712",
+  whatsappNumber: "91xxxxxxxxxx",
+  whatsappDisplay: "+91 xxxxx xxxxx",
 
   // UPI — placeholder for now; drop a real id + a QR PNG into assets/upi-qr.png.
   upiId: "lavcrochets@upi",        // TODO: real UPI id
