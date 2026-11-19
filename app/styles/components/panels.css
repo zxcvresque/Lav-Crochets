@@ -1,0 +1,54 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Panels: elevated surfaces + fixed-colour brand / ink variants
+   ─────────────────────────────────────────────────────────────────────── */
+.panel {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-5);
+  padding: var(--s-7);
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.panel.brand { background: var(--joy-500); color: var(--joy-950); border-color: transparent; }
+.panel.ink { background: var(--ink); color: var(--paper); border-color: transparent; }
+/* In dark mode the near-black ink panel blends into the page; lift it into a
+   distinct, elevated bordered surface (its light text still reads fine). */
+[data-theme="dark"] .panel.ink { background: var(--bg-subtle); border: 1px solid var(--line-2); }
+@media (max-width: 768px) {
+  .panel { padding: 26px 22px; border-radius: var(--r-4); }
+}
+
+/* Buttons inside fixed-surface panels follow the panel, not the page theme,
+   so hovers don't go white-on-white. */
+.panel.ink .btn.outline { --btn-fg: var(--paper); border-color: color-mix(in oklch, var(--paper) 32%, transparent); }
+.panel.ink .btn.outline:hover { background: var(--paper); --btn-fg: var(--ink); border-color: var(--paper); }
+.panel.brand .btn.outline { --btn-fg: var(--joy-950); border-color: color-mix(in oklch, var(--joy-950) 32%, transparent); }
+.panel.brand .btn.outline:hover { background: var(--joy-950); --btn-fg: var(--joy-50); border-color: var(--joy-950); }
+.panel.brand .btn.ink { --btn-bg: var(--joy-950); --btn-fg: var(--joy-50); }
+
+/* Panel titles + notes. */
+.panel-title { font-family: var(--font-display); font-size: var(--step-4); font-weight: 600; letter-spacing: var(--tracking-heading); line-height: 1.2; margin: 0; color: inherit; }
+.panel.brand .panel-title { color: var(--joy-950); }
+.panel-note { margin: 4px 0 0; text-align: center; font-size: var(--step--1); color: color-mix(in oklch, var(--joy-950) 85%, transparent); }
+
+/* Two-up CTA panels (custom orders, newsletter, about): big display headline
+   + one supporting paragraph. */
+.panel-headline {
+  font-family: var(--font-display);
+  font-size: var(--step-9);
+  font-weight: 500;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-heading);
+  margin: 0;
+  text-wrap: pretty;
+}
+.panel.brand .panel-headline { color: var(--joy-950); }
+.panel.ink .panel-headline { color: var(--paper); }
+.panel-headline-em { font-family: var(--font-italic); font-style: italic; color: var(--joy-300); font-weight: 400; }
+.panel-copy { max-width: 46ch; margin-top: 16px; font-size: var(--step-1); }
+.panel.brand .panel-copy { color: color-mix(in oklch, var(--joy-950) 78%, transparent); }
+.panel.ink .panel-copy { color: color-mix(in oklch, var(--paper) 70%, transparent); max-width: 44ch; }
+.panel-actions { display: flex; flex-direction: column; gap: 12px; }
+.panel-actions .btn { width: 100%; justify-content: center; }
+.panel-actions .btn.compact { height: 52px; }

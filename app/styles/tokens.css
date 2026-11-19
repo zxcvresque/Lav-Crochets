@@ -1,0 +1,213 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Lav Crochets design tokens
+   Direction: soft plum-lavender focal, pink + peach accents, faint-lilac paper.
+   Type: Bricolage Grotesque (display, variable opsz), Geist (body/UI),
+         Geist Mono (labels/accents). All three load through next/font.
+   Motion: four durations, three calm curves (no overshoot).
+   Hard rule: WCAG AA. No em dashes anywhere.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── PALETTE ─────────────────────────────────────────────────────────── */
+  /* Focal: soft plum-lavender. Calm, handmade, gift-y. Light enough that the
+     deep plum ink (--joy-950) stays readable on it, so every button/panel that
+     puts dark text on the brand colour keeps its contrast. */
+  --joy-50:  oklch(0.985 0.012 320);
+  --joy-100: oklch(0.962 0.028 318);
+  --joy-200: oklch(0.922 0.052 314);
+  --joy-300: oklch(0.872 0.082 310);
+  --joy-400: oklch(0.826 0.108 308);
+  --joy-500: oklch(0.780 0.122 306);   /* primary brand hue (soft plum-lavender) */
+  --joy-600: oklch(0.665 0.135 304);
+  --joy-700: oklch(0.560 0.140 303);
+  --joy-800: oklch(0.450 0.120 302);
+  --joy-900: oklch(0.340 0.092 301);
+  --joy-950: oklch(0.235 0.060 300);   /* deep plum ink */
+
+  /* Rose. Sale state, a separate signal from the plum primary. */
+  --rose-300: oklch(0.860 0.080 358);
+  --rose-500: oklch(0.700 0.150 358);
+  --rose-700: oklch(0.540 0.150 357);
+
+  /* Iris. "Pick" / bestseller badge + accent, a half-step bluer than plum. */
+  --iris-300: oklch(0.800 0.090 295);
+  --iris-500: oklch(0.600 0.150 295);
+  --iris-700: oklch(0.450 0.140 295);
+
+  /* Peach. "New" hits + warm pops. */
+  --sun-300: oklch(0.910 0.055 45);
+  --sun-500: oklch(0.840 0.105 45);
+  --sun-700: oklch(0.680 0.120 42);
+
+  /* Neutrals (faint-lilac paper, cool plum-grey ink). */
+  --paper:     oklch(0.988 0.006 320);   /* base surface: faint lilac-white */
+  --paper-2:   oklch(0.970 0.008 318);   /* elevated subtle */
+  --paper-3:   oklch(0.943 0.012 315);   /* divider / chip resting */
+  --ink:       oklch(0.190 0.020 305);   /* primary text */
+  --ink-soft:  oklch(0.320 0.022 305);   /* secondary text */
+  --ink-muted: oklch(0.515 0.018 306);   /* tertiary / meta */
+  --ink-faint: oklch(0.720 0.013 308);   /* lowest tier */
+  --line:      oklch(0.910 0.012 315);   /* hairlines */
+  --line-2:    oklch(0.825 0.018 312);   /* stronger borders */
+
+  /* Semantic. */
+  --ok:    oklch(0.660 0.150 145);
+  --warn:  oklch(0.780 0.150 75);
+  --bad:   oklch(0.620 0.200 22);
+  --info:  oklch(0.620 0.140 245);
+
+  /* ── ROLE TOKENS ─────────────────────────────────────────────────────── */
+  --bg:        var(--paper);
+  --bg-elev:   var(--paper-2);
+  --bg-subtle: var(--paper-3);
+  --bg-inverse: var(--joy-950);
+  --fg:        var(--ink);
+  --fg-soft:   var(--ink-soft);
+  --fg-muted:  var(--ink-muted);
+  --fg-faint:  var(--ink-faint);
+  --fg-on-brand: var(--joy-950);
+  --fg-on-ink:   var(--paper);
+  --brand:     var(--joy-500);
+  --brand-press: var(--joy-600);
+  --brand-ink:   var(--joy-950);
+  --sale:      var(--rose-500);
+  --pick:      var(--iris-500);
+  --free:      var(--sun-500);
+  --link-ink:  var(--joy-800);
+  --trk-done:  var(--joy-700);
+
+  /* ── TYPE ────────────────────────────────────────────────────────────── */
+  --font-display: var(--font-bricolage, "Bricolage Grotesque"), ui-sans-serif, system-ui, sans-serif;
+  --font-body:    var(--font-geist, "Geist"), "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    var(--font-geist-mono, "Geist Mono"), ui-monospace, "JetBrains Mono", Menlo, monospace;
+  --font-italic:  var(--font-bricolage, "Bricolage Grotesque"), serif;
+
+  /* Type scale. Negative steps are fixed UI/label sizes (rem, so they follow
+     the reader's font setting); step 0 is body copy; steps 6+ are fluid
+     display sizes that grow from a 375px phone to a 1440px desktop.
+       -5 10px  micro mono (chips on photos, counts)
+       -4 11px  mono labels, eyebrows, meta
+       -3 12px  mono meta, small notes
+       -2 13px  small UI (buttons, filters, captions)
+       -1 14px  secondary UI (nav, footer links, hints)
+        0 15px  body
+        1 16px  reading body (FAQ, policies), mobile inputs
+        2 17px  lead paragraphs
+        3 19px  card / drawer titles, prices
+        4 22px  section-in-card titles
+        5 26px  sign-offs, tile titles                                     */
+  --step--5: 0.625rem;
+  --step--4: 0.6875rem;
+  --step--3: 0.75rem;
+  --step--2: 0.8125rem;
+  --step--1: 0.875rem;
+  --step-0:  0.9375rem;
+  --step-1:  1rem;
+  --step-2:  1.0625rem;
+  --step-3:  1.1875rem;
+  --step-4:  1.375rem;
+  --step-5:  1.625rem;
+  /* Fluid display steps (375px → 1440px). */
+  --step-6:  clamp(1.0625rem, 0.974rem + 0.376vw, 1.3125rem);   /* 17 → 21: FAQ questions, timeline, hero sub */
+  --step-7:  clamp(1.25rem, 1.118rem + 0.563vw, 1.625rem);      /* 20 → 26: quotes, leads, contact values */
+  --step-8:  clamp(1.5rem, 1.28rem + 0.939vw, 2.125rem);        /* 24 → 34: sub-section headings */
+  --step-9:  clamp(2rem, 1.56rem + 1.878vw, 3.25rem);           /* 32 → 52: panel headlines, quote block */
+  --step-10: clamp(2.25rem, 1.634rem + 2.629vw, 4rem);          /* 36 → 64: page + section headings */
+  --step-11: clamp(3.25rem, 0.25rem + 7vw, 8rem);               /* 52 → 128: home hero */
+
+  /* Leading + tracking pairs. Tighter leading and tracking as size grows. */
+  --leading-display: 0.95;   /* steps 10–11 */
+  --leading-heading: 1.05;   /* steps 8–9 */
+  --leading-snug:    1.25;   /* steps 3–7 */
+  --leading-ui:      1.3;
+  --leading-body:    1.5;
+  --leading-read:    1.65;   /* long reading copy */
+  --tracking-display: -0.03em;
+  --tracking-heading: -0.02em;
+  --tracking-snug:    -0.01em;
+  --tracking-label:   0.06em;  /* mono uppercase labels */
+  --tracking-caps:    0.08em;
+  --tracking-eyebrow: 0.12em;
+
+  /* ── SPACING ─────────────────────────────────────────────────────────── */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 144px;
+
+  /* ── RADII ───────────────────────────────────────────────────────────── */
+  --r-1: 4px;
+  --r-2: 8px;
+  --r-3: 12px;
+  --r-4: 18px;     /* card */
+  --r-5: 26px;     /* hero panel */
+  --r-pill: 999px;
+
+  /* ── SHADOWS (layered, with subtle plum tint) ────────────────────────── */
+  --shadow-1: 0 1px 0 0 oklch(0.96 0.01 320 / 0.7),
+              0 1px 2px -1px oklch(0.22 0.05 305 / 0.06);
+  --shadow-2: 0 2px 4px -2px oklch(0.22 0.05 305 / 0.06),
+              0 8px 16px -8px oklch(0.22 0.05 305 / 0.10);
+  --shadow-3: 0 4px 8px -4px oklch(0.22 0.05 305 / 0.08),
+              0 16px 32px -16px oklch(0.22 0.05 305 / 0.14);
+  --shadow-4: 0 8px 16px -8px oklch(0.22 0.05 305 / 0.10),
+              0 28px 56px -28px oklch(0.22 0.05 305 / 0.22);
+  --shadow-brand: 0 10px 40px -12px oklch(0.62 0.16 306 / 0.45);
+
+  /* ── MOTION ──────────────────────────────────────────────────────────── */
+  /* Durations: feedback, state change, overlay/accordion, arrival. */
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --dur-3: 320ms;
+  --dur-4: 480ms;
+  /* Curves: a calm deceleration for arrivals and hovers, a symmetric curve
+     for things that move between two resting places, an acceleration for
+     exits. None overshoot. */
+  --ease-out:    cubic-bezier(.22, 1, .36, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --ease-in:     cubic-bezier(.4, 0, 1, 1);
+  /* Press feedback: how far a control sinks when pressed. */
+  --press-scale: 0.97;
+
+  /* ── Z ───────────────────────────────────────────────────────────────── */
+  --z-base: 0;
+  --z-elev: 10;
+  --z-sticky: 40;
+  --z-drawer: 50;
+  --z-modal: 60;
+  --z-toast: 70;
+}
+
+/* Dark mode (deep plum-ink stage; cards become subtle elevated). */
+[data-theme="dark"] {
+  --bg:        oklch(0.175 0.028 305);
+  --bg-elev:   oklch(0.215 0.030 305);
+  --bg-subtle: oklch(0.255 0.032 305);
+  --bg-inverse: var(--paper);
+  --fg:        oklch(0.965 0.008 320);
+  --fg-soft:   oklch(0.860 0.010 320);
+  --fg-muted:  oklch(0.680 0.013 315);
+  --fg-faint:  oklch(0.520 0.014 312);
+  --fg-on-brand: var(--joy-950);
+  --fg-on-ink:   var(--ink);
+  --line:      oklch(0.310 0.025 305);
+  --line-2:    oklch(0.390 0.030 305);
+  --paper-2:   oklch(0.215 0.030 305);
+  --paper-3:   oklch(0.255 0.032 305);
+  --link-ink:  var(--joy-300);
+  --trk-done:  var(--joy-400);
+  --shadow-1: 0 1px 0 0 oklch(0.30 0.02 152 / 0.5),
+              0 1px 2px -1px oklch(0 0 0 / 0.4);
+  --shadow-2: 0 2px 4px -2px oklch(0 0 0 / 0.3),
+              0 8px 16px -8px oklch(0 0 0 / 0.5);
+  --shadow-3: 0 4px 8px -4px oklch(0 0 0 / 0.4),
+              0 16px 32px -16px oklch(0 0 0 / 0.55);
+  --shadow-4: 0 8px 16px -8px oklch(0 0 0 / 0.4),
+              0 28px 56px -28px oklch(0 0 0 / 0.6);
+}

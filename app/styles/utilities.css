@@ -1,0 +1,27 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Utilities + small shared pieces
+   ─────────────────────────────────────────────────────────────────────── */
+.soft  { color: var(--fg-soft); }
+.center { text-align: center; }
+
+/* Soft SVG art tiles (Instagram fallback, admin previews). */
+.print-art {
+  width: 100%; height: 100%;
+  display: block;
+}
+
+/* Scroll progress bar along the very top of the page. */
+.progress-bar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 3px; z-index: 80;
+  background: linear-gradient(90deg, var(--joy-500), var(--iris-500));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+/* Images that were still downloading when the page hydrated fade in once
+   they arrive (see use-image-fade.js). Anything already loaded, and every
+   image before JS runs, is shown at once. */
+.img-fade.is-loading { opacity: 0; }
+/* Zero specificity: images with their own transition list keep it. */
+:where(.img-fade) { transition: opacity var(--dur-4) var(--ease-out); }

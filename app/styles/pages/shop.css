@@ -1,0 +1,27 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Shop: collection filters above the product grid
+   ─────────────────────────────────────────────────────────────────────── */
+.shop-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 32px; }
+.shop-filter {
+  appearance: none; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg-elev); color: var(--fg-soft);
+  font-family: var(--font-body); font-size: var(--step--2); font-weight: 500;
+  padding: 8px 16px; border-radius: var(--r-pill);
+  transition:
+    color var(--dur-2) var(--ease-out),
+    background-color var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out),
+    transform var(--dur-1) var(--ease-out);
+}
+.shop-filter:hover { color: var(--fg); border-color: var(--line-2); }
+.shop-filter:active { transform: scale(0.96); }
+/* aria-pressed mirrors .active so AT-driven state and styling agree. */
+.shop-filter.active,
+.shop-filter[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); border-color: transparent; }
+.shop-empty { color: var(--fg-muted); margin-top: 24px; animation: rise-in var(--dur-3) var(--ease-out); }
+/* The grid's cards settle in when the filter changes (keyed per filter). */
+.pgrid[data-filtered] > * { animation: rise-in var(--dur-3) var(--ease-out) backwards; }
+.pgrid[data-filtered] > :nth-child(2) { animation-delay: 30ms; }
+.pgrid[data-filtered] > :nth-child(3) { animation-delay: 60ms; }
+.pgrid[data-filtered] > :nth-child(4) { animation-delay: 90ms; }
+.pgrid[data-filtered] > :nth-child(n+5) { animation-delay: 120ms; }

@@ -1,0 +1,93 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Contact: three ways to reach me, then the note form
+   ─────────────────────────────────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 8px 0 8px;
+}
+@media (max-width: 860px)  { .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px)  { .contact-grid { grid-template-columns: minmax(0, 1fr); } }
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  background: var(--bg-elev);
+  color: var(--fg);
+  transition: transform var(--dur-2) var(--ease-out),
+              box-shadow var(--dur-3) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out);
+}
+.contact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-3); border-color: var(--line-2); }
+.contact-card:active { transform: translateY(-1px); transition-duration: var(--dur-1); }
+.contact-card.brand { background: var(--joy-500); color: var(--joy-950); border-color: transparent; }
+.contact-ico {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-subtle);
+  color: var(--fg);
+  margin-bottom: 14px;
+  transition: transform var(--dur-3) var(--ease-out);
+}
+.contact-card:hover .contact-ico { transform: translateY(-2px); }
+.contact-card.brand .contact-ico { background: var(--joy-950); color: var(--joy-100); }
+.contact-label {
+  font-family: var(--font-mono);
+  font-size: var(--step--4);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--fg-muted);
+}
+.contact-card.brand .contact-label { color: color-mix(in oklch, var(--joy-950) 62%, transparent); }
+.contact-value {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--step-7);
+  letter-spacing: var(--tracking-heading);
+  line-height: 1.1;
+}
+.contact-sub { color: var(--fg-soft); font-size: var(--step-0); line-height: var(--leading-body); margin-top: 2px; }
+.contact-card.brand .contact-sub { color: color-mix(in oklch, var(--joy-950) 80%, transparent); }
+.contact-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: var(--step-0);
+  color: var(--joy-700);
+}
+.contact-card.brand .contact-go { color: var(--joy-950); }
+.contact-go svg { transition: transform var(--dur-2) var(--ease-out); }
+.contact-card:hover .contact-go svg { transform: translateX(3px); }
+.contact-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+  font-family: var(--font-mono);
+  font-size: var(--step--3);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.contact-meta > span:first-child { display: inline-flex; align-items: center; gap: 7px; }
+.contact-dot { width: 4px; height: 4px; border-radius: 999px; background: currentColor; opacity: 0.4; }
+
+/* Contact form */
+.contact-form-wrap { max-width: 720px; margin: 56px 0 8px; }
+.contact-form-title {
+  font-family: var(--font-display); font-weight: 500; letter-spacing: var(--tracking-display); line-height: var(--leading-heading);
+  font-size: var(--step-8); margin: 0 0 20px; text-wrap: balance;
+}
+.contact-form-title em { font-style: normal; color: var(--joy-700); }
+[data-theme="dark"] .contact-form-title em { color: var(--joy-300); }

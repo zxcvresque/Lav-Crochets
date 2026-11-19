@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      # Dummy values so the build can run; nothing here is a real secret.
+      DATABASE_URL: "file:./ci.db"
+      BETTER_AUTH_SECRET: "ci-dummy-secret-not-used-for-anything-real"
+      BETTER_AUTH_URL: "http://localhost:3000"
+      NEXT_PUBLIC_APP_URL: "http://localhost:3000"
+      NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
+      RAZORPAY_KEY_ID: "rzp_test_dummy"
+      RAZORPAY_KEY_SECRET: "dummy"
+      NEXT_PUBLIC_RAZORPAY_KEY_ID: "rzp_test_dummy"
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx prisma generate
+      - name: Create an empty SQLite schema for pages that query at build time
+        run: npx prisma db push --skip-generate
+      - run: npm run typecheck
+      - run: npm run test:razorpay
+      - name: Lint (only if an ESLint config is present)
+        run: |
+          if ls .eslintrc* eslint.config.* >/dev/null 2>&1; then npx next lint; else echo "No ESLint config; skipping lint."; fi
+      - run: npx next build

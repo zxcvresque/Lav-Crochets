@@ -1,0 +1,78 @@
+/* ───────────────────────────────────────────────────────────────────────
+   FAQ accordion (home + about)
+   Single-open. The answer opens with a smooth height (grid rows 0fr → 1fr)
+   and its text fades up a beat later; the icon turns and fills.
+   ─────────────────────────────────────────────────────────────────────── */
+.faq-wrap { max-width: 880px; }
+.faq-list { display: flex; flex-direction: column; gap: 12px; }
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  background: var(--bg-elev);
+  overflow: hidden;
+  transition: border-color var(--dur-2) var(--ease-out),
+              box-shadow var(--dur-3) var(--ease-out);
+}
+.faq-item:hover { border-color: var(--line-2); }
+.faq-item.open { border-color: var(--line-2); box-shadow: var(--shadow-2); }
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--step-6);
+  letter-spacing: -0.015em;
+  line-height: var(--leading-snug);
+  color: var(--fg);
+}
+.faq-icon {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-subtle);
+  color: var(--fg-soft);
+  transition: transform var(--dur-3) var(--ease-out),
+              background-color var(--dur-2) var(--ease-out),
+              color var(--dur-2) var(--ease-out);
+}
+.faq-q:hover .faq-icon { color: var(--fg); }
+.faq-item.open .faq-icon {
+  transform: rotate(90deg);
+  background: var(--joy-500);
+  color: var(--joy-950);
+}
+.faq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-3) var(--ease-in-out);
+}
+.faq-item.open .faq-a { grid-template-rows: 1fr; }
+.faq-a > div { overflow: hidden; min-height: 0; }
+.faq-a p {
+  margin: 0;
+  padding: 0 24px 24px;
+  max-width: 68ch;
+  color: var(--fg-soft);
+  font-size: var(--step-1);
+  line-height: 1.62;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity var(--dur-2) var(--ease-in), transform var(--dur-2) var(--ease-in);
+}
+.faq-item.open .faq-a p {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--dur-3) var(--ease-out) var(--dur-1), transform var(--dur-3) var(--ease-out) var(--dur-1);
+}

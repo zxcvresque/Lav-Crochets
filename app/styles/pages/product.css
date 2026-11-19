@@ -1,0 +1,83 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Product detail
+   ─────────────────────────────────────────────────────────────────────── */
+.pd {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+}
+@media (max-width: 900px) { .pd { grid-template-columns: 1fr; } }
+.pd-crumbs { margin-bottom: 20px; display: inline-flex; flex-wrap: wrap; gap: 8px; }
+.pd-crumbs a { transition: color var(--dur-2) var(--ease-out); }
+.pd-crumbs a:hover { color: var(--fg); }
+.pd-crumbs .sep { opacity: 0.5; }
+.pd-crumbs .here { color: var(--fg); }
+.pd-image {
+  aspect-ratio: 1;
+  border-radius: var(--r-5);
+  overflow: hidden;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line);
+  position: relative;
+}
+.pd-chips { position: absolute; top: 16px; left: 16px; display: flex; gap: 8px; }
+.pd-info { position: sticky; top: 120px; }
+.pd h1 {
+  font-family: var(--font-display);
+  font-size: var(--step-10);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: var(--leading-display);
+  margin: 12px 0 16px;
+  text-wrap: balance;
+}
+.pd .pd-sub { font-size: var(--step-2); color: var(--fg-soft); margin: 0 0 24px; line-height: 1.55; max-width: 50ch; }
+.pd .price-detail {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: var(--step-9);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin: 8px 0 4px;
+  font-variant-numeric: tabular-nums;
+}
+.pd .price-detail .usd { font-family: var(--font-mono); font-size: var(--step--1); color: var(--fg-muted); font-weight: 500; letter-spacing: 0.02em; text-decoration: line-through; }
+.pd .file-meta {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  margin: 18px 0;
+  overflow: hidden;
+}
+.pd .file-meta > div {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 9px 16px;
+}
+.pd .file-meta > div + div { border-top: 1px solid var(--line); }
+.pd .file-meta .k {
+  font-family: var(--font-mono);
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  font-size: var(--step--5);
+  letter-spacing: var(--tracking-caps);
+  line-height: 1.7;
+}
+.pd .file-meta .v { color: var(--fg); font-size: var(--step--1); line-height: var(--leading-body); }
+.pd-features { display: flex; flex-direction: column; gap: 10px; margin: 24px 0; }
+.pd-features li { display: flex; gap: 10px; font-size: var(--step-0); color: var(--fg-soft); }
+.pd-features li::before { content: ""; flex: 0 0 6px; height: 6px; background: var(--joy-500); border-radius: 99px; margin-top: 10px; }
+.pd-buy { display: flex; gap: 12px; align-items: center; margin-top: 28px; }
+.pd-buy .btn { flex: 1; justify-content: center; }
+.pd-note { font-family: var(--font-mono); font-size: var(--step--3); color: var(--fg-muted); margin-top: 14px; letter-spacing: 0.02em; }
+
+/* Add-to-cart feedback on the big CTA: the label swaps with a soft rise. */
+.btn .add-fb-label { display: inline-flex; align-items: center; gap: 8px; }
+.btn.has-fb .add-fb-label { animation: rise-in var(--dur-2) var(--ease-out); }
+.btn.is-added { --btn-bg: color-mix(in oklch, var(--ok) 20%, var(--bg-elev)); --btn-fg: var(--fg); border-color: color-mix(in oklch, var(--ok) 45%, transparent); }

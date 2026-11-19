@@ -1,0 +1,27 @@
+/* Lav Crochets stylesheet. Partials load in cascade order:
+   tokens → base → layout → components → pages → utilities → motion.
+   Motion comes last so its reduced-motion override wins everywhere. */
+@import "./styles/tokens.css";
+@import "./styles/base.css";
+@import "./styles/layout.css";
+
+@import "./styles/components/buttons.css";
+@import "./styles/components/panels.css";
+@import "./styles/components/product-card.css";
+@import "./styles/components/header.css";
+@import "./styles/components/drawer.css";
+@import "./styles/components/footer.css";
+@import "./styles/components/faq.css";
+@import "./styles/components/forms.css";
+@import "./styles/components/testimonials.css";
+
+@import "./styles/pages/home.css";
+@import "./styles/pages/shop.css";
+@import "./styles/pages/product.css";
+@import "./styles/pages/about.css";
+@import "./styles/pages/contact.css";
+@import "./styles/pages/track-policy.css";
+@import "./styles/pages/checkout.css";
+
+@import "./styles/utilities.css";
+@import "./styles/motion.css";

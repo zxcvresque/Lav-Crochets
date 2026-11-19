@@ -31,3 +31,24 @@ screens-desktop-widths/
 screens-mobile/
 temporary/
 uploads/
+
+# Secrets & local data
+.env
+.env.*
+!.env.example
+prisma/*.db
+prisma/*.db-journal
+
+# Build output
+.next/
+node_modules/
+tsconfig.tsbuildinfo
+
+# Exported chat logs
+terminal-chat-export.md
+.next-*/
+
+# Uploaded product photos
+data/
+*.tsbuildinfo
+.impeccable/

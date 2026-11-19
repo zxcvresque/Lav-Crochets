@@ -1,0 +1,89 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Layout primitives
+   ─────────────────────────────────────────────────────────────────────── */
+.app {
+  min-height: 100vh;
+  background: var(--bg);
+  overflow-x: clip;
+}
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 28px; }
+@media (max-width: 768px) { .wrap { padding: 0 16px; } }
+
+.row { display: flex; align-items: center; gap: var(--s-3); }
+
+/* minmax(0,1fr) (not plain 1fr) so columns can shrink below their content
+   width; otherwise wide content forces the grid past the viewport. */
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5); }
+@media (max-width: 768px) { .grid-2 { grid-template-columns: minmax(0, 1fr); } }
+
+/* Split panels (text + side card). Stack on phones so they never overflow. */
+.panel-split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+@media (max-width: 768px) { .panel-split { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
+
+/* Grid children must be allowed to shrink below their content (with the
+   minmax(0,1fr) tracks) or a wide child pushes the whole page past the viewport. */
+.grid-2 > *, .panel-split > *, .about-grid > *, .pgrid > * { min-width: 0; }
+
+/* ───────────────────────────────────────────────────────────────────────
+   Sections + section heads
+   ─────────────────────────────────────────────────────────────────────── */
+.section { padding: var(--s-9) 0; position: relative; }
+.section.tight { padding: var(--s-7) 0; }
+.section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s-5); margin-bottom: var(--s-6); }
+.section-head > div { min-width: 0; }   /* let the heading wrap instead of overflowing */
+.section-head h1, .section-head h2 {
+  font-family: var(--font-display);
+  font-size: var(--step-10);
+  font-weight: 500;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+  margin: 0;
+  color: var(--fg);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.section-head h1 em, .section-head h2 em { font-family: var(--font-display); font-style: normal; font-weight: 500; color: var(--joy-700); }
+.section-head .right { display: flex; align-items: center; gap: var(--s-3); flex-shrink: 0; }
+/* On phones the big heading + action button can't share a row; stack them so
+   the action ("Shop all", "Open Instagram") stays fully on-screen. */
+@media (max-width: 640px) {
+  .section-head { flex-direction: column; align-items: stretch; gap: var(--s-4); margin-bottom: var(--s-5); }
+  .section-head > div, .section-head .right { width: 100%; }
+  .section-head h1, .section-head h2 { font-size: var(--step-9); line-height: var(--leading-heading); }
+}
+
+@media (max-width: 768px) {
+  .section { padding: 56px 0; }
+  .section.tight { padding: 40px 0; }
+}
+
+/* First section on header-only pages needs clearance under the fixed header. */
+.page-top,
+.app .checkout-page,
+.app .account-page,
+.app .auth-page { padding-top: 132px; }
+@media (max-width: 768px) {
+  .page-top,
+  .app .checkout-page,
+  .app .account-page,
+  .app .auth-page { padding-top: 100px; }
+}
+
+/* Running-stitch divider: short dashes with rounded ends, like thread
+   pulled through fabric. Replaces hairline rules between home sections. */
+.stitch-line {
+  display: block;
+  width: 100%;
+  height: 12px;
+  overflow: visible;
+}
+.stitch-line path {
+  fill: none;
+  stroke: var(--joy-500);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 14 10;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.85;
+}
+[data-theme="dark"] .stitch-line path { stroke: var(--joy-300); opacity: 0.6; }

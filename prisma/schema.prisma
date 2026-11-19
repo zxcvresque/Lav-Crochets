@@ -1,0 +1,224 @@
+// schema.prisma — Lav Crochets full rebuild
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ── Auth ──────────────────────────────────────────────────────────────────
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  emailVerified Boolean @default(false)
+  name      String?
+  image     String?
+  googleId  String?  @unique
+  role      String   @default("customer") // "customer" | "admin"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orders        Order[]
+  couponUsages  CouponUsage[]
+  accounts     Account[]
+  sessions     Session[]
+}
+
+model Account {
+  id          String  @id @default(cuid())
+  userId      String
+  accountId   String
+  providerId  String
+  accessToken String?
+  refreshToken String?
+  accessTokenExpiresAt DateTime?
+  refreshTokenExpiresAt DateTime?
+  idToken     String?
+  scope       String?
+  password    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, accountId])
+}
+
+model Session {
+  id          String   @id @default(cuid())
+  userId      String
+  token       String   @unique
+  expiresAt   DateTime
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Better Auth verification tokens (magic links, email verification)
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// ── Products ──────────────────────────────────────────────────────────────
+model Product {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  title        String
+  category     String   // "charms" | "hair" | "keychains"
+  chip         String?  // "bestseller" | "new" | "sale"
+  materials    String?
+  sizeOptions  String?  // JSON array stored as string
+  colorOptions String?  // JSON array stored as string
+  stockStatus  String   @default("made-to-order") // "ready" | "made-to-order"
+  turnaroundDays Int    @default(5) // days to make + ship
+  priceINR     Int      // price in paisa? No — rupees (stored as integer, display as ₹X)
+  wasINR       Int?     // original price if on sale
+  care         String?
+  description  String?
+  images       String?  // JSON array of URLs
+  sortOrder    Int      @default(0)
+  published    Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  orderItems   OrderItem[]
+}
+
+model Category {
+  id    String @id @default(cuid())
+  slug  String @unique
+  title String
+  count Int    @default(0)
+  tone  String @default("paper") // "joy" | "sun" | "plum" | "coral" | "paper" | "ink"
+}
+
+// ── Orders ─────────────────────────────────────────────────────────────────
+model Order {
+  id                String    @id @default(cuid())
+  orderNumber       String    @unique
+  userId            String?
+  user              User?     @relation(fields: [userId], references: [id])
+
+  // Customer info
+  customerName      String
+  customerEmail     String
+  customerPhone     String
+  shippingAddress   String?
+  city              String?
+  state             String?   // optional; added for checkout State field (no migration run)
+  pincode           String?
+
+  // Totals
+  subtotalINR       Int       // before discount
+  discountINR       Int       @default(0)
+  totalINR          Int       // after discount
+
+  // Coupon
+  couponId          String?
+  couponCode        String?
+
+  // Payment
+  razorpayOrderId   String?   @unique
+  razorpayPaymentId String?
+  razorpaySignature String?
+  paymentStatus     String    @default("pending") // "pending" | "paid" | "failed" | "refunded"
+
+  // Status
+  orderStatus       String    @default("pending") // "pending" | "confirmed" | "making" | "ready" | "shipped" | "delivered"
+  estimatedDelivery String?   // human-readable delivery estimate
+
+  // Shipping (by courier). Tracking number only when the courier gives one;
+  // otherwise the customer just sees the ETA. See lib/couriers.ts.
+  courier           String?   // courier registry id, e.g. "india-post"
+  trackingNumber    String?
+  etaDate           DateTime?
+  shippedAt         DateTime?
+  notes             String?  // admin notes
+
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  items             OrderItem[]
+}
+
+model OrderItem {
+  id         String  @id @default(cuid())
+  orderId    String
+  order      Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId  String
+  product    Product @relation(fields: [productId], references: [id])
+  title      String  // snapshot at time of order
+  priceINR   Int
+  qty        Int     @default(1)
+  options    String? // JSON snapshot of selected options
+}
+
+// ── Coupons ───────────────────────────────────────────────────────────────
+model Coupon {
+  id            String    @id @default(cuid())
+  code          String    @unique
+  type          String    // "flat" | "percent"
+  value         Int       // e.g. 50 (rupees) or 10 (percent)
+  minOrderINR   Int       @default(0)
+  usageLimit    Int?      // total uses allowed (null = unlimited)
+  perUserLimit  Int       @default(1)
+  expiresAt     DateTime?
+  active        Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  usages        CouponUsage[]
+}
+
+model CouponUsage {
+  id        String   @id @default(cuid())
+  couponId  String
+  coupon    Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  orderId   String   @unique
+  createdAt DateTime @default(now())
+
+  @@index([couponId])
+  @@index([userId])
+}
+
+// ── Instagram (cached) ────────────────────────────────────────────────────
+model InstagramPost {
+  id          String   @id @default(cuid())
+  instagramId String   @unique
+  mediaUrl    String
+  permalink   String
+  caption     String?
+  mediaType   String   @default("IMAGE")
+  timestamp   DateTime
+  cachedAt    DateTime @default(now())
+}
+
+// ── Custom order requests ────────────────────────────────────────────────
+// Saved from /custom so requests (and their reference photos) can be read in
+// /admin/custom, not only in the inbox.
+model CustomRequest {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  whatYouWant String
+  colors      String?
+  budget      String?
+  notes       String?
+  photos      String?  // JSON array of stored photo names (see lib/custom-photos.ts)
+  status      String   @default("new") // "new" | "replied" | "closed"
+  createdAt   DateTime @default(now())
+
+  @@index([createdAt])
+}

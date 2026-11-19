@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    ignore:
+      # Unofficial scraper, pinned on purpose; review upgrades by hand.
+      - dependency-name: "track-post"
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly

@@ -1,0 +1,111 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Buttons + icon buttons
+   Hover lifts 1px and warms the shadow; press sinks slightly. Colour, shadow
+   and border fade on --dur-2; movement answers on --dur-1.
+   ─────────────────────────────────────────────────────────────────────── */
+.btn {
+  --btn-bg: var(--brand);
+  --btn-fg: var(--brand-ink);
+  --btn-ring: var(--brand-press);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--r-pill);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1px solid color-mix(in oklch, var(--btn-bg), black 4%);
+  font-family: var(--font-body);
+  font-size: var(--step--2);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  transition:
+    transform var(--dur-1) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out),
+    background-color var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out),
+    color var(--dur-2) var(--ease-out),
+    opacity var(--dur-2) var(--ease-out);
+  box-shadow: var(--shadow-1);
+}
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-brand); }
+.btn:active { transform: translateY(0) scale(0.98); transition-duration: var(--dur-1); }
+.btn:disabled { opacity: 0.7; cursor: progress; }
+.btn:disabled:hover { transform: none; box-shadow: var(--shadow-1); }
+.btn.lg { height: 56px; padding: 0 28px; font-size: var(--step-2); border-radius: var(--r-pill); }
+.btn.xl { height: 64px; padding: 0 36px; font-size: var(--step-3); border-radius: var(--r-pill); font-weight: 600; }
+.btn.ink { --btn-bg: var(--fg); --btn-fg: var(--bg); }
+.btn.ghost { --btn-bg: transparent; --btn-fg: var(--fg); border: 1px solid var(--line-2); box-shadow: none; }
+.btn.ghost:hover { background: var(--bg-elev); box-shadow: var(--shadow-2); }
+.btn.outline { --btn-bg: transparent; --btn-fg: var(--fg); border: 1.5px solid var(--fg); box-shadow: none; }
+.btn.outline:hover { background: var(--fg); --btn-fg: var(--bg); box-shadow: var(--shadow-2); }
+.btn.icon { width: 44px; padding: 0; justify-content: center; }
+/* Icons inside buttons nudge toward the action on hover. */
+.btn svg { transition: transform var(--dur-2) var(--ease-out); }
+.btn:hover svg { transform: translateX(2px); }
+
+/* Phone (≤640): the xl CTAs are desktop-sized (64px). Stack-friendly sizes
+   per the mobile spec: primary/ink = 56px, base = 48px. */
+@media (max-width: 640px) {
+  .btn.xl { height: 56px; padding: 0 20px; font-size: var(--step-2); }
+  .btn.lg { height: 48px; }
+}
+
+/* A diagonal shine that sweeps across on hover (transform only). */
+.btn-flash { position: relative; overflow: hidden; }
+.btn-flash::after {
+  content: "";
+  position: absolute; top: 0; left: 0;
+  width: 55%; height: 100%;
+  background: linear-gradient(115deg, transparent 0%, color-mix(in oklch, white 60%, transparent) 50%, transparent 100%);
+  transform: translateX(-218%) skewX(-18deg);
+  pointer-events: none;
+  transition: transform calc(var(--dur-4) + var(--dur-1)) var(--ease-out);
+}
+.btn-flash:hover::after { transform: translateX(255%) skewX(-18deg); }
+
+.iconbtn {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  width: 44px; height: 44px;
+  border-radius: 99px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--fg-soft);
+  cursor: pointer;
+  position: relative;
+  transition:
+    background-color var(--dur-2) var(--ease-out),
+    color var(--dur-2) var(--ease-out),
+    transform var(--dur-1) var(--ease-out);
+}
+.iconbtn:hover { background: color-mix(in oklch, var(--fg) 8%, transparent); color: var(--fg); }
+.iconbtn:active { transform: scale(0.92); }
+.iconbtn > svg { transition: transform var(--dur-3) var(--ease-out); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   Chips
+   ─────────────────────────────────────────────────────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-mono);
+  font-size: var(--step--4);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  background: var(--bg-subtle);
+  color: var(--fg-soft);
+  border: 1px solid var(--line);
+}
+.chip.free { background: var(--sun-500); color: oklch(0.30 0.05 70); border-color: transparent; }
+.chip.pick { background: var(--iris-500); color: white; border-color: transparent; }
+.chip.sale { background: var(--rose-500); color: white; border-color: transparent; }
+.chip.new  { background: var(--joy-500); color: var(--joy-950); border-color: transparent; }

@@ -1,0 +1,109 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   MOTION
+   Shared keyframes, scroll reveals, page + theme transitions, and the
+   reduced-motion override. Tokens (--dur-*, --ease-*) live in tokens.css.
+   Everything here animates transform/opacity (plus outline/shadow on
+   small elements); content is visible in every element's resting state.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Keyframes ──────────────────────────────────────────────────────── */
+/* Entrances: content arrives from just below (rise) or above (drop). */
+@keyframes rise-in { from { opacity: 0; transform: translateY(6px); } }
+@keyframes drop-in { from { opacity: 0; transform: translateY(-6px); } }
+/* Confirmation marks (cart badge, check icons): a calm scale settle, no
+   overshoot. */
+@keyframes settle-in { from { opacity: 0.4; transform: scale(0.8); } }
+/* Focus ring draws in from a wider, transparent ring. */
+@keyframes focus-ring-in { from { outline-color: transparent; outline-offset: 6px; } }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in oklch, var(--brand) 60%, transparent); }
+  70%  { box-shadow: 0 0 0 10px color-mix(in oklch, var(--brand) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--brand) 0%, transparent); }
+}
+@keyframes trk-rise { from { opacity: 0; transform: translateY(10px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes trk-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--ok) 50%, transparent); } 70%, 100% { box-shadow: 0 0 0 7px transparent; } }
+@keyframes reveal-in { from { opacity: 0; transform: translateY(24px); } }
+@keyframes route-in { from { opacity: 0; } }
+
+/* ── Scroll reveal (primitives.jsx <Reveal>) ────────────────────────────
+   Server render and anything in view at mount carry no attribute and stay
+   fully visible. Below-the-fold blocks get data-reveal="wait" after mount
+   and "in" when they scroll into view. An animation (not a transition)
+   carries the entrance so it never clobbers an element's own hover
+   transitions, and `backwards` fill hands control back when it ends. */
+[data-reveal="wait"] { opacity: 0; }
+[data-reveal="in"] {
+  animation: reveal-in calc(var(--dur-4) * 1.4) var(--ease-out) backwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+/* ── Client-side route changes (app/(site)/template.tsx) ───────────────
+   A short fade on the new page's content; the header and footer stay put.
+   Full document loads use the cross-document view transition below. */
+.route-in { animation: route-in var(--dur-3) var(--ease-out); }
+
+/* ── Cross-document page transitions (same-origin links) ───────────────
+   Supporting browsers cross-fade between pages; the header is its own
+   group, so it holds still while the content changes. */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: var(--dur-2) var(--ease-in) both vt-fade-out; }
+::view-transition-new(root) { animation: var(--dur-3) var(--ease-out) both vt-fade-in; }
+::view-transition-group(site-header) { animation-duration: var(--dur-3); animation-timing-function: var(--ease-in-out); }
+@keyframes vt-fade-out { to { opacity: 0; } }
+@keyframes vt-fade-in { from { opacity: 0; } }
+
+/* Theme toggle: with the View Transitions API the whole page cross-fades
+   (html[data-vt="theme"] marks that transition); without it, colours ease
+   across for one beat via html.theme-anim. */
+html[data-vt="theme"]::view-transition-old(root) { animation: var(--dur-3) var(--ease-in-out) both vt-fade-out; }
+html[data-vt="theme"]::view-transition-new(root) { animation: var(--dur-3) var(--ease-in-out) both vt-fade-in; }
+html[data-vt="theme"]::view-transition-group(site-header) { animation: none; }
+html[data-vt="theme"]::view-transition-old(site-header) { animation: var(--dur-3) var(--ease-in-out) both vt-fade-out; }
+html[data-vt="theme"]::view-transition-new(site-header) { animation: var(--dur-3) var(--ease-in-out) both vt-fade-in; }
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+  transition:
+    background-color var(--dur-3) var(--ease-in-out),
+    border-color var(--dur-3) var(--ease-in-out),
+    color var(--dur-3) var(--ease-in-out),
+    fill var(--dur-3) var(--ease-in-out),
+    stroke var(--dur-3) var(--ease-in-out) !important;
+}
+
+/* ── Reduced motion: everything settles instantly ───────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+  }
+  /* No spatial movement on hover / press either. */
+  .btn:hover, .btn:active, .btn:hover svg,
+  .iconbtn:active,
+  .pcard:hover, .pcard:hover .product-art-img, .pcard:hover .product-ph svg, .pcard-add:active,
+  .cat-tile:hover, .cat-tile:active, .cat-tile:hover .tile-bg svg, .cat-tile:hover .cat-arrow,
+  .contact-card:hover, .contact-card:active, .contact-card:hover .contact-ico, .contact-card:hover .contact-go svg,
+  .shop-path:active, .shop-path:hover .shop-path-arrow, .shop-filter:active,
+  .ig-tile:hover img, .ig-tile:hover .print-art,
+  .qty-stepper button:active:not(:disabled), .cart-remove:active,
+  .cdrop.is-over, .cdrop:active, .cdrop:hover .cdrop-ico,
+  .cthumb-remove:hover, .cthumb-remove:active,
+  .about-promise .about-promise-cta:hover, .about-promise .about-promise-cta:active, .about-promise .about-promise-cta:hover svg,
+  .trk-copy:active, .policy .policy-nav a:active, .footer-icon:active,
+  .mobile-nav-list a:active, .mobile-nav-list button:active { transform: none; }
+  /* Never leave content hidden when motion is suppressed. */
+  .order-card .order-steps[data-ready] li:not(.is-lit) { opacity: 1; transform: none; }
+  [data-reveal="wait"] { opacity: 1; }
+  .btn-flash::after { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}

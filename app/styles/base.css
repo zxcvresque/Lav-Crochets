@@ -1,0 +1,72 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Reset + base
+   ─────────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html {
+  scroll-behavior: smooth;
+  /* Browser surfaces in the palette: caret, scrollbars, native controls. */
+  caret-color: var(--joy-600);
+  scrollbar-color: color-mix(in oklch, var(--joy-500) 55%, var(--line-2)) transparent;
+  accent-color: var(--joy-600);
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: var(--leading-body);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+a { color: inherit; text-decoration: none; text-underline-offset: 3px; }
+button { font: inherit; color: inherit; }
+
+::selection { background: color-mix(in oklch, var(--joy-500) 45%, transparent); color: var(--fg); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: color-mix(in oklch, var(--joy-500) 45%, var(--line-2)); border-radius: 99px; border: 2px solid var(--bg); }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* Focus ring used everywhere. Controls get a tighter offset and a rounded
+   ring; everything else gets the default ring a touch further out. The ring
+   draws in (offset settles, colour fades up) rather than snapping on. */
+:focus-visible { outline: 2px solid var(--joy-500); outline-offset: 3px; }
+.focus-ring:focus-visible,
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--joy-500);
+  outline-offset: 2px;
+  border-radius: var(--r-2);
+}
+:where(a, button, input, select, textarea, summary):focus-visible {
+  animation: focus-ring-in var(--dur-2) var(--ease-out);
+}
+
+/* Scroll lock for modal drawers (use-dialog.js): compensate the vanished
+   scrollbar so the page and the fixed header don't jump sideways. */
+html[data-scroll-locked] body { padding-right: var(--lock-sbw, 0px); }
+html[data-scroll-locked] .header-wrap { right: var(--lock-sbw, 0px); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   Typography utilities
+   ─────────────────────────────────────────────────────────────────────── */
+/* Emphasis is carried by the plum accent on display type, not a serif
+   italic. .font-italic keeps its class name for API stability. */
+.font-display { font-family: var(--font-display); font-optical-sizing: auto; letter-spacing: var(--tracking-heading); }
+.font-italic { font-family: var(--font-display); font-style: normal; color: var(--joy-700); font-weight: 500; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--4);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--fg-muted);
+  font-weight: 500;
+}
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }

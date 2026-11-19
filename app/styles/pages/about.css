@@ -1,0 +1,109 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   ABOUT: story + "What I promise" panel + closing CTA
+   The panel carries `.panel.brand`, which also matches the header logo's
+   `.brand { display: inline-flex }` rule; re-assert a vertical stack here.
+   ═══════════════════════════════════════════════════════════════════════ */
+.about-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: clamp(40px, 5vw, 80px);
+  align-items: start;
+}
+/* Story copy. The lead and sign-off keep the story's reading size (step 2)
+   and differ by face and colour only. */
+.about-story p { color: var(--fg-soft); font-size: var(--step-2); line-height: var(--leading-read); margin: 0 0 18px; max-width: 60ch; }
+.about-story .about-lead { font-family: var(--font-display); font-weight: 500; letter-spacing: var(--tracking-heading); text-wrap: balance; }
+.about-story .about-sign { font-family: var(--font-display); color: var(--fg); margin-top: 28px; }
+.about-sign-name {
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: var(--joy-700);
+  margin: 4px 0 0;
+}
+.about-story .about-sign-name { margin: 4px 0 0; }
+
+.about-promise-col { position: sticky; top: 108px; align-self: start; }
+.panel.brand.about-promise {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: clamp(28px, 2.6vw, 40px);
+  font: inherit;
+  letter-spacing: normal;
+  container-type: inline-size;
+}
+.about-promise .panel-title { text-align: left; align-self: flex-start; }
+.about-promise .about-promise-title { margin: 0 0 24px; font-size: var(--step-4); }
+.promise-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; max-width: 46ch; }
+.promise-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--step-6);
+  letter-spacing: var(--tracking-snug);
+  line-height: 1.35;
+  color: var(--joy-950);
+  text-wrap: pretty;
+}
+.promise-check {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  margin-top: 1px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--joy-950);
+  color: var(--joy-100);
+}
+.about-promise .about-promise-cta {
+  align-self: flex-start;
+  margin-top: 32px;
+}
+.about-promise .about-promise-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -12px color-mix(in oklch, var(--joy-950) 70%, transparent); }
+.about-promise .about-promise-cta:hover svg { transform: translateX(3px); }
+.about-promise .about-promise-cta:active { transform: translateY(0) scale(var(--press-scale)); }
+
+/* Staggered checklist entrance. Items are visible by default; JS sets
+   data-anim="in" once the panel is in view, and the keyframes (with
+   backwards fill) fade them up one after another. If JS/IO never runs,
+   nothing hides. */
+.about-promise[data-anim="in"] .promise-list li {
+  animation: rise-in calc(var(--dur-4) + var(--dur-1)) var(--ease-out) backwards;
+  animation-delay: calc(180ms + var(--i, 0) * 80ms);
+}
+
+/* Tablet and below: stack the panel under the story; no sticky. */
+@media (max-width: 960px) {
+  .about-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .about-promise-col { position: static; }
+}
+/* When the stacked panel is wide, lay the promises out as a 2-up grid. */
+@container (min-width: 620px) {
+  .about-promise .promise-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; row-gap: 20px; max-width: none; }
+}
+@media (max-width: 480px) {
+  .about-promise .about-promise-cta { align-self: stretch; justify-content: center; }
+}
+
+/* Closing CTA */
+.about-cta { text-align: center; }
+.about-cta h2 {
+  font-family: var(--font-display);
+  font-size: var(--step-9);
+  font-weight: 500;
+  letter-spacing: var(--tracking-display);
+  line-height: 1.02;
+  margin: 0 auto;
+  max-width: 18ch;
+  color: var(--paper);
+}
+.about-cta-em { font-family: var(--font-italic); font-style: italic; font-weight: 400; color: var(--joy-300); }
+.about-cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+@media (max-width: 768px) {
+  .about-cta-actions .btn { width: 100%; justify-content: center; }
+}

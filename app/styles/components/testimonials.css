@@ -1,0 +1,36 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Testimonials: quotes set in the display face, separated by the running
+   stitch motif rather than boxed into cards.
+   ─────────────────────────────────────────────────────────────────────── */
+.testimonial-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 36px; }
+@media (max-width: 900px) { .testimonial-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
+.testimonial {
+  margin: 0; padding-top: 22px; position: relative;
+  display: flex; flex-direction: column; gap: 16px;
+  background-image: linear-gradient(90deg, var(--joy-500) 0 14px, transparent 14px 24px);
+  background-size: 24px 2px; background-repeat: repeat-x; background-position: 0 0;
+}
+[data-theme="dark"] .testimonial { background-image: linear-gradient(90deg, color-mix(in oklch, var(--joy-300) 60%, transparent) 0 14px, transparent 14px 24px); }
+.testimonial-quote { margin: 0; }
+.testimonial-quote p {
+  margin: 0; font-family: var(--font-display); font-weight: 500;
+  font-size: var(--step-7); line-height: 1.22; letter-spacing: var(--tracking-heading);
+  color: var(--fg); text-wrap: pretty; max-width: 34ch;
+}
+.testimonial-by {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;
+  font-family: var(--font-mono); font-size: var(--step--3); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--fg-muted);
+}
+.testimonial-name { color: var(--fg-soft); font-weight: 500; }
+.testimonial-dot { width: 4px; height: 4px; border-radius: 99px; background: currentColor; opacity: 0.45; }
+.testimonial-by a { color: inherit; text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; transition: color var(--dur-2) var(--ease-out), text-decoration-color var(--dur-2) var(--ease-out); }
+.testimonial-by a:hover { color: var(--fg); text-decoration-color: var(--joy-500); }
+.testimonial-flag {
+  align-self: flex-start; display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: 999px;
+  font-family: var(--font-mono); font-size: var(--step--5); letter-spacing: var(--tracking-label); text-transform: uppercase;
+  background: color-mix(in oklch, var(--iris-500) 14%, transparent); color: var(--fg);
+  border: 1px dashed color-mix(in oklch, var(--iris-500) 70%, var(--fg));
+}
+.testimonial.is-placeholder .testimonial-quote p { color: var(--fg-soft); }
+.testimonials--compact .testimonial { max-width: 720px; }
+.testimonials--compact .testimonial-quote p { max-width: 44ch; }

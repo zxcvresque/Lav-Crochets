@@ -1,0 +1,131 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Forms (custom order, contact, checkout)
+   Persistent mono labels, soft focus halo, inline + form-level errors,
+   reference-photo dropzone, sent state. Inputs are 16px on phones so iOS
+   never zooms on focus.
+   ─────────────────────────────────────────────────────────────────────── */
+.custom-lead { color: var(--fg-soft); font-size: var(--step-2); line-height: 1.55; max-width: 56ch; margin: 4px 0 28px; }
+.custom-note { font-family: var(--font-mono); font-size: var(--step--3); letter-spacing: 0.02em; color: var(--fg-muted); margin: 4px 0 0; line-height: 1.6; }
+
+.cform { display: flex; flex-direction: column; gap: 16px; }
+.cgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 560px) { .cgrid { grid-template-columns: 1fr; } }
+.cfield { display: flex; flex-direction: column; gap: 7px; }
+.cfield > span,
+.cfield > label { font-family: var(--font-mono); font-size: var(--step--3); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--fg-muted); }
+.cfield input, .cfield textarea {
+  width: 100%; font-family: var(--font-body); font-size: var(--step-0); color: var(--fg);
+  background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--r-3);
+  padding: 12px 14px; resize: vertical;
+  transition: border-color var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out), background-color var(--dur-2) var(--ease-out);
+}
+.cfield input::placeholder, .cfield textarea::placeholder { color: var(--fg-faint); transition: color var(--dur-2) var(--ease-out); }
+.cfield input:hover, .cfield textarea:hover { border-color: var(--line-2); }
+.cfield input:focus, .cfield textarea:focus {
+  outline: none; border-color: var(--brand); background: var(--bg);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--brand) 30%, transparent);
+}
+.cfield input:focus::placeholder, .cfield textarea:focus::placeholder { color: color-mix(in oklch, var(--fg-faint) 60%, transparent); }
+@media (max-width: 768px) { .cfield input, .cfield textarea { font-size: var(--step-1); } }
+
+.cform-required-note { margin: 0 0 -4px; font-family: var(--font-mono); font-size: var(--step--3); letter-spacing: 0.02em; color: var(--fg-muted); }
+.cfield input[aria-invalid="true"], .cfield textarea[aria-invalid="true"] { border-color: var(--bad); }
+.cfield input[aria-invalid="true"]:focus, .cfield textarea[aria-invalid="true"]:focus {
+  border-color: var(--bad); box-shadow: 0 0 0 3px color-mix(in oklch, var(--bad) 24%, transparent);
+}
+.cfield-error { margin: 0; font-size: var(--step--2); line-height: 1.4; color: color-mix(in oklch, var(--bad) 78%, var(--fg)); animation: drop-in var(--dur-2) var(--ease-out); }
+[data-theme="dark"] .cfield-error { color: color-mix(in oklch, var(--bad) 70%, var(--fg)); }
+.cform-error {
+  margin: 0; padding: 12px 14px; border-radius: var(--r-3);
+  font-size: var(--step--1); line-height: 1.45; color: var(--fg);
+  background: color-mix(in oklch, var(--bad) 10%, var(--bg-elev));
+  border: 1px solid color-mix(in oklch, var(--bad) 40%, var(--line));
+  animation: drop-in var(--dur-2) var(--ease-out);
+}
+/* Field hint text (shared by form fields). */
+.cfield-hint { margin: -2px 0 0; font-size: var(--step--2); line-height: 1.45; color: var(--fg-muted); max-width: 60ch; }
+
+.cform-submit { align-self: flex-start; margin-top: 4px; }
+.cform-submit.center { align-self: center; }
+.cform button[type="submit"]:disabled { opacity: 0.7; cursor: progress; }
+
+/* Sent state (custom + contact). */
+.cform-sent { align-items: center; text-align: center; padding: 28px 20px; border-radius: var(--r-4); background: var(--bg-elev); border: 1px solid var(--line); animation: rise-in var(--dur-4) var(--ease-out); }
+.cform-sent .custom-lead { max-width: 46ch; margin: 0; }
+.cform-sent-ico { width: 48px; height: 48px; border-radius: 99px; display: inline-grid; place-items: center; background: color-mix(in oklch, var(--ok) 22%, transparent); color: color-mix(in oklch, var(--ok) 70%, var(--fg)); animation: settle-in var(--dur-3) var(--ease-out) var(--dur-1) both; }
+.cform-sign { margin: 4px 0 0; font-size: var(--step-5); }
+
+/* ── Reference photos: dropzone + thumbnails ───────────────────────────
+   The native file input covers the whole zone, so tap/click opens the
+   chooser and drops land on it too. */
+.cdrop {
+  position: relative;
+  display: flex; align-items: center; gap: 14px;
+  min-height: 84px; padding: 16px 18px;
+  border: 1.5px dashed var(--line-2); border-radius: var(--r-3);
+  background: var(--bg-elev); color: var(--fg-soft);
+  transition:
+    border-color var(--dur-2) var(--ease-out),
+    background-color var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out),
+    transform var(--dur-1) var(--ease-out);
+}
+.cdrop:hover { border-color: var(--joy-600); background: color-mix(in oklch, var(--brand) 8%, var(--bg-elev)); }
+.cdrop:active { transform: scale(0.995); }
+.cdrop:focus-within { border-color: var(--brand); box-shadow: 0 0 0 3px color-mix(in oklch, var(--brand) 30%, transparent); }
+.cdrop.is-over { border-style: solid; border-color: var(--joy-600); background: color-mix(in oklch, var(--brand) 16%, var(--bg-elev)); transform: scale(1.01); }
+.cdrop.is-full { border-style: solid; opacity: 0.8; }
+.cdrop.is-full:hover { border-color: var(--line-2); background: var(--bg-elev); }
+.cdrop-input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 1; }
+.cdrop-input:disabled, .cdrop.is-full .cdrop-input { cursor: not-allowed; }
+.cdrop-ico {
+  flex: none; width: 44px; height: 44px; border-radius: 999px; display: inline-grid; place-items: center;
+  background: color-mix(in oklch, var(--brand) 30%, transparent); color: var(--brand-ink);
+  transition: transform var(--dur-3) var(--ease-out);
+}
+[data-theme="dark"] .cdrop-ico { color: var(--joy-200); }
+.cdrop:hover .cdrop-ico, .cdrop.is-over .cdrop-ico { transform: translateY(-2px); }
+.cdrop-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.cdrop-text strong { font-weight: 600; font-size: var(--step-0); color: var(--fg); }
+.cdrop-sub { font-family: var(--font-mono); font-size: var(--step--4); letter-spacing: 0.04em; color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+.cdrop-tap { display: none; }
+@media (hover: none) { .cdrop-tap { display: inline; } .cdrop-drag { display: none; } }
+
+.cthumbs { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 560px) { .cthumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.cthumb {
+  position: relative; aspect-ratio: 1; border-radius: var(--r-3); overflow: hidden;
+  background: var(--bg-subtle); border: 1px solid var(--line);
+  animation: settle-in var(--dur-3) var(--ease-out);
+  transition: border-color var(--dur-2) var(--ease-out);
+}
+.cthumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity var(--dur-3) var(--ease-out), filter var(--dur-3) var(--ease-out); }
+.cthumb.is-uploading img { opacity: 0.6; filter: saturate(0.6); }
+.cthumb.is-error { border-color: color-mix(in oklch, var(--bad) 60%, var(--line)); }
+.cthumb.is-error img { opacity: 0.35; }
+.cthumb-file { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--fg-muted); font-family: var(--font-mono); font-size: var(--step--5); letter-spacing: var(--tracking-label); }
+.cthumb-progress { position: absolute; left: 8px; right: 8px; bottom: 8px; height: 4px; border-radius: 99px; background: color-mix(in oklch, var(--bg) 70%, transparent); overflow: hidden; }
+.cthumb-progress > span { display: block; height: 100%; background: var(--joy-600); transform-origin: 0 50%; transition: transform var(--dur-2) var(--ease-out); }
+.cthumb-ok {
+  position: absolute; left: 6px; bottom: 6px; width: 20px; height: 20px; border-radius: 99px; display: inline-grid; place-items: center;
+  background: var(--ok); color: white; animation: settle-in var(--dur-3) var(--ease-out);
+}
+.cthumb-err {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 6px 7px; font-size: var(--step--4); line-height: 1.25;
+  background: color-mix(in oklch, var(--bad) 85%, var(--ink)); color: white;
+  animation: rise-in var(--dur-2) var(--ease-out);
+}
+.cthumb-remove {
+  position: absolute; top: 5px; right: 5px; z-index: 2; width: 32px; height: 32px; border-radius: 99px;
+  display: inline-grid; place-items: center; border: 0; padding: 0; cursor: pointer;
+  background: color-mix(in oklch, var(--ink) 72%, transparent); color: var(--paper);
+  transition: background-color var(--dur-2) var(--ease-out), transform var(--dur-1) var(--ease-out);
+}
+.cthumb-remove:hover { background: var(--ink); transform: scale(1.06); }
+.cthumb-remove:active { transform: scale(0.94); }
+.cthumb-remove:focus-visible { outline: 2px solid var(--joy-500); outline-offset: 2px; }
+
+/* Coupon field (checkout). */
+.coupon-note { font-size: var(--step--4); margin-top: 6px; animation: drop-in var(--dur-2) var(--ease-out); }
+.coupon-note.bad { color: var(--bad); }
+.coupon-note.ok { color: var(--ok); }

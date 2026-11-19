@@ -1,0 +1,181 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Checkout: billing form (left), order summary (right; a collapsible
+   <details> above the form on tablets and phones), pay button.
+   ─────────────────────────────────────────────────────────────────────── */
+.checkout-page { padding: var(--s-7) 0 var(--s-9); }
+.checkout-header { margin-bottom: var(--s-7); }
+.checkout-header h1 {
+  font-family: var(--font-display);
+  font-size: var(--step-9);
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+  line-height: 1;
+  margin: 0;
+}
+.checkout-header p { color: var(--fg-soft); margin-top: 8px; }
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 64px;
+  align-items: start;
+}
+.checkout-form-col { display: flex; flex-direction: column; gap: 32px; }
+.checkout-section {
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  padding: 24px;
+  transition: border-color var(--dur-2) var(--ease-out), box-shadow var(--dur-3) var(--ease-out);
+}
+.checkout-section:focus-within { border-color: var(--line-2); box-shadow: var(--shadow-2); }
+.checkout-section-title {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 600;
+  margin: 0 0 20px;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-grid .full { grid-column: 1 / -1; }
+.field-error { font-size: var(--step--4); color: var(--bad); animation: drop-in var(--dur-2) var(--ease-out); }
+.checkout-section .cfield .field-error { font-style: normal; }
+
+.checkout-next { padding: 4px 4px 0; }
+.checkout-next ol { margin: 0; padding: 0; list-style: none; counter-reset: step; display: grid; gap: 12px; }
+.checkout-next li { counter-increment: step; display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: baseline; color: var(--fg-soft); font-size: var(--step--2); line-height: 1.55; }
+.checkout-next li::before { content: counter(step); font-family: var(--font-mono); font-size: var(--step--3); color: var(--brand); border: 1px solid var(--line); border-radius: 999px; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; }
+
+.payment-notice {
+  padding: 12px 16px;
+  border-radius: var(--r-3);
+  background: var(--bg-subtle);
+  color: var(--fg-soft);
+  font-size: var(--step--2);
+  line-height: var(--leading-body);
+  margin: 0 0 12px;
+  animation: rise-in var(--dur-3) var(--ease-out);
+}
+.payment-error {
+  animation: rise-in var(--dur-3) var(--ease-out);
+  line-height: var(--leading-body);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: color-mix(in oklch, var(--bad) 10%, transparent);
+  border: 1px solid color-mix(in oklch, var(--bad) 25%, transparent);
+  border-radius: var(--r-3);
+  color: var(--bad);
+  font-size: var(--step--2);
+  margin-bottom: 12px;
+}
+.checkout-pay { width: 100%; justify-content: center; }
+.btn.xl.checkout-pay { height: 56px; font-size: var(--step-0); }
+.checkout-pay-note { text-align: center; font-size: var(--step--4); color: var(--fg-muted); margin-top: 12px; }
+.checkout-legal { text-align: center; font-size: var(--step--4); color: var(--fg-muted); margin: 6px 0 0; line-height: 1.6; }
+.checkout-legal a { color: var(--fg-soft); text-decoration: underline; text-underline-offset: 2px; transition: color var(--dur-2) var(--ease-out); }
+.checkout-legal a:hover, .checkout-legal a:focus-visible { color: var(--brand); }
+.checkout-trust { font-size: var(--step--2); color: var(--fg-soft); line-height: 1.6; text-align: center; margin: 16px auto 0; max-width: 52ch; }
+.checkout-trust a { color: var(--brand); text-decoration: underline; }
+.checkout-success-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ── Order summary ──────────────────────────────────────────────────── */
+.checkout-summary-col { position: sticky; top: 96px; }
+.checkout-summary {
+  border: 1px solid var(--line);
+  border-radius: var(--r-4);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.checkout-summary-title {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 600;
+  margin: 0 0 20px;
+}
+.checkout-summary > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; }
+.checkout-summary > summary::-webkit-details-marker { display: none; }
+.checkout-summary:not([open]) > summary { margin-bottom: 0; }
+.checkout-summary-peek { display: none; font-family: var(--font-mono); font-size: var(--step--2); font-variant-numeric: tabular-nums; }
+.checkout-items { display: flex; flex-direction: column; gap: 12px; }
+.checkout-item { display: flex; align-items: center; gap: 12px; }
+.checkout-item-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--r-3);
+  background: var(--bg-subtle);
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.checkout-item-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--r-3); }
+.checkout-item-thumb .ph { width: 100%; height: 100%; background: var(--bg-subtle); border-radius: var(--r-3); }
+.checkout-item-qty {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: var(--step--4);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkout-item-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.checkout-item-title { font-size: var(--step--2); font-weight: 600; }
+.checkout-item-meta { font-size: var(--step--4); color: var(--fg-muted); }
+.checkout-item-price { font-family: var(--font-display); font-size: var(--step-0); font-weight: 600; font-variant-numeric: tabular-nums; }
+.checkout-coupon { padding-top: 16px; border-top: 1px solid var(--line); }
+.checkout-totals {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.checkout-totals .row-t { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: var(--step--2); color: var(--fg-soft); font-variant-numeric: tabular-nums; }
+.checkout-totals .row-t.discount { color: var(--ok); animation: drop-in var(--dur-2) var(--ease-out); }
+.checkout-totals .row-t .mono { font-family: var(--font-mono); font-size: var(--step--3); }
+.checkout-totals .row-t.grand { color: var(--fg); font-family: var(--font-display); font-size: var(--step-3); font-weight: 600; padding-top: 8px; border-top: 1px solid var(--line); }
+
+@media (max-width: 1024px) {
+  .checkout-layout { grid-template-columns: 1fr; gap: 24px; }
+  .checkout-summary-col { position: static; order: -1; }
+  .checkout-summary > summary { margin: 0; transition: margin-bottom var(--dur-3) var(--ease-in-out); }
+  .checkout-summary[open] > summary { margin-bottom: 20px; }
+  .checkout-summary > summary::after { content: ""; width: 8px; height: 8px; border-right: 1.5px solid var(--fg-muted); border-bottom: 1.5px solid var(--fg-muted); transform: rotate(45deg); margin-left: 12px; align-self: center; transition: transform var(--dur-3) var(--ease-out); }
+  .checkout-summary[open] > summary::after { transform: rotate(-135deg); }
+  .checkout-summary-peek { display: inline; margin-left: auto; }
+}
+@media (max-width: 600px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+/* Smooth open/close for the collapsible summary where the browser can size
+   to `auto` (::details-content + interpolate-size); elsewhere it snaps. */
+@supports selector(::details-content) {
+  .checkout-summary { interpolate-size: allow-keywords; }
+  .checkout-summary::details-content {
+    block-size: 0;
+    overflow: clip;
+    overflow-clip-margin: 8px;   /* room for the quantity badge on the first thumb */
+    opacity: 0;
+    transition:
+      block-size var(--dur-3) var(--ease-in-out),
+      opacity var(--dur-2) var(--ease-in),
+      content-visibility var(--dur-3) allow-discrete;
+  }
+  .checkout-summary[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+    transition:
+      block-size var(--dur-3) var(--ease-in-out),
+      opacity var(--dur-3) var(--ease-out) var(--dur-1),
+      content-visibility var(--dur-3) allow-discrete;
+  }
+}

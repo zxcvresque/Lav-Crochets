@@ -1,0 +1,221 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Header (fixed, shrinks into a floating pill on scroll)
+   At rest: flat, full container width, transparent, no pill chrome.
+   On scroll: it collapses into a centred floating pill with blurred glass.
+   The morph animates the pill's own box (one fixed element, nothing around
+   it reflows), on a slow symmetric curve so it reads as one calm movement.
+   ─────────────────────────────────────────────────────────────────────── */
+.header-wrap {
+  position: fixed;
+  top: 12px;
+  left: 0;
+  right: 0;
+  z-index: var(--z-sticky);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  padding: 0 28px;
+  transition: padding var(--dur-4) var(--ease-in-out);
+  /* Stays put while the rest of the page cross-fades between routes. */
+  view-transition-name: site-header;
+}
+.header-wrap.scrolled { padding: 0 16px; }
+
+.header {
+  --morph: calc(var(--dur-4) * 1.5);
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  width: min(1360px, 100%);
+  height: 84px;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition:
+    width var(--morph) var(--ease-in-out),
+    height var(--morph) var(--ease-in-out),
+    padding var(--morph) var(--ease-in-out),
+    border-radius var(--morph) var(--ease-in-out),
+    box-shadow var(--dur-4) var(--ease-in-out),
+    background-color var(--dur-4) var(--ease-in-out),
+    border-color var(--dur-4) var(--ease-in-out);
+}
+.header-wrap.scrolled .header {
+  width: min(1080px, calc(100% - 32px));
+  height: 60px;
+  padding: 6px 8px 6px 22px;
+  background: color-mix(in oklch, var(--bg) 82%, transparent);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-3);
+}
+
+/* Logo lockup. Zero specificity on purpose: `.brand` is also the colour
+   variant of panels and contact cards, whose own layout must always win. */
+:where(.brand) {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-3);
+  letter-spacing: var(--tracking-heading);
+  color: var(--fg);
+}
+.brand .name-d { color: var(--fg-muted); font-weight: 500; transition: color var(--dur-2) var(--ease-out); }
+.brand:hover .name-d { color: var(--fg-soft); }
+
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0 auto;            /* keep the nav centred between brand and actions */
+}
+.header nav a {
+  padding: 9px 16px;
+  border-radius: 99px;
+  font-size: var(--step--1);
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--fg-soft);
+  transition: color var(--dur-2) var(--ease-out), background-color var(--dur-2) var(--ease-out);
+}
+.header nav a:hover { color: var(--fg); background: color-mix(in oklch, var(--fg) 8%, transparent); }
+.header nav a[aria-current="page"] { color: var(--fg); }
+.header-actions { display: flex; align-items: center; gap: 6px; }
+
+/* Hamburger trigger: hidden on desktop. Scoped to `.header .hamburger` so it
+   out-specifies `.iconbtn { display: inline-flex }`. */
+.header .hamburger { display: none; }
+
+.cart-count {
+  position: absolute;
+  top: 6px; right: 6px;
+  min-width: 18px; height: 18px;
+  border-radius: 99px;
+  background: var(--brand);
+  color: var(--joy-950);
+  font-family: var(--font-mono);
+  font-size: var(--step--5);
+  font-weight: 600;
+  padding: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-count.empty { display: none; }
+.cart-count.bump { animation: settle-in var(--dur-3) var(--ease-out); }
+
+/* Collapsed header (≤900): inline nav hides, hamburger opens the drawer.
+   Brand stays left; the cart + hamburger pair sits on the right. */
+@media (max-width: 900px) {
+  .header { padding-left: 16px; }
+  .header nav { display: none; }
+  .header .hamburger { display: inline-flex; order: 99; }
+  .header-actions { margin-left: auto; }
+}
+/* Mobile: the pill only gains its chrome on scroll; dimensions stay
+   identical, so nothing visibly reflows. */
+@media (max-width: 768px) {
+  .header-wrap { padding: 0 8px; }
+  .header { height: 60px; gap: 14px; }
+  .header-wrap.scrolled .header {
+    width: calc(100% - 4px);
+    height: 60px;
+    padding: 6px 6px 6px 14px;
+  }
+  /* Only the cart stays inline; Instagram + theme live in the drawer. */
+  .header-actions .header-extra { display: none; }
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Mobile nav drawer: slides + fades in from the right, modal.
+   Opening decelerates in (--dur-4); closing is quicker and accelerates out.
+   ─────────────────────────────────────────────────────────────────────── */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: min(360px, 88vw);
+  background: var(--bg);
+  z-index: var(--z-drawer);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-4);
+  overscroll-behavior: contain;
+}
+.mobile-nav-drawer:focus { outline: none; }
+.mobile-nav-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.mobile-nav-head .brand { font-size: var(--step-3); }
+.mobile-nav-list {
+  display: flex; flex-direction: column;
+  padding: 6px 10px;
+  gap: 0;
+  flex: 1;
+}
+.mobile-nav-list a,
+.mobile-nav-list button {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%;
+  padding: 9px 14px;
+  border: 0; background: transparent; cursor: pointer;
+  border-radius: var(--r-3);
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+  text-decoration: none;
+  text-align: left;
+  transition: background-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out), transform var(--dur-1) var(--ease-out);
+}
+.mobile-nav-list a:hover,
+.mobile-nav-list a:focus-visible,
+.mobile-nav-list button:hover,
+.mobile-nav-list button:focus-visible { background: var(--bg-elev); }
+.mobile-nav-list a:active,
+.mobile-nav-list button:active { transform: scale(0.99); }
+/* Secondary tier: smaller, icon-led rows for cart + social + share. */
+.mobile-nav-list .mobile-nav-sub {
+  font-family: var(--font-body);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--fg-soft);
+  padding: 8px 14px;
+}
+.mobile-nav-list .mobile-nav-sub:hover { color: var(--fg); }
+.mobile-nav-rule { border: 0; border-top: 1px solid var(--line); margin: 6px 14px; }
+.mobile-nav-foot {
+  padding: 12px 18px 14px;
+  border-top: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.mobile-nav-meta {
+  font-family: var(--font-mono);
+  font-size: var(--step--5);
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  margin: 0;
+  text-align: center;
+  line-height: 1.6;
+}
+/* Rows settle in one after another as the drawer arrives. */
+.mobile-nav-drawer.open .mobile-nav-list > * { animation: rise-in var(--dur-3) var(--ease-out) backwards; }
+.mobile-nav-drawer.open .mobile-nav-list > :nth-child(1) { animation-delay: 60ms; }
+.mobile-nav-drawer.open .mobile-nav-list > :nth-child(2) { animation-delay: 85ms; }
+.mobile-nav-drawer.open .mobile-nav-list > :nth-child(3) { animation-delay: 110ms; }
+.mobile-nav-drawer.open .mobile-nav-list > :nth-child(4) { animation-delay: 135ms; }
+.mobile-nav-drawer.open .mobile-nav-list > :nth-child(5) { animation-delay: 160ms; }
+.mobile-nav-drawer.open .mobile-nav-list > :nth-child(n+6) { animation-delay: 185ms; }
