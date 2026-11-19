@@ -253,8 +253,8 @@ export default function OrderDetailPage() {
               {order.items.map((item) => (
                 <div key={item.id} className="admin-item-row">
                   <div className="admin-item-thumb">
-                    {item.product?.images ? (
-                      <img src={JSON.parse(item.product.images)[0]} alt={item.title} />
+                    {(() => { try { return JSON.parse(item.product?.images || "[]")[0]; } catch { return null; } })() ? (
+                      <img src={JSON.parse(item.product!.images)[0]} alt="" />
                     ) : (
                       <div className="admin-item-placeholder" />
                     )}
