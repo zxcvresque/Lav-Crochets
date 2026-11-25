@@ -250,23 +250,34 @@ export default function OrderDetailPage() {
           <div className="admin-card">
             <h3 className="admin-card-title">Items</h3>
             <div className="admin-items">
-              {order.items.map((item) => (
-                <div key={item.id} className="admin-item-row">
-                  <div className="admin-item-thumb">
-                    {(() => { try { return JSON.parse(item.product?.images || "[]")[0]; } catch { return null; } })() ? (
-                      <img src={JSON.parse(item.product!.images)[0]} alt="" />
-                    ) : (
-                      <div className="admin-item-placeholder" />
-                    )}
+              {order.items.map((item) => {
+                const imageSrc = (() => {
+                  try {
+                    const images: unknown = JSON.parse(item.product?.images || "[]");
+                    return Array.isArray(images) && typeof images[0] === "string" ? images[0] : null;
+                  } catch {
+                    return null;
+                  }
+                })();
+
+                return (
+                  <div key={item.id} className="admin-item-row">
+                    <div className="admin-item-thumb">
+                      {imageSrc ? (
+                        <img src={imageSrc} alt="" />
+                      ) : (
+                        <div className="admin-item-placeholder" />
+                      )}
+                    </div>
+                    <div className="admin-item-info">
+                      <div className="admin-item-title">{item.title}</div>
+                      {item.options && <div style={{ fontSize: "var(--step--3)", color: "var(--fg-muted)" }}>{item.options}</div>}
+                      <div style={{ fontSize: "var(--step--3)", color: "var(--fg-muted)" }}>Qty: {item.qty}</div>
+                    </div>
+                    <div className="admin-item-price">{fmtPriceINR(item.priceINR * item.qty)}</div>
                   </div>
-                  <div className="admin-item-info">
-                    <div className="admin-item-title">{item.title}</div>
-                    {item.options && <div style={{ fontSize: "var(--step--3)", color: "var(--fg-muted)" }}>{item.options}</div>}
-                    <div style={{ fontSize: "var(--step--3)", color: "var(--fg-muted)" }}>Qty: {item.qty}</div>
-                  </div>
-                  <div className="admin-item-price">{fmtPriceINR(item.priceINR * item.qty)}</div>
-                </div>
-              ))}
+                );
+              })}
             </div>
             <div className="admin-totals">
               <div className="admin-total-row"><span>Subtotal</span><span>{fmtPriceINR(order.subtotalINR)}</span></div>
